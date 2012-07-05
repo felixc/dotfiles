@@ -1,0 +1,58 @@
+!! Dzen
+dzen2.font: -*-Inconsolata-*-*-*-*-13-*-*-*-*-*-*-*
+dzen2.foreground: grey80
+dzen2.background: #2c2c32
+
+
+!! URxvt
+URxvt.depth: 32
+URxvt.shading: 70
+URxvt.transparent: true
+URxvt.blurRadius: 5
+URxvt.tintColor: #1f1f1f
+URxvt.fadeColor: #0a0a0a
+URxvt.fading: 20
+URxvt.urgentOnBell: true
+URxvt.scrollBar: false
+URxvt.scrollWithBuffer: true
+URxvt.font: xft:Inconsolata
+URxvt.perl-ext-common: default,matcher
+URxvt.urlLauncher: iceweasel
+URxvt.matcher.button: 1
+
+
+!! Everything
+*foreground: grey80
+*background: #1f1f1f
+
+!! black dark/light
+*color0: #000000
+*color8: #555753
+
+!! red dark/light
+*color1: #cc0000
+*color9: #EF2929
+
+!! green dark/light
+*color2: #4E9A06
+*color10: #8Ac214
+
+!! yellow dark/light
+*color3: #C4A000
+*color11: #FCE94F
+
+!! blue dark/light
+*color4: #3465A4
+*color12: #729FCF
+
+!! magenta dark/light
+*color5: #75507b
+*color13: #AD7FA8
+
+!! cyan dark/light
+*color6: #06989A
+*color14: #34E2E2
+
+!! white dark/light
+*color7: #D3D7CF
+*color15: #EEEEEC
