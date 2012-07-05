@@ -1,0 +1,13 @@
+[user]
+  name = "Felix Crux"
+  email = "felixc@felixcrux.com"
+
+[color]
+  ui = true
+
+[help]
+  autocorrect = 1
+
+[alias]
+  co = checkout
+  br = branch
