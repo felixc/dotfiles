@@ -1,12 +1,15 @@
-#!/usr/bin/zsh
+#!/bin/sh
 
 PATH=$PATH:/sbin/:/usr/sbin/:$HOME/bin/
 
 # Configuration
-xrdb -merge ~/.Xresources
-setxkbmap -option caps:escape -option compose:menu -option terminate:ctrl_alt_bksp
-xsetroot -cursor_name left_ptr
-feh --no-fehbg --bg-scale $(find $HOME/img/misc/wallpaper -type f | shuf -n1)
+xrdb -merge $HOME/.Xresources &
+setxkbmap -option caps:escape -option compose:menu -option terminate:ctrl_alt_bksp &
+xsetroot -cursor_name left_ptr &
+(while true; do
+  feh --no-fehbg --bg-scale $(find $HOME/img/wallpaper -type f | shuf -n1);
+  sleep $(( 10 * 60 ));
+done) &
 
 # Helper daemons
 keychain &
