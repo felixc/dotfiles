@@ -2,8 +2,11 @@
   name = "Felix Crux"
   email = "felixc@felixcrux.com"
 
+[core]
+  excludesfile = ~/.gitignore
+
 [color]
-  ui = true
+  ui = auto
 
 [help]
   autocorrect = 1
