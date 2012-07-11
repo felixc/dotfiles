@@ -24,5 +24,5 @@ urxvt -e "ssh-add" &
 emacs &
 
 # Windowing environment
-$HOME/.dzen/dzen.sh &
+$HOME/cfg/dzen/dzen.sh &
 exec $HOME/.cabal/bin/xmonad
