@@ -73,6 +73,9 @@
 (global-unset-key "\C-x\C-c")
 (global-set-key [?\C-x ?\e] 'save-buffers-kill-emacs)
 
+; We often have to refresh buffers from disk
+(global-set-key (kbd "<f5>") 'revert-buffer)
+
 ; Show tabs, so that they can be destroyed
 (require 'show-wspace)
 (add-hook 'font-lock-mode-hook 'show-ws-highlight-tabs)
