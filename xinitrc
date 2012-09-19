@@ -14,6 +14,7 @@ done) &
 # Helper daemons
 keychain &
 xbindkeys &
+xscreensaver -nosplash &
 anacron -t $HOME/.anacrontab -S $HOME/.anacronspool &
 
 # Foreground apps
