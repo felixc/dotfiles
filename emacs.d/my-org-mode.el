@@ -3,15 +3,11 @@
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cr" 'org-capture)
 
-(setq org-deadline-warning-days 10)
-
 (setq org-agenda-files '("~/wrk/org/"))
 (setq org-default-notes-file "~/wrk/org/refile.org")
 
 (setq org-todo-keywords
   '((sequence "TODO(t)" "STARTED(s!)" "BLOCKED(b@/!)" "FUTURE(f)" "|" "DONE(d!)" "CANCELLED(c@)")))
-
-(setq org-use-fast-todo-selection t)
 
 (setq org-capture-templates
   '(("t" "todo" entry (file "~/wrk/org/refile.org")
@@ -22,6 +18,9 @@
 (setq org-refile-targets '((nil :maxlevel . 9)
                            (org-agenda-files :maxlevel . 9)))
 
+(setq org-deadline-warning-days 10)
+(setq org-enforce-todo-dependencies t)
+(setq org-use-fast-todo-selection t)
 (setq org-refile-allow-creating-parent-nodes t)
 (setq org-refile-use-outline-path 'file)
 (setq org-outline-path-complete-in-steps nil)
@@ -36,25 +35,27 @@
                ((agenda "" nil)
                 (tags "REFILE"
                       ((org-agenda-overriding-header "Unfiled")
-                       (org-tags-match-list-sublevels nil)))
-                (tags-todo "-BLOCKED-CANCELLED/!NEXT|STARTED"
+                       (org-tags-match-list-sublevels 'indented)))
+                (tags-todo "/!STARTED"
                            ((org-agenda-overriding-header "In Progress")
                             (org-agenda-todo-ignore-scheduled t)
                             (org-agenda-todo-ignore-deadlines t)
-                            (org-tags-match-list-sublevels t)
+                            (org-tags-match-list-sublevels 'indented)
                             (org-agenda-sorting-strategy
                              '(todo-state-down effort-up category-keep))))
-                (tags-todo "-REFILE-CANCELLED/!-NEXT-STARTED-BLOCKED-FUTURE"
+                (tags-todo "-REFILE/!-STARTED-BLOCKED-FUTURE"
                            ((org-agenda-overriding-header "Tasks")
+                            (org-tags-match-list-sublevels 'indented)
                             (org-agenda-todo-ignore-scheduled t)
                             (org-agenda-todo-ignore-deadlines t)
                             (org-agenda-sorting-strategy
                              '(category-keep))))
-                (todo "BLOCKED"
-                      ((org-agenda-overriding-header "Waiting and Postponed tasks")
+                (tags-todo "/!BLOCKED"
+                      ((org-agenda-overriding-header "Blocked")
                        (org-agenda-todo-ignore-scheduled t)
-                       (org-agenda-todo-ignore-deadlines t)))
-                (tags-todo "-CANCELLED/!"
+                       (org-agenda-todo-ignore-deadlines t)
+                       (org-tags-match-list-sublevels 'indented)))
+                (tags-todo "/!"
                            ((org-agenda-overriding-header "Projects")
                             (org-agenda-skip-function 'bh/skip-non-projects)
                             (org-tags-match-list-sublevels 'indented)
@@ -62,8 +63,9 @@
                             (org-agenda-todo-ignore-deadlines 'future)
                             (org-agenda-sorting-strategy
                              '(category-keep))))
-                (todo "FUTURE"
+                (tags-todo "/!FUTURE"
                       ((org-agenda-overriding-header "Future")
+                       (org-tags-match-list-sublevels 'indented)
                        (org-agenda-todo-ignore-scheduled t)
                        (org-agenda-todo-ignore-deadlines t)))
                 )
