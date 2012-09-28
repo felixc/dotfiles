@@ -72,7 +72,7 @@ zstyle ":vcs_info:*" actionformats " %F{blue}[%F{green}%b%F{3}|%F{red}%a%F{blue}
 zstyle ":vcs_info:*" formats " %F{magenta}[%F{green}%b%u%c%F{magenta}]%f "
 
 # Default prompt: user@hostname:/path/$
-PROMPT='%F{green}%B%n@%m%b%f:%F{blue}%B%~%b%f${vcs_info_msg_0_}$ '
+PROMPT='%F{green}%B%n@%m%b%f:%F{blue}%B%4~%b%f${vcs_info_msg_0_}$ '
 RPROMPT="%{%F{red}%}%t%f"
 
 # Put the current directory in the terminal title bar
