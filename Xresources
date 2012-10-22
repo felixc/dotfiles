@@ -19,6 +19,7 @@ URxvt.font: xft:Inconsolata
 URxvt.perl-ext-common: default,matcher
 URxvt.urlLauncher: iceweasel
 URxvt.matcher.button: 1
+URxvt.termName:xterm-256color
 
 
 !! Everything

@@ -100,5 +100,3 @@ export EDITOR="emacsclient -t"
 
 # Make 'less' do magic with all kinds of files
 eval "$(lessfile)"
-
-TERM=xterm-256color
