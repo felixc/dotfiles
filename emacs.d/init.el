@@ -1,6 +1,5 @@
 ; Search for files in a custom load-path
 (add-to-list 'load-path (expand-file-name "~/.emacs.d"))
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/elpa"))
 
 ; Extra package repos
 (require 'package)
