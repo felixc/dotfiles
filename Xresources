@@ -17,7 +17,7 @@ URxvt.scrollBar: false
 URxvt.scrollWithBuffer: true
 URxvt.font: xft:Inconsolata
 URxvt.perl-ext-common: default,matcher
-URxvt.urlLauncher: iceweasel
+URxvt.urlLauncher: firefox
 URxvt.matcher.button: 1
 URxvt.termName:xterm-256color
 

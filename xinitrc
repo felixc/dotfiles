@@ -18,7 +18,7 @@ xscreensaver -nosplash &
 anacron -t $HOME/.anacrontab -S $HOME/.anacronspool &
 
 # Foreground apps
-iceweasel &
+firefox &
 urxvt -e "irssi" &
 urxvt -e "ncmpc" -c "--colors" &
 urxvt -e "ssh-add" &
