@@ -2,13 +2,15 @@ import System.Exit
 
 import XMonad
 import XMonad.Actions.CopyWindow
-import XMonad.Layout.NoBorders
-import XMonad.Layout.ResizableTile
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.UrgencyHook
+import XMonad.Layout.NoBorders
+import XMonad.Layout.ResizableTile
+import XMonad.Prompt
+import XMonad.Prompt.Shell
 import XMonad.Util.Replace
 import XMonad.Util.Run
 
@@ -28,7 +30,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- launch a terminal
     [ ((modMask,               xK_Return), spawn $ XMonad.terminal conf)
     -- run program launcher
-    , ((modMask,               xK_p     ), spawn "gmrun")
+    , ((modMask,               xK_p     ), shellPrompt defaultXPConfig)
     -- close focused window
     , ((modMask .|. shiftMask, xK_c     ), kill1)
      -- Rotate through the available layout algorithms
