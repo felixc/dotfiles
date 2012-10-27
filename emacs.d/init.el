@@ -57,6 +57,10 @@
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 
+; Incremental mini-buffer completion preview
+(eval-after-load "icomplete" '(progn (require 'icomplete+)))
+(icomplete-mode t)
+
 ; Better buffer management
 (global-set-key "\C-x\C-b" 'ibuffer)
 
@@ -84,9 +88,10 @@
 
 ; Auto completion
 (require 'pabbrev)
-(pabbrev-global-mode)
+(global-pabbrev-mode)
 
 (require 'popup)
+(define-key popup-menu-keymap (kbd "<tab>") 'popup-next)
 (defun pabbrevx-suggestions-goto-buffer (suggestions)
   (let* ((candidates (mapcar 'car suggestions))
          (bounds (pabbrev-bounds-of-thing-at-point))
@@ -113,6 +118,11 @@
 (require 'zenburn)
 (color-theme-zenburn)
 (set-default-font "Inconsolata-13")
+
+; Highlight the current line
+(global-hl-line-mode)
+(set-face-background 'hl-line "#0c0c0c")
+(set-face-underline-p 'hl-line nil)
 
 ; JS2 Mode
 (require 'js2-mode)
@@ -158,9 +168,14 @@
 (add-to-list 'completion-ignored-extensions ".out")
 
 ; Save open files on close, reopen them lazily at startup if wanted
+(setq
+  desktop-restore-eager 5
+  desktop-save t
+  desktop-load-locked-desktop t
+  desktop-dirname (expand-file-name "~/.emacs.d")
+  desktop-path (list desktop-dirname))
 (if (= (length command-line-args) 1)
     (desktop-save-mode 1))
-(setq desktop-restore-eager 5)
 
 ; Use C-x k to end emacsclient sessions, rather than C-x #
 (add-hook 'server-switch-hook
