@@ -167,6 +167,10 @@
 (add-to-list 'completion-ignored-extensions ".8")
 (add-to-list 'completion-ignored-extensions ".out")
 
+; When saving a file that looks like a script, make it executable
+(add-hook 'after-save-hook
+  'executable-make-buffer-file-executable-if-script-p)
+
 ; Save open files on close, reopen them lazily at startup if wanted
 (setq
   desktop-restore-eager 5
