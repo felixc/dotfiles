@@ -7,7 +7,7 @@
 
 (setq my-package-list
   '(ace-jump-mode fill-column-indicator icomplete+ js2-mode org perspective
-    undo-tree yasnippet))
+    undo-tree yasnippet zencoding-mode))
 
 (dolist (package my-package-list)
   (when (not (package-installed-p package))

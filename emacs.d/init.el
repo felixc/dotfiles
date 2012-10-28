@@ -75,10 +75,6 @@
 (require 'undo-tree)
 (global-undo-tree-mode)
 
-; Clean up unused junk
-(require 'midnight)
-(setq clean-buffer-list-delay-general 0)
-
 ; Avoid accidentally killing emacs all the time
 (global-unset-key (kbd "C-x C-c"))
 (global-set-key (kbd "C-x <escape>") 'save-buffers-kill-emacs)
@@ -96,29 +92,6 @@
 ; Make the selection behave like in most other applications
 (delete-selection-mode t)
 
-; Auto completion
-(require 'pabbrev)
-(global-pabbrev-mode)
-
-(require 'popup)
-(define-key popup-menu-keymap (kbd "<tab>") 'popup-next)
-(defun pabbrevx-suggestions-goto-buffer (suggestions)
-  (let* ((candidates (mapcar 'car suggestions))
-         (bounds (pabbrev-bounds-of-thing-at-point))
-         (selection (popup-menu* candidates :point (car bounds) :scroll-bar t)))
-    (when selection
-      (let ((point))
-        (save-excursion
-          (progn
-            (delete-region (car bounds) (cdr bounds))
-            (insert selection)
-            (setq point (point))))
-        (if point
-            (goto-char point))
-        (setq pabbrev-last-expansion-suggestions nil)))))
-
-(fset 'pabbrev-suggestions-goto-buffer 'pabbrevx-suggestions-goto-buffer)
-
 ; Line numbering
 (require 'linum)
 (global-linum-mode t)
@@ -134,6 +107,12 @@
 (set-face-background 'hl-line "#0f0f0f")
 (set-face-underline-p 'hl-line nil)
 
+; Zencoding for SGML modes
+(add-hook 'sgml-mode-hook 'zencoding-mode)
+
+; Yasnippet everywhere
+(yas-global-mode t)
+
 ; JS2 Mode
 (require 'js2-mode)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
@@ -145,10 +124,6 @@
 
 ; Go mode
 (load "my-go-mode")
-
-; Common Lisp / Slime
-(require 'cl)
-(setq inferior-lisp-program "/usr/bin/sbcl")
 
 ; UTF-8 Unicode
 (prefer-coding-system       'utf-8)
@@ -176,6 +151,29 @@
 (add-to-list 'completion-ignored-extensions ".6")
 (add-to-list 'completion-ignored-extensions ".8")
 (add-to-list 'completion-ignored-extensions ".out")
+
+; Auto completion
+(require 'pabbrev)
+(global-pabbrev-mode)
+
+(require 'popup)
+(define-key popup-menu-keymap (kbd "<tab>") 'popup-next)
+(defun pabbrevx-suggestions-goto-buffer (suggestions)
+  (let* ((candidates (mapcar 'car suggestions))
+         (bounds (pabbrev-bounds-of-thing-at-point))
+         (selection (popup-menu* candidates :point (car bounds) :scroll-bar t)))
+    (when selection
+      (let ((point))
+        (save-excursion
+          (progn
+            (delete-region (car bounds) (cdr bounds))
+            (insert selection)
+            (setq point (point))))
+        (if point
+            (goto-char point))
+        (setq pabbrev-last-expansion-suggestions nil)))))
+
+(fset 'pabbrev-suggestions-goto-buffer 'pabbrevx-suggestions-goto-buffer)
 
 ; When saving a file that looks like a script, make it executable
 (add-hook 'after-save-hook
