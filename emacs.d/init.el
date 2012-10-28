@@ -70,6 +70,10 @@
 ; Quickly jump to symbols in the buffer
 (global-set-key (kbd "M-i") 'imenu)
 
+; Quickly jump around to arbitrary points
+(require 'ace-jump-mode)
+(global-set-key (kbd "C-l") 'ace-jump-mode)
+
 ; Better undo
 (require 'undo-tree)
 (global-undo-tree-mode)
