@@ -2,7 +2,7 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d"))
 
 ; Install any required packages that may be missing
-(load "my-package-installer.el")
+(load "my-package-installer")
 
 ; Auto-break lines in text mode only
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
@@ -113,10 +113,11 @@
 ; Yasnippet everywhere
 (yas-global-mode t)
 
+; When using Flymake, show errors in the minibuffer, not on mouse hover
+(flymake-cursor-mode t)
+
 ; JS2 Mode
-(require 'js2-mode)
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-(add-hook 'js2-mode-hook '(lambda () (setq fill-column 100)))
+(load "my-js-mode")
 
 ; Haskell Mode
 (require 'haskell-mode)
@@ -154,7 +155,7 @@
 
 ; Auto completion
 (require 'pabbrev)
-(global-pabbrev-mode)
+(global-pabbrev-mode t)
 
 (require 'popup)
 (define-key popup-menu-keymap (kbd "<tab>") 'popup-next)
