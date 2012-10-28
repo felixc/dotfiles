@@ -92,6 +92,9 @@
 ; Make word-commands recognize in-word boundaries like capitalization
 (global-subword-mode t)
 
+; Make the selection behave like in most other applications
+(delete-selection-mode t)
+
 ; Auto completion
 (require 'pabbrev)
 (global-pabbrev-mode)
@@ -127,7 +130,7 @@
 
 ; Highlight the current line
 (global-hl-line-mode)
-(set-face-background 'hl-line "#0c0c0c")
+(set-face-background 'hl-line "#0f0f0f")
 (set-face-underline-p 'hl-line nil)
 
 ; JS2 Mode
