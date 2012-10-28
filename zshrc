@@ -1,3 +1,8 @@
+# Predicate: Does the specified command exist?
+existsp() {
+  command -v $1 > /dev/null
+}
+
 # Tab completion
 autoload -Uz compinit
 compinit
@@ -48,10 +53,9 @@ setopt prompt_subst
 bindkey -e
 
 # Enable colors for certain commands, or at least make them nicer
-if [ -x /usr/bin/dircolors ]; then
+if existsp dircolors; then
   alias ls="ls -h --color=auto"
   alias grep="grep -E --color=auto"
-  alias ncmpc="ncmpc --colors"
 else
   alias ls="ls -h"
   alias grep="grep -E"
@@ -84,9 +88,7 @@ chpwd_functions=("${chpwd_functions[@]}" pwd_to_title)
 pwd_to_title
 
 # Make cat perform syntax highlighting
-if [ -x /usr/bin/pygmentize ]; then
-  alias cat="pygmentize -g";
-fi
+existsp pygmentize && alias cat="pygmentize -g"
 
 # Colour STDERR
 # exec 2>>(while read LINE; do
@@ -99,4 +101,4 @@ alias e="emacsclient -t"
 export EDITOR="emacsclient -t"
 
 # Make 'less' do magic with all kinds of files
-eval "$(lessfile)"
+existsp lessfile && eval "$(lessfile)"
