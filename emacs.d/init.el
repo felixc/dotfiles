@@ -62,7 +62,13 @@
 (icomplete-mode t)
 
 ; Better buffer management
-(global-set-key "\C-x\C-b" 'ibuffer)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
+; Move between windows easily
+(windmove-default-keybindings)
+
+; Quickly jump to symbols in the buffer
+(global-set-key (kbd "M-i") 'imenu)
 
 ; Better undo
 (require 'undo-tree)
@@ -73,8 +79,8 @@
 (setq clean-buffer-list-delay-general 0)
 
 ; Avoid accidentally killing emacs all the time
-(global-unset-key "\C-x\C-c")
-(global-set-key [?\C-x ?\e] 'save-buffers-kill-emacs)
+(global-unset-key (kbd "C-x C-c"))
+(global-set-key (kbd "C-x <escape>") 'save-buffers-kill-emacs)
 
 ; We often have to refresh buffers from disk
 (global-set-key (kbd "<f5>") 'revert-buffer)
