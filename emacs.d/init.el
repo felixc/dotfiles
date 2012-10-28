@@ -1,11 +1,8 @@
 ; Search for files in a custom load-path
 (add-to-list 'load-path (expand-file-name "~/.emacs.d"))
 
-; Extra package repos
-(require 'package)
-(add-to-list 'package-archives '("elpa" . "http://tromey.com/elpa/"))
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(package-initialize)
+; Install any required packages that may be missing
+(load "my-package-installer.el")
 
 ; Auto-break lines in text mode only
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
