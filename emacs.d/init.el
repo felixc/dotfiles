@@ -20,8 +20,8 @@
 (setq ring-bell-function 'ignore)
 
 ; No toolbar or scrollbar
-(tool-bar-mode nil)
-(scroll-bar-mode nil)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
 
 ; Show matching parens
 (show-paren-mode t)
