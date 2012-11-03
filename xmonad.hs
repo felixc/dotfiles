@@ -64,8 +64,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- Quit xmonad
     , ((modMask .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
     -- Restart xmonad
-    , ((modMask              , xK_q     ),
-       broadcastMessage ReleaseResources >> restart "$HOME/.cabal/bin/xmonad" True)
+    , ((modMask              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
     ] ++
     -- mod-[1..9], Switch to workspace N
     -- mod-shift-[1..9], Move client to workspace N
