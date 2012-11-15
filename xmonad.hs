@@ -82,6 +82,7 @@ myLayout = smartBorders (ResizableTall 1 (3/100) (1/2) [] ||| Full ||| Mirror (R
 
 myManageHook = composeAll
     [ title =? "Contact List"      --> doFloat
+    , className =? "Steam"         --> doFloat
     , resource =? "desktop_window" --> doIgnore
     , isFullscreen                 --> doFullFloat
     , manageDocks
