@@ -6,8 +6,8 @@
 (package-initialize)
 
 (setq my-package-list
-  '(ace-jump-mode fill-column-indicator icomplete+ js2-mode org perspective
-    undo-tree yasnippet zencoding-mode flymake-cursor))
+  '(ace-jump-mode fill-column-indicator icomplete+ js2-mode perspective
+    undo-tree yasnippet zencoding-mode flymake-cursor zenburn))
 
 (dolist (package my-package-list)
   (when (not (package-installed-p package))

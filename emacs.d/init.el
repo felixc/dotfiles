@@ -98,6 +98,10 @@
 (setq column-number-mode t)
 
 ; Appearance
+(defvar zenburn-bg-1 "#0f0f0f")
+(defvar zenburn-bg "#1f1f1f")
+(defvar zenburn-bg+1 "#2f2f2f")
+(defvar zenburn-bg+2 "#3f3f3f")
 (require 'zenburn)
 (color-theme-zenburn)
 (set-default-font "Inconsolata-13")
