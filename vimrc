@@ -54,7 +54,6 @@ setlocal spell spelllang=en_gb
 set t_Co=256
 set background=dark
 syntax on
-colorscheme zenburn
 
 " Remove the GUI toolbar, make options text instead of popups, enable the
 " mouse, and use a good font
@@ -66,22 +65,11 @@ set guifont=Inconsolata\ 13
 " Windows should always have a status line
 set laststatus=2
 
-" Autowrap text, autowrap comments (and add comment delimiter), recognise
-" white space, and automatically format paragraphs as they are edited, based
-" on the second line of the paragraph rather than the first
-" Also set the maximum line length to 78, and wrap longer lines
-set formatoptions+=tcwa2
-set wrap
-set textwidth=78
-
 " I really don't want anything to get folded
 set nofoldenable
 
 " When splitting a window, put the new window below the original one
 set splitbelow
-
-" Detect different filetypes, and load appropriate plugins and indent files
-filetype plugin indent on
 
 " Configure what gets saved in the .viminfo history file
 set viminfo='0,\"0,%,/0,:10,@0,h
@@ -95,13 +83,3 @@ noremap k gk
 inoremap ( ()<ESC>i
 inoremap [ []<ESC>i
 inoremap { {}<ESC>i
-
-" Make tabs easier to use
-map <C-t> :tabnew<CR>
-map <C-q> :tabclose<CR>
-map <C-Tab> :tabNext<CR>
-map <C-S-Tab> :tabprevious<CR>
-imap <C-t> <ESC>:tabnew<CR>
-imap <C-q> <ESC>:tabclose<CR>
-imap <C-Tab> <ESC>:tabNext<CR>
-imap <C-S-Tab> <ESC>:tabprevious<CR>
