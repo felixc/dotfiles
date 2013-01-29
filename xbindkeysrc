@@ -1,0 +1,8 @@
+"volDown.sh"
+XF86AudioLowerVolume
+
+"volUp.sh"
+XF86AudioRaiseVolume
+
+"toggleMute.sh"
+XF86AudioMute
