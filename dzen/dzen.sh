@@ -98,7 +98,7 @@ MUSIC_XPOS=$(( $MARGIN_LEFT - $MUSIC_WIDTH ))
 MARGIN_LEFT=$(( $MARGIN_LEFT - $MUSIC_WIDTH ))
 
 if (( $BAT_EXISTS )); then
-  BAT_WIDTH=100
+  BAT_WIDTH=110
 else
   BAT_WIDTH=0
 fi
@@ -271,7 +271,7 @@ while true; do
     fi
 
     BAT_GRAPH=$(echo $(( $BAT_PCT_REMAINING + 1 )) | gdbar -h 10 -ss 1 -sw 4 -w 48 -s o -nonl -bg $COL_GRAPH_BORDER -fg $BAT_GRAPH_COL)
-    echo "$BAT_ICON $BAT_PCT_REMAINING% $BAT_GRAPH " > $BAT_PIPE
+    echo "$SEPARATOR $BAT_ICON $BAT_PCT_REMAINING% $BAT_GRAPH " > $BAT_PIPE
 
     BAT_COUNTER=0
   else
