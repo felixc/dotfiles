@@ -30,7 +30,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- launch a terminal
     [ ((modMask,               xK_Return), spawn $ XMonad.terminal conf)
     -- run program launcher
-    , ((modMask,               xK_p     ), shellPrompt defaultXPConfig)
+    , ((modMask,               xK_o     ), shellPrompt defaultXPConfig)
     -- close focused window
     , ((modMask .|. shiftMask, xK_c     ), kill1)
      -- Rotate through the available layout algorithms
