@@ -55,11 +55,6 @@ NET_ICON="^fg($COL_HIGHLIGHT)^i($DZEN_DIR/icons/wifi_01.xbm)^fg()"
 NET_TX_ICON="^fg(#dfae96)^i($DZEN_DIR/icons/net_up_03.xbm)^fg()"
 NET_RX_ICON="^fg($COL_HIGHLIGHT)^i($DZEN_DIR/icons/net_down_03.xbm)^fg()"
 
-NET_INTERFACE=$(route -n | grep " UG " | awk '{print $8}')
-NET_IS_WIFI=0
-if [[ $NET_INTERFACE == $(/sbin/iwconfig 2> /dev/null | awk 'NR == 1 {print $1}') ]]; then
-  NET_IS_WIFI=1
-fi
 NET_RX_BYTES_OLD=0
 NET_TX_BYTES_OLD=0
 
@@ -196,6 +191,12 @@ while true; do
   # Network
   #
   if (( $NET_COUNTER >= $NET_INTERVAL )); then
+    NET_INTERFACE=$(route -n | grep " UG " | awk '{print $8}')
+    NET_IS_WIFI=0
+    if [[ $NET_INTERFACE == $(/sbin/iwconfig 2> /dev/null | awk 'NR == 1 {print $1}') ]]; then
+      NET_IS_WIFI=1
+    fi
+
     if [[ ! -p $NET_PIPE ]]; then
       mkfifo $NET_PIPE
       if (( $NET_IS_WIFI )); then
