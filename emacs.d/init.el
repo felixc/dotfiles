@@ -77,7 +77,7 @@
 
 ; Avoid accidentally killing emacs all the time
 (global-unset-key (kbd "C-x C-c"))
-(global-set-key (kbd "C-x <escape>") 'save-buffers-kill-emacs)
+(global-set-key [?\C-x ?\e] 'save-buffers-kill-emacs)
 
 ; We often have to refresh buffers from disk
 (global-set-key (kbd "<f5>") 'revert-buffer)
