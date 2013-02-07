@@ -192,54 +192,56 @@ while true; do
   #
   if (( $NET_COUNTER >= $NET_INTERVAL )); then
     NET_INTERFACE=$(route -n | grep " UG " | awk '{print $8}')
-    NET_IS_WIFI=0
-    if [[ $NET_INTERFACE == $(/sbin/iwconfig 2> /dev/null | awk 'NR == 1 {print $1}') ]]; then
-      NET_IS_WIFI=1
-    fi
-
-    if [[ ! -p $NET_PIPE ]]; then
-      mkfifo $NET_PIPE
-      if (( $NET_IS_WIFI )); then
-        (tail -n 13 -f $NET_PIPE | dzen2 -p -ta r -sa l -tw $NET_WIDTH -x $NET_XPOS -l 3 -w 160 -e "button1=togglecollapse") &
-      else
-        (tail -n 13 -f $NET_PIPE | dzen2 -p -ta r -tw $NET_WIDTH -x $NET_XPOS) &
+    if [[ $NET_INTERFACE != "" ]]; then
+      NET_IS_WIFI=0
+      if [[ $NET_INTERFACE == $(/sbin/iwconfig 2> /dev/null | awk 'NR == 1 {print $1}') ]]; then
+        NET_IS_WIFI=1
       fi
-    fi
 
-    NET_TX_BYTES=$(cat /sys/class/net/$NET_INTERFACE/statistics/tx_bytes)
-    NET_RX_BYTES=$(cat /sys/class/net/$NET_INTERFACE/statistics/rx_bytes)
+      if [[ ! -p $NET_PIPE ]]; then
+        mkfifo $NET_PIPE
+        if (( $NET_IS_WIFI )); then
+          (tail -n 13 -f $NET_PIPE | dzen2 -p -ta r -sa l -tw $NET_WIDTH -x $NET_XPOS -l 3 -w 160 -e "button1=togglecollapse") &
+        else
+          (tail -n 13 -f $NET_PIPE | dzen2 -p -ta r -tw $NET_WIDTH -x $NET_XPOS) &
+        fi
+      fi
 
-    NET_RX_RATE=$(( ($NET_RX_BYTES - $NET_RX_BYTES_OLD) / 1024 / $NET_INTERVAL ))
-    NET_TX_RATE=$(( ($NET_TX_BYTES - $NET_TX_BYTES_OLD) / 1024 / $NET_INTERVAL ))
-    if (( $NET_RX_RATE > 999 )); then
-      NET_RX_RATE=$(echo "scale=1; $NET_RX_RATE / 1024" | bc)"MB/s"
-    else
-      NET_RX_RATE="${NET_RX_RATE}kB/s"
-    fi
-    if (( $NET_TX_RATE > 999 )); then
-      NET_TX_RATE=$(echo "scale=1; $NET_TX_RATE / 1024" | bc)"MB/s"
-    else
-      NET_TX_RATE="${NET_TX_RATE}kB/s"
-    fi
+      NET_TX_BYTES=$(cat /sys/class/net/$NET_INTERFACE/statistics/tx_bytes)
+      NET_RX_BYTES=$(cat /sys/class/net/$NET_INTERFACE/statistics/rx_bytes)
 
-    if (( $NET_IS_WIFI )); then
-      NET_ESSID=$(/sbin/iwconfig $NET_INTERFACE | sed -ne "s/.*ESSID:\"\(.*\)\".*/\1/p")
-      NET_IP=$(/sbin/ifconfig $NET_INTERFACE | sed -ne '/inet addr/ s/.*addr:\([^ ]*\).*/\1/p')
-      NET_LINK_QUALITY=$(/sbin/iwconfig $NET_INTERFACE | sed -ne "s/.*Link Quality=\([0-9]*\)\/\([0-9]*\).*/\1 \2/p")
-      NET_BIT_RATE=$(/sbin/iwconfig $NET_INTERFACE | sed -ne "s/.*Rate=\([0-9]* Mb\/s\).*/\1/p")
+      NET_RX_RATE=$(( ($NET_RX_BYTES - $NET_RX_BYTES_OLD) / 1024 / $NET_INTERVAL ))
+      NET_TX_RATE=$(( ($NET_TX_BYTES - $NET_TX_BYTES_OLD) / 1024 / $NET_INTERVAL ))
+      if (( $NET_RX_RATE > 999 )); then
+        NET_RX_RATE=$(echo "scale=1; $NET_RX_RATE / 1024" | bc)"MB/s"
+      else
+        NET_RX_RATE="${NET_RX_RATE}kB/s"
+      fi
+      if (( $NET_TX_RATE > 999 )); then
+        NET_TX_RATE=$(echo "scale=1; $NET_TX_RATE / 1024" | bc)"MB/s"
+      else
+        NET_TX_RATE="${NET_TX_RATE}kB/s"
+      fi
 
-      NET_GRAPH=$(echo $NET_LINK_QUALITY | gdbar -h 10 -ss 1 -w 48 -sw 4 -s o -nonl -bg $COL_GRAPH_BORDER -fg $COL_HIGHLIGHT)
+      if (( $NET_IS_WIFI )); then
+        NET_ESSID=$(/sbin/iwconfig $NET_INTERFACE | sed -ne "s/.*ESSID:\"\(.*\)\".*/\1/p")
+        NET_IP=$(/sbin/ifconfig $NET_INTERFACE | sed -ne '/inet addr/ s/.*addr:\([^ ]*\).*/\1/p')
+        NET_LINK_QUALITY=$(/sbin/iwconfig $NET_INTERFACE | sed -ne "s/.*Link Quality=\([0-9]*\)\/\([0-9]*\).*/\1 \2/p")
+        NET_BIT_RATE=$(/sbin/iwconfig $NET_INTERFACE | sed -ne "s/.*Rate=\([0-9]* Mb\/s\).*/\1/p")
 
-      echo "^tw()$SEPARATOR $NET_ICON $NET_GRAPH $NET_RX_RATE $NET_RX_ICON  $NET_TX_RATE $NET_TX_ICON " > $NET_PIPE
-      echo "  ESSID: $NET_ESSID\n  IP: $NET_IP\n  Bit Rate: $NET_BIT_RATE" > $NET_PIPE
-    else
-      echo "$SEPARATOR $NET_INTERFACE: $NET_RX_RATE $NET_RX_ICON  $NET_TX_RATE $NET_TX_ICON " > $NET_PIPE
-    fi
+        NET_GRAPH=$(echo $NET_LINK_QUALITY | gdbar -h 10 -ss 1 -w 48 -sw 4 -s o -nonl -bg $COL_GRAPH_BORDER -fg $COL_HIGHLIGHT)
 
-    NET_RX_BYTES_OLD=$NET_RX_BYTES
-    NET_TX_BYTES_OLD=$NET_TX_BYTES
+        echo "^tw()$SEPARATOR $NET_ICON $NET_GRAPH $NET_RX_RATE $NET_RX_ICON  $NET_TX_RATE $NET_TX_ICON " > $NET_PIPE
+        echo "  ESSID: $NET_ESSID\n  IP: $NET_IP\n  Bit Rate: $NET_BIT_RATE" > $NET_PIPE
+      else
+        echo "$SEPARATOR $NET_INTERFACE: $NET_RX_RATE $NET_RX_ICON  $NET_TX_RATE $NET_TX_ICON " > $NET_PIPE
+      fi
 
-    NET_COUNTER=0
+      NET_RX_BYTES_OLD=$NET_RX_BYTES
+      NET_TX_BYTES_OLD=$NET_TX_BYTES
+
+      NET_COUNTER=0
+   fi
   else
     NET_COUNTER=$(( $NET_COUNTER + 1 ))
   fi
