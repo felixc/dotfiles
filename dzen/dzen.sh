@@ -93,7 +93,7 @@ MUSIC_XPOS=$(( $MARGIN_LEFT - $MUSIC_WIDTH ))
 MARGIN_LEFT=$(( $MARGIN_LEFT - $MUSIC_WIDTH ))
 
 if (( $BAT_EXISTS )); then
-  BAT_WIDTH=110
+  BAT_WIDTH=170
 else
   BAT_WIDTH=0
 fi
@@ -257,6 +257,7 @@ while true; do
 
     BAT_STATE=$(acpi | awk '{print $3}')
     BAT_PCT_REMAINING=$(acpi | sed -ne "s/.* \([0-9]*\)%.*/\1/p")
+    BAT_TIME_REMAINING=$(acpi | sed -ne "s/.*\(..\):\(..\):.*/\1:\2/p")
 
     BAT_GRAPH_COL=$COL_EMPH
     BAT_ICON=$BAT_ICON_HIGH
@@ -274,7 +275,7 @@ while true; do
     fi
 
     BAT_GRAPH=$(echo $(( $BAT_PCT_REMAINING + 1 )) | gdbar -h 10 -ss 1 -sw 4 -w 48 -s o -nonl -bg $COL_GRAPH_BORDER -fg $BAT_GRAPH_COL)
-    echo "$SEPARATOR $BAT_ICON $BAT_PCT_REMAINING% $BAT_GRAPH " > $BAT_PIPE
+    echo "$SEPARATOR $BAT_ICON $BAT_TIME_REMAINING ($BAT_PCT_REMAINING%) $BAT_GRAPH " > $BAT_PIPE
 
     BAT_COUNTER=0
   else
