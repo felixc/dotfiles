@@ -145,8 +145,12 @@
 
 ; Draw a bar at the fill-column
 (require 'fill-column-indicator)
-(define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
-(global-fci-mode 1)
+(add-hook 'after-change-major-mode-hook 'fci-mode)
+(add-hook 'window-configuration-change-hook
+  (lambda ()
+     (if (< (window-width) fill-column)
+       (turn-off-fci-mode)
+       (turn-on-fci-mode))))
 
 ; Org Mode customizations
 (load "my-org-mode")
