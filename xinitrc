@@ -32,9 +32,7 @@ existsp unclutter && unclutter -idle 2 -jitter 2 &
 # Foreground apps
 existsp firefox && firefox &
 existsp irssi && x-terminal-emulator -e irssi &
-existsp ncmpc && x-terminal-emulator -e ncmpc --colors &
 existsp ssh-add && x-terminal-emulator -e ssh-add &
-existsp emacs && emacs &
 
 # Windowing environment
 [ -x $HOME/cfg/dzen/dzen.sh ] && $HOME/cfg/dzen/dzen.sh &
