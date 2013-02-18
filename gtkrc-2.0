@@ -1,0 +1,10 @@
+gtk-key-theme-name = "Emacs"
+
+style "MyZenburn" {
+  fg[NORMAL] = "#c8c8c8c8bebe"
+  bg[NORMAL] = "#3bdf3bdf3bdf"
+
+  fg[SELECTED] = "#a0a0c8c8c8c8"
+  bg[SELECTED] = "#1e1e23232020"
+}
+class "GtkWidget" style "MyZenburn"
