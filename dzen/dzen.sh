@@ -1,11 +1,5 @@
 #!/usr/bin/zsh
 
-# Get the requisite icons by running:
-#   wget http://dzen.geekmode.org/dwl/xbm8x8-0.1.tar.gz
-#   tar -xf xbm8x8-0.1.tar.gz
-#   mkdir icons && mv xbm8x8/* icons
-#   rm -rf xbm8x8*
-
 DZEN_DIR="$HOME/cfg/dzen"
 
 source "$DZEN_DIR/appearance.sh"
