@@ -97,8 +97,8 @@ existsp pygmentize && alias cat="pygmentize -g"
 # done &)
 
 # Editor settings
-alias e="emacsclient -t"
-export EDITOR="emacsclient -t"
+export EDITOR="emacs -nw"
+alias e="$EDITOR"
 
 # Make 'less' do magic with all kinds of files
 existsp lessfile && eval "$(lessfile)"
