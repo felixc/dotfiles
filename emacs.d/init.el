@@ -1,6 +1,9 @@
 ; Search for files in a custom load-path
 (add-to-list 'load-path (expand-file-name "~/.emacs.d"))
 
+; Speed up future loading by byte-compiling everything
+(byte-recompile-directory (expand-file-name "~/.emacs.d") 0)
+
 ; Install any required packages that may be missing
 (load "my-package-installer")
 
