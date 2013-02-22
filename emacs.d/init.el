@@ -85,6 +85,13 @@
 ; We often have to refresh buffers from disk
 (global-set-key (kbd "<f5>") 'revert-buffer)
 
+; Make it easier to get to a dired buffer with the current file at point
+(autoload 'dired-jump-other-window "dired-x" "Jump to Dired buffer." t)
+(define-key global-map (kbd "C-x C-d") 'dired-jump-other-window)
+(add-hook 'dired-mode-hook
+  (lambda ()
+    (global-set-key (kbd "C-x C-d") 'dired-jump-other-window)))
+
 ; Show tabs, so that they can be destroyed
 (require 'show-wspace)
 (add-hook 'font-lock-mode-hook 'show-ws-highlight-tabs)
