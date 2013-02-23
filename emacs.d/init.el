@@ -36,7 +36,7 @@
 (setq-default indent-tabs-mode nil)
 
 ; Set the standard indentation to 2 spaces
-(setq c-basic-offset 2)
+(setq-default c-basic-offset 2)
 
 ; Show trailing whitespace
 (setq-default show-trailing-whitespace t)
@@ -114,7 +114,7 @@
 (defvar zenburn-bg+2 "#3f3f3f")
 (require 'zenburn)
 (color-theme-zenburn)
-(set-default-font "Inconsolata-13")
+(set-frame-font "Inconsolata-13")
 
 ; Highlight the current line
 (global-hl-line-mode)
