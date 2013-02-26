@@ -74,6 +74,9 @@
 (require 'ace-jump-mode)
 (global-set-key (kbd "C-l") 'ace-jump-mode)
 
+; Refactor by editing multiple regions simultaneously
+(require 'iedit)
+
 ; Better undo
 (require 'undo-tree)
 (global-undo-tree-mode)
