@@ -3,8 +3,8 @@
 set -e
 
 pwd=$(pwd)
-files=(emacs.d fonts.conf gitconfig gtkrc-2.0 tmux.conf vimrc xbindkeysrc \
-       xinitrc xmonad Xresources zshrc)
+files=(emacs.d fonts.conf gitconfig gtkrc-2.0 muttrc tmux.conf vimrc \
+       xbindkeysrc xinitrc xmonad Xresources zshrc)
 
 for file in $files; do;
   ln -is "$pwd/$file" "$HOME/.$file"

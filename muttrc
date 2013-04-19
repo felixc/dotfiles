@@ -1,0 +1,25 @@
+set mbox_type="Maildir"
+set charset="utf-8"
+set crypt_autosign="yes"
+set date_format="!%a, %b %d %I:%M"
+set delete="yes"
+set forward_format="Fwd: %s"
+set include="yes"
+set index_format="%Z %d %-25.25L %s"
+set mark_old="no"
+set markers="no"
+set pager_index_lines="15"
+set pager_stop="yes"
+set send_charset="utf-8"
+set sendmail="/usr/bin/msmtp"
+set sort="threads"
+set user_agent="no"
+set wait_key="no"
+set wrap="100"
+
+auto_view text/html
+alternative_order text/plain text/html *
+
+color normal default default
+
+source "~/.muttrc-local"
