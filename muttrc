@@ -28,7 +28,7 @@ set mark_old="no"
 set markers="no"
 set sidebar_width="24"
 set wait_key="no"
-set wrap="100"
+set wrap="125"
 
 set charset="utf-8"
 set send_charset="utf-8"
