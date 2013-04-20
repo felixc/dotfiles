@@ -1,21 +1,38 @@
+set from="felixc@felixcrux.com"
+set realname="Felix Crux"
+
 set mbox_type="Maildir"
-set charset="utf-8"
-set crypt_autosign="yes"
-set date_format="!%a, %b %d %I:%M"
-set delete="yes"
-set forward_format="Fwd: %s"
-set include="yes"
-set index_format="%Z %d %-25.25L %s"
-set mark_old="no"
-set markers="no"
+set folder="~/mail"
+set spoolfile="+/inbox"
+set postponed="+/drafts"
+set record="+/sent"
+
 set pager_index_lines="15"
 set pager_stop="yes"
-set send_charset="utf-8"
-set sendmail="/usr/bin/msmtp"
 set sort="threads"
+set sort_aux="last-date-received"
+
+set date_format="!%a, %b %d %I:%M"
+set forward_format="Fwd: %s"
+set index_format="%Z %d %-25.25L %s"
+
+set sendmail="/usr/bin/msmtp"
+set use_envelope_from="yes"
+set use_from="yes"
 set user_agent="no"
+
+set abort_unmodified="ask-no"
+set crypt_autosign="yes"
+set delete="yes"
+set include="yes"
+set mark_old="no"
+set markers="no"
+set sidebar_width="24"
 set wait_key="no"
 set wrap="100"
+
+set charset="utf-8"
+set send_charset="utf-8"
 
 auto_view text/html
 alternative_order text/plain text/html *
