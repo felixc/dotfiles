@@ -12,11 +12,11 @@ done
 
 ln -is "$HOME/.xinitrc" "$HOME/.xsession"
 
-# The dzen configuration relies on certain scripts being in our $PATH
+# Set up scripts and tools
 mkdir -p "$HOME/bin"
-find ~/cfg/dzen/cmd -type f -exec basename '{}' \; |
+find "$pwd/bin" -type f -exec basename '{}' \; |
   while read cmd; do;
-    ln -is "$pwd/dzen/cmd/$cmd" "$HOME/bin"
+    ln -is "$pwd/bin/$cmd" "$HOME/bin"
   done
 
 # For now, we need to build dzen from source, since the version in the
