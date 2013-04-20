@@ -5,7 +5,6 @@ set mbox_type="Maildir"
 set folder="~/mail"
 set spoolfile="+/inbox"
 set postponed="+/drafts"
-set record="+/sent"
 
 set pager_index_lines="15"
 set pager_stop="yes"

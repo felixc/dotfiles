@@ -1,0 +1,31 @@
+[general]
+metadata = ~/mail/.offlineimap
+accounts = gmail
+pythonfile = ~/bin/offlineimap-helpers.py
+
+[Account gmail]
+localrepository = gmail-local
+remoterepository = gmail-remote
+
+autorefresh = 2
+quick = 5
+statusbackend = sqlite
+maxage = 90
+
+[Repository gmail-local]
+type = Maildir
+localfolders = ~/mail
+sep = /
+nametrans = local_to_remote
+
+[Repository gmail-remote]
+type = Gmail
+idlefolders = ['INBOX']
+remoteuser = felixc@felixcrux.com
+remotepasseval = get_password()
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+nametrans = remote_to_local
+folderfilter = lambda folder: folder not in [
+                 '[Gmail]/All Mail', '[Gmail]/Spam',
+                 '[Gmail]/Trash', '[Gmail]/Important'
+               ]
