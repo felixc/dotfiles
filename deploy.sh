@@ -7,16 +7,16 @@ files=(emacs.d fonts.conf gitconfig gtkrc-2.0 msmtprc muttrc offlineimaprc \
        tmux.conf vimrc xbindkeysrc xinitrc xmonad Xresources zshrc)
 
 for file in $files; do;
-  ln -is "$pwd/$file" "$HOME/.$file"
+  ln -isT "$pwd/$file" "$HOME/.$file"
 done
 
-ln -is "$HOME/.xinitrc" "$HOME/.xsession"
+ln -isT "$HOME/.xinitrc" "$HOME/.xsession"
 
 # Set up scripts and tools
 mkdir -p "$HOME/bin"
 find "$pwd/bin" -type f -exec basename '{}' \; |
   while read cmd; do;
-    ln -is "$pwd/bin/$cmd" "$HOME/bin"
+    ln -isT "$pwd/bin/$cmd" "$HOME/bin/$cmd"
   done
 
 # For now, we need to build dzen from source, since the version in the
