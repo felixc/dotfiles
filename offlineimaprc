@@ -26,6 +26,5 @@ remotepasseval = get_password()
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 nametrans = remote_to_local
 folderfilter = lambda folder: folder not in [
-                 '[Gmail]/All Mail', '[Gmail]/Spam',
-                 '[Gmail]/Trash', '[Gmail]/Important'
+                 '[Gmail]/All Mail', '[Gmail]/Spam', '[Gmail]/Important'
                ]

@@ -7,6 +7,7 @@ f_names = (
   ('[Gmail]/Sent Mail', 'sent'),
   ('[Gmail]/Drafts', 'drafts'),
   ('[Gmail]/Starred', 'flagged'),
+  ('[Gmail]/Trash', 'trash'),
 )
 
 
