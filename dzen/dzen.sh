@@ -30,6 +30,15 @@ TRAPINT() {
 
 
 #
+# Music Configuration
+#
+if [[ -x /usr/bin/mpd && -x /usr/bin/mpc && -x /usr/bin/alsamixer ]]; then
+  MUSIC_EXISTS=1
+else
+  MUSIC_EXISTS=0
+fi
+
+#
 # Battery Configuration
 #
 BAT_ICON_LOW="^fg($COL_WARN)^i($DZEN_DIR/icons/bat_empty_02.xbm)^fg()"
@@ -40,7 +49,11 @@ BAT_ICON_CHARGING="^fg($COL_HIGHLIGHT)^i($DZEN_DIR/icons/ac.xbm)^fg()"
 BAT_LOW_VAL=15
 BAT_FULL_VAL=90
 
-BAT_EXISTS=$(acpi 2> /dev/null | grep "Battery" > /dev/null && echo 1 || echo 0)
+if [[ -x /usr/bin/acpi ]]; then
+  BAT_EXISTS=$(acpi 2> /dev/null | grep "Battery" > /dev/null && echo 1 || echo 0)
+else
+  BAT_EXISTS=0
+fi
 
 #
 #  Network Monitor Configuration
@@ -82,7 +95,11 @@ VOL_WIDTH=110
 VOL_XPOS=$(( $MARGIN_LEFT - $VOL_WIDTH ))
 MARGIN_LEFT=$(( $MARGIN_LEFT - $VOL_WIDTH ))
 
-MUSIC_WIDTH=43
+if (( $MUSIC_EXISTS )); then
+  MUSIC_WIDTH=43
+else
+  MUSIC_WIDTH=0
+fi
 MUSIC_XPOS=$(( $MARGIN_LEFT - $MUSIC_WIDTH ))
 MARGIN_LEFT=$(( $MARGIN_LEFT - $MUSIC_WIDTH ))
 
@@ -128,9 +145,11 @@ SESSION_MENU="^fg($COL_WARN)^r(7x7)^fg()\nsudo poweroff  \nsudo reboot  \nsudo p
 #
 # Music Monitor
 #
-mkfifo $MUSIC_PIPE
-(tail -f $MUSIC_PIPE | dzen2 -p -ta l -tw $MUSIC_WIDTH -x $MUSIC_XPOS -e "button1=exec:togglePlay.sh;button3=exec:nextTrack.sh") &
-updateMusicDisplay.sh $MUSIC_PIPE
+if (( $MUSIC_EXISTS )); then
+  mkfifo $MUSIC_PIPE
+  (tail -f $MUSIC_PIPE | dzen2 -p -ta l -tw $MUSIC_WIDTH -x $MUSIC_XPOS -e "button1=exec:togglePlay.sh;button3=exec:nextTrack.sh") &
+  updateMusicDisplay.sh $MUSIC_PIPE
+fi
 
 #
 # Volume Controls
