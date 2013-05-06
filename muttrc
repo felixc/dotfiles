@@ -41,7 +41,7 @@ alternative_order text/plain text/html *
 message-hook "!(~g|~G) ~b'-----BEGIN\ PGP\ (SIGNED\ )?MESSAGE'" \
              "exec check-traditional-pgp"
 
-ignore user-agent
+ignore user-agent X-mailer
 
 color normal default default
 
