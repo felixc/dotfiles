@@ -23,6 +23,7 @@ if existsp feh && [ -d $HOME/img/wallpaper ]; then
 fi
 
 # Helper daemons
+existsp gnome-settings-daemon && gnome-settings-daemon &
 existsp keychain && keychain &
 existsp xbindkeys && xbindkeys &
 existsp xscreensaver && xscreensaver -nosplash &
