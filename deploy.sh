@@ -30,7 +30,7 @@ cd $pwd
 rm -rf dzen-bin
 
 # Let's get some icons for use in our dzen display
-wget --quiet http://dzen.geekmode.org/dwl/xbm8x8-0.1.tar.gz
+wget --quiet http://bitbucket.org/jerronymous/dotfiles/src/d8b5855a5ec6/.xmonad/dzen/icon-packs/xbm8x8-0.1.tar.gz
 tar -xf xbm8x8-0.1.tar.gz
 mkdir -p dzen/icons
 mv xbm8x8/* dzen/icons
