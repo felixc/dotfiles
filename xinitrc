@@ -29,6 +29,7 @@ existsp xbindkeys && xbindkeys &
 existsp xscreensaver && xscreensaver -nosplash &
 existsp anacron && anacron -t $HOME/.anacrontab -S $HOME/.anacronspool &
 existsp unclutter && unclutter -idle 2 -jitter 2 &
+existsp supervise && existsp offlineimap && supervise $HOME/msg/.offlineimap &
 
 # Foreground apps
 existsp firefox && firefox &

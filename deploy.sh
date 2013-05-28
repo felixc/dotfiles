@@ -15,6 +15,10 @@ ln -is "$pwd/settings.ini" "$HOME/.config/gtk-3.0/settings.ini"
 
 ln -isT "$HOME/.xinitrc" "$HOME/.xsession"
 
+mkdir -p "$HOME/msg/.offlineimap"
+echo '#!/bin/sh\nofflineimap' >! "$HOME/msg/.offlineimap/run"
+chmod +x "$HOME/msg/.offlineimap/run"
+
 # Set up scripts and tools
 mkdir -p "$HOME/bin"
 find "$pwd/bin" -type f -exec basename '{}' \; |
