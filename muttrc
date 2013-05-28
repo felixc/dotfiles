@@ -2,7 +2,7 @@ set from="Felix Crux <felixc@felixcrux.com>"
 set realname="Felix Crux"
 
 set mbox_type="Maildir"
-set folder="~/mail"
+set folder="~/msg"
 set spoolfile="+/inbox"
 set postponed="+/drafts"
 set record="+/sent"

@@ -1,5 +1,5 @@
 [general]
-metadata = ~/mail/.offlineimap
+metadata = ~/msg/.offlineimap
 accounts = gmail
 pythonfile = ~/bin/offlineimap-helpers.py
 
@@ -14,7 +14,7 @@ maxage = 90
 
 [Repository gmail-local]
 type = Maildir
-localfolders = ~/mail
+localfolders = ~/msg
 sep = /
 nametrans = local_to_remote
 
