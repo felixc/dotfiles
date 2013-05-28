@@ -10,6 +10,9 @@ for file in $files; do;
   ln -isT "$pwd/$file" "$HOME/.$file"
 done
 
+mkdir -p "$HOME/.config/gtk-3.0"
+ln -is "$pwd/settings.ini" "$HOME/.config/gtk-3.0/settings.ini"
+
 ln -isT "$HOME/.xinitrc" "$HOME/.xsession"
 
 # Set up scripts and tools
