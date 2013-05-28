@@ -4,7 +4,7 @@ set -e
 
 pwd=$(pwd)
 files=(emacs.d fonts.conf gitconfig gtkrc-2.0 msmtprc muttrc offlineimaprc \
-       tmux.conf vimrc xbindkeysrc xinitrc xmonad Xresources zshrc)
+       quiltrc tmux.conf vimrc xbindkeysrc xinitrc xmonad Xresources zshrc)
 
 for file in $files; do;
   ln -isT "$pwd/$file" "$HOME/.$file"
