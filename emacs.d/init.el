@@ -215,4 +215,5 @@
       (use-local-map (copy-keymap (current-local-map))))
     (local-set-key (kbd "C-x k") 'server-edit)))
 
-(server-start)
+(require 'server)
+(unless (server-running-p) (server-start))
