@@ -9,6 +9,7 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile
+import XMonad.Layout.Tabbed
 import XMonad.Prompt
 import XMonad.Prompt.Shell
 import XMonad.Util.Replace
@@ -78,7 +79,7 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask, button3), (\w -> focus w >> mouseResizeWindow w))
     ]
 
-myLayout = smartBorders (ResizableTall 1 (3/100) (1/2) [] ||| Full ||| Mirror (ResizableTall 1 (3/100) (1/2) []))
+myLayout = smartBorders (ResizableTall 1 (3/100) (1/2) [] ||| Mirror (ResizableTall 1 (3/100) (1/2) []) ||| simpleTabbed)
 
 myManageHook = composeAll
     [ title =? "Contact List"      --> doFloat
