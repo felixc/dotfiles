@@ -22,6 +22,8 @@ mkdir -p "$HOME/msg/.offlineimap"
 echo '#!/bin/sh\nofflineimap' >! "$HOME/msg/.offlineimap/run"
 chmod +x "$HOME/msg/.offlineimap/run"
 
+chmod og-rwx "$pwd/msmtprc"
+
 # Set up scripts and tools
 mkdir -p "$HOME/bin"
 find "$pwd/bin" -type f -exec basename '{}' \; |
