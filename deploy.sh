@@ -13,6 +13,9 @@ done
 mkdir -p "$HOME/.config/gtk-3.0"
 ln -fs "$pwd/settings.ini" "$HOME/.config/gtk-3.0/settings.ini"
 
+mkdir -p "$HOME/.gnupg"
+ln -fs "$pwd/gpg.conf" "$HOME/.gnupg/gpg.conf"
+
 ln -fsT "$HOME/.xinitrc" "$HOME/.xsession"
 
 mkdir -p "$HOME/msg/.offlineimap"
