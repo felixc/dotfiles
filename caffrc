@@ -1,0 +1,30 @@
+$CONFIG{'owner'} = 'Felix Crux';
+$CONFIG{'email'} = 'felixc@felixcrux.com';
+$CONFIG{'keyid'} = [ qw{8569B6311EE485F8} ];
+
+$CONFIG{'local-user'} = [ qw{8569B6311EE485F8} ];
+
+$CONFIG{'also-encrypt-to'} = [ qw{8569B6311EE485F8} ];
+
+$CONFIG{'mail-template'} = << 'EOM';
+Hi,
+
+Please find attached the user ID{(scalar @uids >= 2 ? 's' : '')}
+{foreach $uid (@uids) {
+   $OUT .= "\t".$uid."\n";
+};}of your key {$key}, signed by me.
+
+If you have multiple user IDs, I sent the signature for each user ID
+separately to that user ID's associated email address. You can import
+the signatures by running each through `gpg --import`.
+
+Note that I did not upload your key to any keyservers. If you want this
+new signature to be available to others, please upload it yourself.
+With GnuPG this can be done using
+     gpg --keyserver pool.sks-keyservers.net --send-key {$key}
+
+If you have any questions, don't hesitate to ask.
+
+Regards,
+{$owner}
+EOM

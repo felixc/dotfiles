@@ -3,7 +3,7 @@
 set -e
 
 pwd=$(pwd)
-files=(emacs.d gitconfig gtkrc-2.0 msmtprc muttrc offlineimaprc \
+files=(caffrc emacs.d gitconfig gtkrc-2.0 msmtprc muttrc offlineimaprc \
        quiltrc tmux.conf vimrc xbindkeysrc xinitrc xmonad Xresources zshrc)
 
 for file in $files; do;
