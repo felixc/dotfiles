@@ -8,7 +8,7 @@ set postponed="+/drafts"
 set record="+/sent"
 set trash="+/trash"
 
-set pager_index_lines="15"
+set pager_index_lines="10"
 set pager_stop="yes"
 set sort="threads"
 set sort_aux="last-date-received"
@@ -40,6 +40,8 @@ auto_view text/html
 alternative_order text/plain text/html *
 message-hook "!(~g|~G) ~b'-----BEGIN\ PGP\ (SIGNED\ )?MESSAGE'" \
              "exec check-traditional-pgp"
+
+macro index,pager <f5> "c !^M"
 
 ignore user-agent X-mailer
 
