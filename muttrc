@@ -31,7 +31,6 @@ set include="yes"
 set mark_old="no"
 set markers="no"
 set sidebar_width="24"
-set sig_on_top="yes"
 set wait_key="no"
 set wrap="125"
 
