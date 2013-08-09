@@ -8,6 +8,7 @@ set postponed="+/drafts"
 set record="+/sent"
 set trash="+/trash"
 
+set menu_scroll="yes"
 set pager_index_lines="10"
 set pager_stop="yes"
 set sort="threads"
@@ -30,6 +31,7 @@ set include="yes"
 set mark_old="no"
 set markers="no"
 set sidebar_width="24"
+set sig_on_top="yes"
 set wait_key="no"
 set wrap="125"
 
@@ -46,5 +48,9 @@ macro index,pager <f5> "c !^M"
 ignore user-agent X-mailer
 
 color normal default default
+color signature brightblack default
+color quoted1 yellow default
+color quoted2 cyan default
+color tree green default
 
 source "~/.muttrc-local"
