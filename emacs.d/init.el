@@ -140,6 +140,20 @@
 ; Go mode
 (load "my-go-mode")
 
+; Mail mode
+(setq auto-mode-alist (append '(("/tmp/mutt.*" . mail-mode)) auto-mode-alist))
+
+(defface mail-double-quoted-text-face
+  '((((class color)) :foreground "SteelBlue")) "Double-quoted parts of email.")
+
+(defface mail-multiply-quoted-text-face
+  '((((class color)) :foreground "DarkSlateGrey")) "Multiply-quoted parts.")
+
+(add-hook 'mail-mode-hook (lambda ()
+  (font-lock-add-keywords nil
+   '(("^[ \t]*>[ \t]*>[ \t]*>.*$" (0 'mail-multiply-quoted-text-face))
+     ("^[ \t]*>[ \t]*>.*$" (0 'mail-double-quoted-text-face))))))
+
 ; UTF-8 Unicode
 (prefer-coding-system       'utf-8)
 (set-default-coding-systems 'utf-8)
