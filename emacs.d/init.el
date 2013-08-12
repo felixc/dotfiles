@@ -71,6 +71,10 @@
 ; Better buffer management
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
+; We usually want to kill the current buffer.
+(global-set-key (kbd "C-x k") 'kill-this-buffer)
+(global-set-key (kbd "C-x K") 'ido-kill-buffer)
+
 ; Better buffer naming for duplicates
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
