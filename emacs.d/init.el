@@ -243,6 +243,11 @@
 (if (= (length command-line-args) 1)
     (desktop-save-mode 1))
 
+; Don't bother prompting to end processes when exiting
+(add-hook 'comint-exec-hook
+  (lambda ()
+    (set-process-query-on-exit-flag (get-buffer-process (current-buffer)) nil)))
+
 ; Use C-x k to end emacsclient sessions, rather than C-x #
 (add-hook 'server-switch-hook
   (lambda ()
