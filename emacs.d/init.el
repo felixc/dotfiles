@@ -48,6 +48,16 @@
 ; Do not make backups
 (setq make-backup-files nil)
 
+; Use the X clipboard as well for copy/paste
+(setq x-select-enable-clipboard t)
+(setq save-interprogram-paste-before-kill t)
+
+; Middle-click paste goes at the point, not where the cursor is
+(setq mouse-yank-at-point t)
+
+; Make apropos more comprehensive
+(setq apropos-do-all t)
+
 ; Interactive-do mode
 (require 'ido)
 (ido-mode 'both)
@@ -60,6 +70,10 @@
 
 ; Better buffer management
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+
+; Better buffer naming for duplicates
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
 
 ; Move between windows easily
 (windmove-default-keybindings)
