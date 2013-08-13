@@ -17,7 +17,7 @@ xsetroot -cursor_name left_ptr &
 [ -f $HOME/.Xresources ] && xrdb -merge $HOME/.Xresources &
 if existsp feh && [ -d $HOME/img/wallpaper ]; then
   (while true; do
-     feh --no-fehbg --bg-scale $(find $HOME/img/wallpaper -type f | shuf -n1);
+     feh --no-fehbg --bg-scale $(find -L $HOME/img/wallpaper -type f | shuf -n1);
      sleep $(( 10 * 60 ));
    done) &
 fi
@@ -30,6 +30,7 @@ existsp xscreensaver && xscreensaver -nosplash &
 existsp anacron && anacron -t $HOME/.anacrontab -S $HOME/.anacronspool &
 existsp unclutter && unclutter -idle 2 -jitter 2 &
 existsp supervise && existsp offlineimap && supervise $HOME/msg/.offlineimap &
+existsp git-annex && git-annex assistant --autostart &
 
 # Foreground apps
 existsp firefox && firefox &
