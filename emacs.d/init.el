@@ -159,25 +159,7 @@
 (load "my-go-mode")
 
 ; Mail mode
-(setq auto-mode-alist (append '(("/tmp/mutt.*" . mail-mode)) auto-mode-alist))
-
-(defface mail-double-quoted-text-face
-  '((((class color)) :foreground "SteelBlue")) "Double-quoted email.")
-(defface mail-treble-quoted-text-face
-  '((((class color)) :foreground "SlateGrey")) "Treble-quoted email.")
-(defface mail-multiply-quoted-text-face
-  '((((class color)) :foreground "DarkSlateGrey")) "Multiply-quoted email.")
-
-(font-lock-add-keywords 'mail-mode
- '(("^\\(\\( *>\\)\\{4,\\}\\)\\(.*\\)$"
-    (1 'font-lock-comment-delimiter-face)
-    (3 'mail-multiply-quoted-text-face))
-   ("^\\(\\( *>\\)\\{3\\}\\)\\(.*\\)$"
-    (1 'font-lock-comment-delimiter-face)
-    (3 'mail-treble-quoted-text-face))
-   ("^\\( *> *>\\)\\(.*\\)$"
-    (1 'font-lock-comment-delimiter-face)
-    (2 'mail-double-quoted-text-face))))
+(load "my-mail-mode")
 
 ; UTF-8 Unicode
 (prefer-coding-system       'utf-8)
