@@ -32,6 +32,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     [ ((modMask,               xK_Return), spawn $ XMonad.terminal conf)
     -- run program launcher
     , ((modMask,               xK_o     ), shellPrompt defaultXPConfig)
+    -- lock screen
+    , ((modMask,               xK_s     ), spawn "xscreensaver-command -lock")
     -- close focused window
     , ((modMask .|. shiftMask, xK_c     ), kill1)
      -- Rotate through the available layout algorithms
