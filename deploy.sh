@@ -19,6 +19,7 @@ ln -fs "$pwd/gpg.conf" "$HOME/.gnupg/gpg.conf"
 mkdir -p "$HOME/.xmonad"
 ln -fs "$pwd/xmonad.hs" "$HOME/.xmonad/xmonad.hs"
 xmonad --recompile
+xmonad --restart
 
 ln -fsT "$HOME/.xinitrc" "$HOME/.xsession"
 
