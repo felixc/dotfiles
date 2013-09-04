@@ -11,6 +11,9 @@
 [help]
   autocorrect = 1
 
+[push]
+  default = simple
+
 [alias]
   co = checkout
   br = branch
