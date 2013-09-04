@@ -17,3 +17,5 @@
 [alias]
   co = checkout
   br = branch
+  ls = log --graph --stat --date=relative --pretty=format:"%C(yellow)%h\\ %Cgreen%ad\\ %Cblue%cn%C(auto)%d%n\\ %Creset%s%n"
+  lsp = log --graph --stat --patch --date=relative --pretty=format:"%C(yellow)%h\\ %Cgreen%ad\\ %Cblue%cn%C(auto)%d%n\\ %Creset%s%n"
