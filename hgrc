@@ -2,13 +2,14 @@
 username = Felix Crux <felixc@felixcrux.com>
 merge = internal:merge
 
+[defaults]
+commit = -v
+qnew = -Ue
+
 [diff]
 git = true
 showfunc = true
-unified = 4
-
-[defaults]
-commit = -v
+unified = 8
 
 [extensions]
 color =
