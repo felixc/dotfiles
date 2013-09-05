@@ -1,0 +1,20 @@
+[ui]
+username = Felix Crux <felixc@felixcrux.com>
+merge = internal:merge
+
+[diff]
+git = true
+showfunc = true
+unified = 4
+
+[defaults]
+commit = -v
+
+[extensions]
+color =
+histedit =
+mq =
+pager =
+progress =
+rebase =
+transplant =
