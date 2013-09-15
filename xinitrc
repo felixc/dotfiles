@@ -36,6 +36,7 @@ existsp git-annex && git-annex assistant --autostart &
 existsp firefox && firefox &
 existsp irssi && x-terminal-emulator -e irssi &
 existsp ssh-add && x-terminal-emulator -e ssh-add &
+existsp mutt && x-terminal-emulator -e mutt &
 
 # Windowing environment
 [ -x $HOME/cfg/dzen/dzen.sh ] && $HOME/cfg/dzen/dzen.sh &
