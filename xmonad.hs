@@ -86,8 +86,8 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 myLayout = smartBorders (ResizableTall 1 (3/100) (1/2) [] ||| Mirror (ResizableTall 1 (3/100) (1/2) []) ||| simpleTabbed)
 
 myManageHook = composeAll
-    [ title =? "Contact List"      --> doFloat
-    , className =? "Steam"         --> doFloat
+    [ className =? "Iceweasel"     --> doShift "2"
+    , className =? "Steam"         --> doFloat <+> doShift "9"
     , resource =? "desktop_window" --> doIgnore
     , isFullscreen                 --> doFullFloat
     , manageDocks
