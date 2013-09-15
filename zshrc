@@ -64,6 +64,7 @@ fi
 # Provide nicer name-based access to colors
 autoload -Uz colors && colors
 zstyle ':completion:*' list-colors 'reply=( "=(#b)(*$VAR)(?)*=00=$color[green]=$color[bg-green]" )'
+zstyle ':completion:*' rehash true
 
 # VCS info configuration
 autoload -Uz vcs_info
