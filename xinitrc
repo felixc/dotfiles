@@ -1,5 +1,7 @@
 #!/bin/sh
 
+PATH=$PATH:/sbin/:/usr/sbin/:$HOME/bin/
+
 existsp() {
   command -v $1 > /dev/null;
 }
@@ -8,8 +10,6 @@ existsp x-terminal-emulator ||
   { existsp urxvt && alias x-terminal-emulator=urxvt; } ||
   { existsp gnome-terminal && alias x-terminal-emulator=gnome-terminal; } ||
   { alias x-terminal-emulator=xterm; }
-
-PATH=$PATH:/sbin/:/usr/sbin/:$HOME/bin/
 
 # Configuration
 setxkbmap -option caps:escape -option compose:menu -option terminate:ctrl_alt_bksp &
@@ -34,9 +34,9 @@ existsp git-annex && git-annex assistant --autostart &
 
 # Foreground apps
 existsp firefox && firefox &
-existsp irssi && x-terminal-emulator -e irssi &
-existsp ssh-add && x-terminal-emulator -e ssh-add &
-existsp mutt && x-terminal-emulator -e mutt &
+existsp irssi && x-terminal-emulator -e zsh -c irssi &
+existsp ssh-add && x-terminal-emulator -e zsh -c ssh-add &
+existsp mutt && x-terminal-emulator -e zsh -c mutt &
 
 # Windowing environment
 [ -x $HOME/cfg/dzen/dzen.sh ] && $HOME/cfg/dzen/dzen.sh &

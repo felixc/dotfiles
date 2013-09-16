@@ -5,7 +5,7 @@ set -e
 pwd=$(pwd)
 files=(caffrc emacs.d gitconfig gtkrc-2.0 hgrc lbdbrc msmtprc muttrc \
        offlineimaprc signature quiltrc tmux.conf vimrc xbindkeysrc xinitrc \
-       Xresources zshrc)
+       Xresources zshenv zshrc)
 
 for file in $files; do;
   ln -fsT "$pwd/$file" "$HOME/.$file"

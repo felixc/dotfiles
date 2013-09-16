@@ -97,8 +97,5 @@ existsp pygmentize && alias cat="pygmentize -g"
 #   print -n $'\0';
 # done &)
 
-# Editor settings
-export EDITOR="e -nw"
-
 # Make 'less' do magic with all kinds of files
 existsp lessfile && eval "$(lessfile)"
