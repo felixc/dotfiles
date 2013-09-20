@@ -19,3 +19,6 @@ pager =
 progress =
 rebase =
 transplant =
+
+[pager]
+pager = LESS='FRX' less
