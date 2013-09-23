@@ -80,6 +80,9 @@ zstyle ":vcs_info:*" formats " %F{magenta}[%F{green}%b%u%c%F{magenta}]%f "
 PROMPT='%F{green}%B%n@%m%b%f:%F{blue}%B%4~%b%f${vcs_info_msg_0_}$ '
 RPROMPT="%{%F{red}%}%t%f"
 
+# Make 'less' do magic with all kinds of files
+existsp lessfile && eval "$(lessfile)"
+
 # Put the current directory in the terminal title bar
 function pwd_to_title {
   [[ -o interactive ]] || return
@@ -88,14 +91,11 @@ function pwd_to_title {
 chpwd_functions=("${chpwd_functions[@]}" pwd_to_title)
 pwd_to_title
 
+
 # Make cat perform syntax highlighting
-existsp pygmentize && alias cat="pygmentize -g"
-
-# Colour STDERR
-# exec 2>>(while read LINE; do
-#   print '\e[91m'${(q)LINE}'\e[0m' > /dev/tty;
-#   print -n $'\0';
-# done &)
-
-# Make 'less' do magic with all kinds of files
-existsp lessfile && eval "$(lessfile)"
+function pygmentize_cat {
+  for arg in "$@"; do
+    pygmentize -g "${arg}" 2>/dev/null || /bin/cat "${arg}"
+  done
+}
+existsp pygmentize && alias cat=pygmentize_cat
