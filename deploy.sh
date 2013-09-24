@@ -59,7 +59,7 @@ if [ ! -d "$pwd/dzen/icons" ]; then;
 fi
 
 # Before we can install packages for Emacs23, we need a package manager
-if [ ! -f "$pwd/emacs.d/package.el" ]; then
+emacs --version | grep -q "GNU Emacs 23" && if [ ! -f "$pwd/emacs.d/package.el" ]; then
   wget --quiet -O "$pwd/emacs.d/package.el" \
     $(wget --quiet -O - http://marmalade-repo.org/ | \
         sed -n 's|.*\(http://.*package.el\)">|\1|p')
