@@ -91,6 +91,22 @@ function pwd_to_title {
 chpwd_functions=("${chpwd_functions[@]}" pwd_to_title)
 pwd_to_title
 
+# Automatically activate the virtualenv corresponding to the current directory
+function auto_activate_venv {
+  if [ "${PWD}" = "${OPWD}" ]; then return; fi  # Same directory.
+  OPWD="$PWD"
+  relative="${PWD#$HOME}"
+  if [ "${relative}" = "${PWD}" ]; then return; fi  # Not under $HOME.
+  VENV="$HOME/.venv${relative}"
+  activate="${VENV}/bin/activate"
+  if [ -f "${activate}" ]; then
+    source "${activate}";
+  else
+    existsp deactivate && deactivate
+  fi
+}
+chpwd_functions=("${chpwd_functions[@]}" auto_activate_venv)
+auto_activate_venv
 
 # Make cat perform syntax highlighting
 function pygmentize_cat {
