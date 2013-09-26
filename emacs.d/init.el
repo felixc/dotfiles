@@ -114,6 +114,13 @@
 (require 'show-wspace)
 (add-hook 'font-lock-mode-hook 'show-ws-highlight-tabs)
 
+; Spelling correction, including for comments in programming modes
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook
+  (lambda ()
+    (flyspell-mode -1)
+    (flyspell-prog-mode)))
+
 ; Make word-commands recognize in-word boundaries like capitalization
 (global-subword-mode t)
 
