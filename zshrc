@@ -93,17 +93,20 @@ pwd_to_title
 
 # Automatically activate the virtualenv corresponding to the current directory
 function auto_activate_venv {
-  if [ "${PWD}" = "${OPWD}" ]; then return; fi  # Same directory.
-  OPWD="$PWD"
   relative="${PWD#$HOME}"
-  if [ "${relative}" = "${PWD}" ]; then return; fi  # Not under $HOME.
-  VENV="$HOME/.venv${relative}"
-  activate="${VENV}/bin/activate"
-  if [ -f "${activate}" ]; then
-    source "${activate}";
-  else
-    existsp deactivate && deactivate
-  fi
+  if [ "${relative}" = "${PWD}" ] || [ "${relative}" = "" ]; then return; fi
+  while true; do
+    venv="$HOME/.venv${relative}"
+    activate="${venv}/bin/activate"
+    if [ -f "${activate}" ]; then
+      source "${activate}";
+      return;
+    else
+      relative=$(dirname "${relative}")
+      if [ "${relative}" = "/" ]; then break; fi
+    fi
+  done
+  existsp deactivate && deactivate
 }
 chpwd_functions=("${chpwd_functions[@]}" auto_activate_venv)
 auto_activate_venv
