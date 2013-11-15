@@ -155,6 +155,9 @@
 ; When using Flymake, show errors in the minibuffer, not on mouse hover
 (flymake-cursor-mode t)
 
+; Recognize python3 files
+(add-to-list 'interpreter-mode-alist '("python3" . python-mode))
+
 ; JS2 Mode
 (load "my-js-mode")
 
