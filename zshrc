@@ -54,10 +54,10 @@ bindkey -e
 
 # Enable colors for certain commands, or at least make them nicer
 if existsp dircolors; then
-  alias ls="ls -h --color=auto"
+  alias ls="ls --color=auto --human-readable --hide '__pycache__'"
   alias grep="grep -E --color=auto"
 else
-  alias ls="ls -h"
+  alias ls="ls --human-readable --hide '__pycache__'"
   alias grep="grep -E"
 fi
 
