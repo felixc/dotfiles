@@ -80,6 +80,10 @@ zstyle ":vcs_info:*" formats " %F{magenta}[%F{green}%b%u%c%F{magenta}]%f "
 PROMPT='%F{green}%B%n@%m%b%f:%F{blue}%B%4~%b%f${vcs_info_msg_0_}$ '
 RPROMPT="%{%F{red}%}%t%f"
 
+if [[ ! -z $SCHROOT_CHROOT_NAME ]]; then
+  PROMPT='%F{green}%B%n@%m%F{red}[$SCHROOT_CHROOT_NAME]%f%b%f:%F{blue}%B%4~%b%f${vcs_info_msg_0_}$ '
+fi
+
 # Make 'less' do magic with all kinds of files
 existsp lessfile && eval "$(lessfile)"
 
