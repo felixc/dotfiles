@@ -97,11 +97,11 @@ pwd_to_title
 
 # Automatically activate the virtualenv corresponding to the current directory
 function auto_activate_venv {
-  relative="${PWD#$HOME}"
+  local relative="${PWD#$HOME}"
   if [ "${relative}" = "${PWD}" ] || [ "${relative}" = "" ]; then return; fi
   while true; do
-    venv="$HOME/.venv${relative}"
-    activate="${venv}/bin/activate"
+    local venv="$HOME/.venv${relative}"
+    local activate="${venv}/bin/activate"
     if [ -f "${activate}" ]; then
       source "${activate}";
       return;
@@ -114,6 +114,15 @@ function auto_activate_venv {
 }
 chpwd_functions=("${chpwd_functions[@]}" auto_activate_venv)
 auto_activate_venv
+
+function venv_pwd {
+  local relative="${PWD#$HOME}"
+  if [ "${relative}" = "${PWD}" ] || [ "${relative}" = "" ]; then return; fi
+  local venv_dir="$HOME/.venv${relative}"
+  mkdir -p "$venv_dir"
+  virtualenv -p /usr/bin/python3 "$venv_dir"
+  auto_activate_venv
+}
 
 # Make cat perform syntax highlighting
 function pygmentize_cat {
