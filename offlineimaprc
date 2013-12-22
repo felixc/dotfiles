@@ -10,7 +10,6 @@ remoterepository = gmail-remote
 autorefresh = 2
 quick = 5
 statusbackend = sqlite
-maxage = 90
 
 [Repository gmail-local]
 type = Maildir
