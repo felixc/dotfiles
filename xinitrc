@@ -23,12 +23,10 @@ if existsp feh && [ -d $HOME/img/wallpaper ]; then
 fi
 
 # Helper daemons
-existsp gnome-settings-daemon && gnome-settings-daemon &
 existsp keychain && keychain &
 existsp xbindkeys && xbindkeys &
 existsp xscreensaver && xscreensaver -nosplash &
 existsp anacron && anacron -t $HOME/.anacrontab -S $HOME/.anacronspool &
-existsp unclutter && unclutter -idle 2 -jitter 2 &
 existsp supervise && existsp offlineimap && supervise $HOME/msg/.offlineimap &
 existsp git-annex && git-annex assistant --autostart &
 
