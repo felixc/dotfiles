@@ -1,29 +1,29 @@
 [general]
 metadata = ~/msg/.offlineimap
-accounts = gmail
+accounts = fastmail
 pythonfile = ~/bin/offlineimap-helpers.py
 
-[Account gmail]
-localrepository = gmail-local
-remoterepository = gmail-remote
+[Account fastmail]
+localrepository = fastmail-local
+remoterepository = fastmail-remote
 
 autorefresh = 2
 quick = 5
 statusbackend = sqlite
 
-[Repository gmail-local]
+[Repository fastmail-local]
 type = Maildir
 localfolders = ~/msg
 sep = /
 nametrans = local_to_remote
 
-[Repository gmail-remote]
-type = Gmail
-idlefolders = ['INBOX']
-remoteuser = felixc@felixcrux.com
-remotepasseval = get_password()
+[Repository fastmail-remote]
+type = IMAP
+remotehost = mail.messagingengine.com
+ssl = yes
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+remoteuser = felixc@fastmail.fm
+remotepasseval = get_password()
+idlefolders = ['INBOX']
 nametrans = remote_to_local
-folderfilter = lambda folder: folder not in [
-                 '[Gmail]/All Mail', '[Gmail]/Spam', '[Gmail]/Important'
-               ]
+folderfilter = lambda folder: folder not in ['INBOX.Junk Mail']

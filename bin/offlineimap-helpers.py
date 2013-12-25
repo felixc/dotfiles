@@ -4,10 +4,7 @@ import itertools
 
 f_names = (
   ('INBOX', 'inbox'),
-  ('[Gmail]/Sent Mail', 'sent'),
-  ('[Gmail]/Drafts', 'drafts'),
-  ('[Gmail]/Starred', 'flagged'),
-  ('[Gmail]/Trash', 'trash'),
+  ('INBOX.Sent Items', 'sent'),
 )
 
 
@@ -16,7 +13,7 @@ def local_to_remote(name):
   try:
     return itertools.dropwhile(lambda pair: pair[1] != name, f_names).next()[0]
   except:
-    return name
+    return "INBOX." + name.title()
 
 
 def remote_to_local(name):
@@ -24,7 +21,7 @@ def remote_to_local(name):
   try:
     return itertools.dropwhile(lambda pair: pair[0] != name, f_names).next()[1]
   except:
-    return name
+    return name.replace("INBOX.", "").lower()
 
 
 def get_password():
@@ -32,6 +29,6 @@ def get_password():
   return gkey.find_items_sync(
     gkey.ITEM_NETWORK_PASSWORD,
     {'protocol': 'imap',
-     'server': 'imap.gmail.com',
-     'user': 'felixc@felixcrux.com'}
+     'server': 'mail.messagingengine.com',
+     'user': 'felixc@fastmail.fm'}
     )[0].secret
