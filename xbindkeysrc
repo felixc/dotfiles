@@ -6,3 +6,9 @@ XF86AudioRaiseVolume
 
 "toggleMute.sh"
 XF86AudioMute
+
+"xbacklight -inc 10"
+XF86MonBrightnessUp
+
+"xbacklight -dec 10"
+XF86MonBrightnessDown
