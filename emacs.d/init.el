@@ -189,7 +189,7 @@
 (add-hook 'after-change-major-mode-hook 'fci-mode)
 (add-hook 'window-configuration-change-hook
   (lambda ()
-     (if (< (window-width) fill-column)
+     (if (<= (window-width) fill-column)
        (turn-off-fci-mode)
        (turn-on-fci-mode))))
 
