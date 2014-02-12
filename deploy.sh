@@ -37,6 +37,12 @@ find "$pwd/bin" -type f -exec basename '{}' \; |
     ln -fsT "$pwd/bin/$cmd" "$HOME/bin/$cmd"
   done
 
+# Get cert for keyserver
+if [ ! -f "$HOME/.gnupg/sks-keyservers.netCA.pem" ]; then
+  wget --quiet https://sks-keyservers.net/sks-keyservers.netCA.pem \
+    -O "$HOME/.gnupg/sks-keyservers.netCA.pem"
+fi
+
 # For now, we need to build dzen from source, since the version in the
 # Debian repositories is rather outdated.
 if ( ! command -v dzen2 > /dev/null ); then
