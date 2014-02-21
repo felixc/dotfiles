@@ -84,8 +84,12 @@ if [[ ! -z $SCHROOT_CHROOT_NAME ]]; then
   PROMPT='%F{green}%B%n@%m%F{red}[$SCHROOT_CHROOT_NAME]%f%b%f:%F{blue}%B%4~%b%f${vcs_info_msg_0_}$ '
 fi
 
-# Make 'less' do magic with all kinds of files
+# Make 'less' do magic with all kinds of files, and make it colourful
 existsp lessfile && eval "$(lessfile)"
+LESS_TERMCAP_md=$'\E[01;38;5;2m'
+LESS_TERMCAP_me=$'\E[0m'
+LESS_TERMCAP_us=$'\E[04;38;5;12m'
+LESS_TERMCAP_ue=$'\E[0m'
 
 # Put the current directory in the terminal title bar
 function pwd_to_title {
