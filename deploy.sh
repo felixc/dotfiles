@@ -43,18 +43,6 @@ if [ ! -f "$HOME/.gnupg/sks-keyservers.netCA.pem" ]; then
     -O "$HOME/.gnupg/sks-keyservers.netCA.pem"
 fi
 
-# For now, we need to build dzen from source, since the version in the
-# Debian repositories is rather outdated.
-if ( ! command -v dzen2 > /dev/null ); then
-  svn checkout http://dzen.googlecode.com/svn/trunk/ dzen-bin
-  cd dzen-bin
-  sudo make clean install
-  cd gadgets
-  sudo make clean install
-  cd $pwd
-  rm -rf dzen-bin
-fi
-
 # Let's get some icons for use in our dzen display
 if [ ! -d "$pwd/dzen/icons" ]; then;
   wget --quiet http://bitbucket.org/jerronymous/dotfiles/src/d8b5855a5ec6/.xmonad/dzen/icon-packs/xbm8x8-0.1.tar.gz
