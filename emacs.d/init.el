@@ -171,6 +171,9 @@
 ; Mail mode
 (load "my-mail-mode")
 
+; Show colours as represented by strings
+(add-hook 'css-mode-hook 'rainbow-mode)
+
 ; UTF-8 Unicode
 (prefer-coding-system       'utf-8)
 (set-default-coding-systems 'utf-8)
