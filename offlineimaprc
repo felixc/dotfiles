@@ -10,6 +10,7 @@ remoterepository = fastmail-remote
 autorefresh = 2
 quick = 5
 statusbackend = sqlite
+postsynchook = notmuch new
 
 [Repository fastmail-local]
 type = Maildir

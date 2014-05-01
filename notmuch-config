@@ -1,0 +1,16 @@
+[database]
+path=/home/felix/msg
+
+[user]
+name=Felix Crux
+primary_email=felixc@felixcrux.com
+
+[new]
+tags=unread;inbox;
+ignore=.offlineimap
+
+[search]
+exclude_tags=spam;
+
+[maildir]
+synchronize_flags=true

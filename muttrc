@@ -42,8 +42,6 @@ alternative_order text/plain text/html *
 message-hook "!(~g|~G) ~b'-----BEGIN\ PGP\ (SIGNED\ )?MESSAGE'" \
              "exec check-traditional-pgp"
 
-macro index,pager <f5> "c !^M"
-
 ignore user-agent X-mailer
 
 color normal default default
@@ -52,5 +50,11 @@ color quoted green default
 color quoted1 yellow default
 color quoted2 cyan default
 color tree green default
+
+macro index,pager <f5> "c !^M"
+macro index,pager <f6> \
+  "<enter-command>unset wait_key<enter><shell-escape>/usr/bin/notmuch-mutt --prompt search<enter><change-folder-readonly>~/.cache/notmuch/mutt/results<enter>"
+macro index,pager <f7> \
+  "<enter-command>unset wait_key<enter><pipe-message>/usr/bin/notmuch-mutt thread<enter><change-folder-readonly>~/.cache/notmuch/mutt/results<enter><enter-command>set wait_key<enter>"
 
 source "~/.muttrc-local"
