@@ -205,7 +205,7 @@ while true; do
   #
   if (( $NET_COUNTER >= $NET_INTERVAL )); then
     NET_COUNTER=0
-    NET_INTERFACE=$(route -n | grep -E " UGH? " | awk '{print $8}')
+    NET_INTERFACE=$(route -n | grep -E " UGH? " | awk 'END {print $8}')
     if [[ $NET_INTERFACE != "" ]]; then
       NET_IS_WIFI=0
       if [[ $NET_INTERFACE == $(/sbin/iwconfig 2> /dev/null | awk 'NR == 1 {print $1}') ]]; then
