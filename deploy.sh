@@ -21,6 +21,9 @@ mkdir -p "$HOME/.lbdb"
 ln -fs "$pwd/lbdbrc" "$HOME/.lbdb/lbdbrc"
 ln -fs "$pwd/lbdb-ldap.rc" "$HOME/.lbdb/ldap.rc"
 
+mkdir -p "$HOME/.ipython/profile_default/"
+ln -fs "$pwd/ipython_config.py" "$HOME/.ipython/profile_default/ipython_config.py"
+
 mkdir -p "$HOME/.xmonad"
 ln -fs "$pwd/xmonad.hs" "$HOME/.xmonad/xmonad.hs"
 xmonad --recompile
