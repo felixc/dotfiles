@@ -1,0 +1,22 @@
+use Passwd::Keyring::Gnome;
+
+$keyring = Passwd::Keyring::Gnome->new(
+  app => 'lbdb ldap',
+  group => 'login'
+);
+$password = $keyring->get_password('felixc', 'fastmail.fm');
+
+%ldap_server_db = (
+  'fastmail' => [
+    'ldaps://ldap.messagingengine.com:636',
+    'dc=AddressBook',
+    'gn sn cn mail',
+    'gn sn cn mail',
+    '${mail}',
+    '${cn}',
+    '',
+    1,
+    'cn=felixc@fastmail.fm,dc=User',
+    $password
+  ]
+)

@@ -3,9 +3,9 @@
 set -e
 
 pwd=$(pwd)
-files=(caffrc emacs.d gitconfig gtkrc-2.0 hgrc lbdbrc msmtprc muttrc \
-       notmuch-config offlineimaprc signature quiltrc tmux.conf vimrc \
-       xbindkeysrc xinitrc Xresources xscreensaver zshenv zshrc)
+files=(caffrc emacs.d gitconfig gtkrc-2.0 hgrc msmtprc muttrc notmuch-config \
+       offlineimaprc signature quiltrc tmux.conf vimrc xbindkeysrc xinitrc \
+       Xresources xscreensaver zshenv zshrc)
 
 for file in $files; do;
   ln -fsT "$pwd/$file" "$HOME/.$file"
@@ -16,6 +16,10 @@ ln -fs "$pwd/settings.ini" "$HOME/.config/gtk-3.0/settings.ini"
 
 mkdir -p "$HOME/.gnupg"
 ln -fs "$pwd/gpg.conf" "$HOME/.gnupg/gpg.conf"
+
+mkdir -p "$HOME/.lbdb"
+ln -fs "$pwd/lbdbrc" "$HOME/.lbdb/lbdbrc"
+ln -fs "$pwd/lbdb-ldap.rc" "$HOME/.lbdb/ldap.rc"
 
 mkdir -p "$HOME/.xmonad"
 ln -fs "$pwd/xmonad.hs" "$HOME/.xmonad/xmonad.hs"

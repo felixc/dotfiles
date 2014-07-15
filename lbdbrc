@@ -1,1 +1,2 @@
-METHODS="m_inmail m_gpg m_abook"
+METHODS="m_ldap m_gpg m_inmail"
+LDAP_NICKS="fastmail"
