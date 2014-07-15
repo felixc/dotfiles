@@ -17,6 +17,9 @@ ln -fs "$pwd/settings.ini" "$HOME/.config/gtk-3.0/settings.ini"
 mkdir -p "$HOME/.gnupg"
 ln -fs "$pwd/gpg.conf" "$HOME/.gnupg/gpg.conf"
 
+mkdir -p "$HOME/.caff/gnupghome"
+ln -fs "$pwd/gpg.conf" "$HOME/.caff/gnupghome/gpg.conf"
+
 mkdir -p "$HOME/.lbdb"
 ln -fs "$pwd/lbdbrc" "$HOME/.lbdb/lbdbrc"
 ln -fs "$pwd/lbdb-ldap.rc" "$HOME/.lbdb/ldap.rc"
