@@ -71,10 +71,10 @@ NET_TX_BYTES_OLD=0
 TIME_ICON="^fg($COL_HIGHLIGHT)^i($DZEN_DIR/icons/clock.xbm)^fg()"
 TIME_SLAVE_LINES=12
 TIME_SLAVE_WIDTH=530
-TIME_FORMAT='%a %d %b %Y %I:%M %p'
+TIME_FORMAT='%a %d %b %Y %H:%M'
 
 TIME_ZONES=(America/Toronto America/Chicago America/Los_Angeles)
-TIME_ZONE_NAMES=(Toronto Houston Seattle)
+TIME_ZONE_NAMES=(Ontario Texas California)
 
 
 #
@@ -87,7 +87,7 @@ SESSION_WIDTH=23
 SESSION_XPOS=$(( $MARGIN_LEFT - $SESSION_WIDTH ))
 MARGIN_LEFT=$(( $MARGIN_LEFT - $SESSION_WIDTH ))
 
-TIME_WIDTH=200
+TIME_WIDTH=180
 TIME_XPOS=$(( $MARGIN_LEFT - $TIME_WIDTH ))
 MARGIN_LEFT=$(( $MARGIN_LEFT - $TIME_WIDTH ))
 
@@ -189,8 +189,8 @@ while true; do
 
     TIME_TZS_OUTPUT=""
     for ((i=1; i <= ${#TIME_ZONES}; i++)) {
-      TIME_NEW_TZ=$(TZ=${TIME_ZONES[i]} date +'%l:%M')
-      TIME_TZS_OUTPUT="$TIME_TZS_OUTPUT^fg(white)${TIME_ZONE_NAMES[i]}^fg():$TIME_NEW_TZ  "
+      TIME_NEW_TZ=$(TZ=${TIME_ZONES[i]} date +'%H:%M')
+      TIME_TZS_OUTPUT="$TIME_TZS_OUTPUT^fg(white)${TIME_ZONE_NAMES[i]}^fg(): $TIME_NEW_TZ  "
     }
 
     echo "\n$TIME_CAL_OUTPUT\n\n $TIME_TZS_OUTPUT\n" > $TIME_PIPE
