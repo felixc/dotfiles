@@ -26,6 +26,8 @@ fi
 existsp keychain && keychain &
 existsp xbindkeys && xbindkeys &
 existsp xscreensaver && xscreensaver -nosplash &
+existsp compton && compton -c -C -f -D 1 -r 10 --inactive-dim 0.05 \
+                           -z -G --shadow-exclude 'class_g = "dzen"' -b &
 existsp anacron && anacron -t $HOME/.anacrontab -S $HOME/.anacronspool &
 existsp supervise && existsp offlineimap && supervise $HOME/msg/.offlineimap &
 existsp git-annex && git-annex assistant --autostart &
