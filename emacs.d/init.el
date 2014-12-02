@@ -146,17 +146,25 @@
 (set-face-background 'hl-line "#0f0f0f")
 (set-face-underline-p 'hl-line nil)
 
-; Zencoding for SGML modes
-(add-hook 'sgml-mode-hook 'zencoding-mode)
-
 ; Yasnippet everywhere
 (yas-global-mode t)
 
 ; When using Flymake, show errors in the minibuffer, not on mouse hover
-(flymake-cursor-mode t)
+(require 'flymake-cursor)
 
 ; Recognize python3 files
 (add-to-list 'interpreter-mode-alist '("python3" . python-mode))
+
+; Zencoding for SGML modes
+(add-hook 'sgml-mode-hook 'zencoding-mode)
+
+; Better JS and CSS editing in HTML documents
+(require 'multi-web-mode)
+(setq mweb-default-major-mode 'html-mode)
+(setq mweb-tags '((js-mode "<script[^>]*>" "</script>")
+                  (css-mode "<style[^>]*>" "</style>")))
+(setq mweb-filename-extensions '("html"))
+(multi-web-global-mode 1)
 
 ; JS2 Mode
 (load "my-js-mode")
