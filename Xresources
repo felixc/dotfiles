@@ -6,15 +6,14 @@ dzen2.background: #2c2c32
 
 !! URxvt
 URxvt.depth: 32
-URxvt.shading: 70
-URxvt.transparent: true
 URxvt.blurRadius: 5
-URxvt.tintColor: #1f1f1f
 URxvt.fadeColor: #0a0a0a
-URxvt.fading: 30
+URxvt.fading: 20
+URxvt.background: [90]#080808
 URxvt.urgentOnBell: true
 URxvt.scrollBar: false
 URxvt.scrollWithBuffer: true
+URxvt.internalBorder: 6
 URxvt.font: xft:Inconsolata,xft:Dejavu Sans Mono:pixelsize=14,xft:Unifont
 URxvt.perl-ext-common: default,matcher
 URxvt.urlLauncher: firefox
@@ -35,7 +34,7 @@ Emacs.font: Inconsolata-13
 *color8: #555753
 
 !! red dark/light
-*color1: #cc0000
+*color1: #CC0000
 *color9: #EF2929
 
 !! green dark/light
