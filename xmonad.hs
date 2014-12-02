@@ -7,8 +7,8 @@ import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.UrgencyHook
-import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile
+import XMonad.Layout.Spacing
 import XMonad.Layout.Tabbed
 import XMonad.Prompt
 import XMonad.Prompt.Shell
@@ -21,11 +21,8 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
 myTerminal      = "x-terminal-emulator"
-myBorderWidth   = 1
 myModMask       = mod4Mask
 myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
-myNormalBorderColor  = "#606060"
-myFocusedBorderColor = "#337711"
 
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- launch a terminal
@@ -83,7 +80,7 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask, button3), (\w -> focus w >> mouseResizeWindow w))
     ]
 
-myLayout = smartBorders (ResizableTall 1 (3/100) (1/2) [] ||| Mirror (ResizableTall 1 (3/100) (1/2) []) ||| simpleTabbed)
+myLayout = smartSpacing 4 (ResizableTall 1 (3/100) (1/2) [] ||| Mirror (ResizableTall 1 (3/100) (1/2) []) ||| simpleTabbed)
 
 myManageHook = composeAll
     [ className =? "Iceweasel"     --> doShift "2"
@@ -111,11 +108,9 @@ main = do
   xmonad $ withUrgencyHook NoUrgencyHook $ ewmh defaultConfig {
     terminal           = myTerminal,
     focusFollowsMouse  = True,
-    borderWidth        = myBorderWidth,
+    borderWidth        = 0,
     modMask            = myModMask,
     workspaces         = myWorkspaces,
-    normalBorderColor  = myNormalBorderColor,
-    focusedBorderColor = myFocusedBorderColor,
     keys               = myKeys,
     mouseBindings      = myMouseBindings,
     layoutHook         = avoidStruts $ myLayout,
