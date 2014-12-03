@@ -78,16 +78,20 @@ zstyle ":vcs_info:*" enable git hg
 zstyle ":vcs_info:*" check-for-changes true
 zstyle ":vcs_info:*" stagedstr "%F{cyan}!%f"
 zstyle ":vcs_info:*" unstagedstr "%F{yellow}!%f"
-zstyle ":vcs_info:*" actionformats " %F{blue}[%F{green}%b%F{3}|%F{red}%a%F{blue}]%f "
-zstyle ":vcs_info:*" formats " %F{magenta}[%F{green}%b%u%c%F{magenta}]%f "
+zstyle ":vcs_info:*" actionformats " %F{blue}[%F{green}%b%F{3}|%F{red}%a%F{blue}]%f"
+zstyle ":vcs_info:*" formats " %F{magenta}[%F{green}%b%u%c%F{magenta}]%f"
 
-# Default prompt: user@hostname:/path/$
-PROMPT='%F{green}%B%n@%m%b%f:%F{blue}%B%4~%b%f${vcs_info_msg_0_}$ '
-RPROMPT="%{%F{red}%}%t%f"
+# Prompt configuration
+P_USER_HOST="%F{green}%B%n@%m%b%f"
+P_PWD="%F{blue}%B%4(~.…/.)%3~%b%f"
+PROMPT='$P_USER_HOST:$P_PWD${vcs_info_msg_0_} %F{green}$%f '
+RPROMPT="%F{red}%T%f"
 
-if [[ ! -z $SCHROOT_CHROOT_NAME ]]; then
-  PROMPT='%F{green}%B%n@%m%F{red}[$SCHROOT_CHROOT_NAME]%f%b%f:%F{blue}%B%4~%b%f${vcs_info_msg_0_}$ '
-fi
+# Every 30 seconds, redraw the prompt (to update the clock)
+TMOUT=30
+TRAPALRM () {
+  zle reset-prompt
+}
 
 # Make 'less' do magic with all kinds of files, and make it colourful
 existsp lessfile && eval "$(lessfile)"
