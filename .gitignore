@@ -1,6 +1,3 @@
 dzen/icons/
-emacs.d/*.elc
-emacs.d/.emacs.desktop*
-emacs.d/auto-save-list/
-emacs.d/elpa/
-emacs.d/package.el
+emacs.d/*
+!emacs.d/lisp/
