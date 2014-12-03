@@ -132,6 +132,13 @@
 (global-linum-mode t)
 (setq column-number-mode t)
 
+; Scroll only one line at a time
+(setq scroll-step 1)
+(setq mouse-wheel-scroll-amount '(1))
+
+; Mouse wheel scrolls whatever window the mouse is over
+(setq mouse-wheel-follow-mouse t)
+
 ; Appearance
 (defvar zenburn-bg-1 "#0f0f0f")
 (defvar zenburn-bg "#1f1f1f")
