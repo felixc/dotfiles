@@ -1,3 +1,5 @@
+#!/usr/bin/zsh
+
 # Predicate: Does the specified command exist?
 existsp() {
   command -v $1 > /dev/null
@@ -48,6 +50,9 @@ setopt extended_glob nomatch
 
 # Allow the prompt to contain variables for substitution
 setopt prompt_subst
+
+# Print non-zero exit statuses
+setopt print_exit_value
 
 # Emacs-style shortcuts
 bindkey -e
