@@ -13,7 +13,7 @@ URxvt.background: [90]#080808
 URxvt.urgentOnBell: true
 URxvt.scrollBar: false
 URxvt.scrollWithBuffer: true
-URxvt.internalBorder: 6
+URxvt.internalBorder: 8
 URxvt.font: xft:Inconsolata,xft:Dejavu Sans Mono:pixelsize=14,xft:Unifont
 URxvt.perl-ext-common: default,matcher
 URxvt.urlLauncher: firefox
