@@ -156,8 +156,8 @@
 ; Yasnippet everywhere
 (yas-global-mode t)
 
-; When using Flymake, show errors in the minibuffer, not on mouse hover
-(require 'flymake-cursor)
+; Use Flycheck everywhere
+(global-flycheck-mode)
 
 ; Recognize python3 files
 (add-to-list 'interpreter-mode-alist '("python3" . python-mode))
