@@ -195,6 +195,13 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 
+; Jump back to changes
+(require 'goto-chg)
+(global-set-key (kbd "M-.") '(lambda ()
+  (interactive)
+  (setq current-prefix-arg '(0))
+  (call-interactively 'goto-last-change)))
+
 ; Use perspectives (workspaces)
 (require 'perspective)
 (persp-mode)
