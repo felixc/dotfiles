@@ -35,8 +35,9 @@
 ; Set the standard indentation to 2 spaces
 (setq-default c-basic-offset 2)
 
-; Show trailing whitespace
-(setq-default show-trailing-whitespace t)
+; Show trailing whitespace and tabs
+(setq whitespace-style '(face tabs trailing))
+(global-whitespace-mode t)
 
 ; Delete trailing whitespace in *new* files, but don't mess with existing ones
 (load "my-cond-whitespace-del")
@@ -109,10 +110,6 @@
 (add-hook 'dired-mode-hook
   (lambda ()
     (global-set-key (kbd "C-x C-d") 'dired-jump-other-window)))
-
-; Show tabs, so that they can be destroyed
-(require 'show-wspace)
-(add-hook 'font-lock-mode-hook 'show-ws-highlight-tabs)
 
 ; Spelling correction, including for comments in programming modes
 (add-hook 'text-mode-hook 'flyspell-mode)
