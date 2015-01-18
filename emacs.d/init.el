@@ -183,6 +183,9 @@
 ; Go mode
 (load "my-go-mode")
 
+; Rust mode
+(require 'my-rust-mode)
+
 ; Mail mode
 (load "my-mail-mode")
 
