@@ -255,6 +255,10 @@
 (add-hook 'after-save-hook
   'executable-make-buffer-file-executable-if-script-p)
 
+; Save minibuffer history
+(require 'savehist)
+(savehist-mode t)
+
 ; Save open files on close, reopen them lazily at startup if wanted
 (setq
   desktop-restore-eager 5
