@@ -85,7 +85,7 @@ myLayout = smartSpacing 4 (ResizableTall 1 (3/100) (1/2) [] ||| Mirror (Resizabl
 myManageHook = composeAll
     [ className =? "Iceweasel"     --> doShift "2"
     , className =? "fontforge"     --> doFloat
-    , className =? "Steam"         --> doFloat <+> doShift "9"
+    , className =? "Steam"         --> doShift "9"
     , resource =? "desktop_window" --> doIgnore
     , isFullscreen                 --> doFullFloat
     , manageDocks
