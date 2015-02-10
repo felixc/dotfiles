@@ -16,9 +16,9 @@ URxvt.scrollWithBuffer: true
 URxvt.internalBorder: 8
 URxvt.font: xft:Inconsolata,xft:Dejavu Sans Mono:pixelsize=14,xft:Unifont
 URxvt.perl-ext-common: default,matcher
-URxvt.urlLauncher: firefox
+URxvt.url-launcher: firefox
 URxvt.matcher.button: 1
-URxvt.termName:xterm-256color
+URxvt.termName: xterm-256color
 
 
 !! Emacs
