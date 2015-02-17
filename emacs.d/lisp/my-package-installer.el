@@ -7,9 +7,9 @@
 (package-initialize)
 
 (setq my-package-list
-  '(ace-jump-mode fill-column-indicator flymake-cursor iedit icomplete+ js2-mode
-    multi-web-mode pabbrev perspective popup rainbow-mode undo-tree yasnippet
-    zencoding-mode zenburn))
+  '(ace-jump-mode fill-column-indicator flycheck goto-chg iedit icomplete+
+    js2-mode multi-web-mode pabbrev perspective popup rainbow-mode rust-mode
+    undo-tree yasnippet zencoding-mode zenburn))
 
 (dolist (package my-package-list)
   (when (not (package-installed-p package))
