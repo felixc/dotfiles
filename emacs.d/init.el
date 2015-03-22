@@ -49,6 +49,10 @@
 ; Do not make backups
 (setq make-backup-files nil)
 
+; Temporary auto-save files go in the temp directory
+(setq backup-directory-alist `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
+
 ; Use the X clipboard as well for copy/paste
 (setq x-select-enable-clipboard t)
 (setq save-interprogram-paste-before-kill t)
