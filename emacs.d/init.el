@@ -163,6 +163,9 @@
 ; Recognize python3 files
 (add-to-list 'interpreter-mode-alist '("python3" . python-mode))
 
+; Recognize Markdown files
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
 ; Zencoding for SGML modes
 (add-hook 'sgml-mode-hook 'zencoding-mode)
 
