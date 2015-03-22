@@ -4,7 +4,7 @@ $keyring = Passwd::Keyring::Gnome->new(
   app => 'lbdb ldap',
   group => 'login'
 );
-$password = $keyring->get_password('felixc', 'fastmail.fm');
+$password = $keyring->get_password('felixc', 'felixcrux.com');
 
 %ldap_server_db = (
   'fastmail' => [
@@ -16,7 +16,7 @@ $password = $keyring->get_password('felixc', 'fastmail.fm');
     '${cn}',
     '',
     1,
-    'cn=felixc@fastmail.fm,dc=User',
+    'cn=felixc@felixcrux.com,dc=User',
     $password
   ]
 )

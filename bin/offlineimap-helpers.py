@@ -30,5 +30,5 @@ def get_password():
     gkey.ITEM_NETWORK_PASSWORD,
     {'protocol': 'imap',
      'server': 'mail.messagingengine.com',
-     'user': 'felixc@fastmail.fm'}
+     'user': 'felixc@felixcrux.com'}
     )[0].secret
