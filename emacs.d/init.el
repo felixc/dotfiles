@@ -193,6 +193,9 @@
 ; Mail mode
 (load "my-mail-mode")
 
+; Use typopunct in various modes
+(require 'my-typopunct-config)
+
 ; Show colours as represented by strings
 (add-hook 'css-mode-hook 'rainbow-mode)
 
