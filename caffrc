@@ -1,10 +1,9 @@
 $CONFIG{'owner'} = 'Felix Crux';
 $CONFIG{'email'} = 'felixc@felixcrux.com';
 $CONFIG{'keyid'} = [ qw{8569B6311EE485F8} ];
-
 $CONFIG{'local-user'} = [ qw{8569B6311EE485F8} ];
-
 $CONFIG{'also-encrypt-to'} = [ qw{8569B6311EE485F8} ];
+$CONFIG{'gpg'} = 'gpg2';
 
 $CONFIG{'mail-template'} = << 'EOM';
 Hi,
