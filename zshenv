@@ -1,3 +1,3 @@
-export PATH=$PATH:/sbin/:/usr/sbin/:$HOME/bin/
+export PATH=$HOME/bin/:$PATH:/sbin/:/usr/sbin/
 
 export EDITOR="e -nw"
