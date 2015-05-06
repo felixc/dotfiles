@@ -175,7 +175,7 @@
 (setq mweb-tags '((js-mode "<script[^>]*>" "</script>")
                   (css-mode "<style[^>]*>" "</style>")))
 (setq mweb-filename-extensions '("html"))
-(multi-web-global-mode 1)
+(multi-web-global-mode t)
 
 ; JS2 Mode
 (load "my-js-mode")
@@ -212,10 +212,6 @@
   (interactive)
   (setq current-prefix-arg '(0))
   (call-interactively 'goto-last-change)))
-
-; Use perspectives (workspaces)
-(require 'perspective)
-(persp-mode)
 
 ; Column limit
 (setq-default fill-column 80)
@@ -277,7 +273,7 @@
   desktop-dirname (expand-file-name "~/.emacs.d")
   desktop-path (list desktop-dirname))
 (if (= (length command-line-args) 1)
-    (desktop-save-mode 1))
+    (desktop-save-mode t))
 
 ; Don't bother prompting to end processes when exiting
 (add-hook 'comint-exec-hook
