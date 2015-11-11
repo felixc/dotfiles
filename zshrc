@@ -23,6 +23,9 @@ setopt hist_ignore_all_dups
 # Do not save commands in history if the first character is whitespace
 setopt hist_ignore_space
 
+# Share history between terminals
+setopt share_history
+
 # Changing directories can easily be undone
 DIRSTACKSIZE=5
 setopt auto_pushd
