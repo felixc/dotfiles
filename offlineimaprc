@@ -28,3 +28,11 @@ remotepasseval = get_password()
 idlefolders = ['INBOX']
 nametrans = remote_to_local
 folderfilter = lambda folder: folder not in ['INBOX.Junk Mail']
+
+[mbnames]
+enabled = yes
+filename = ~/.mutt-mailboxes
+header = "mailboxes "
+peritem = "=%(foldername)s"
+sep = " \\\n          "
+footer = "\n"

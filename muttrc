@@ -57,4 +57,4 @@ macro index,pager <f6> \
 macro index,pager <f7> \
   "<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt thread<enter><change-folder-readonly>~/.cache/notmuch/mutt/results<enter><enter-command>set wait_key<enter>"
 
-source "~/.muttrc-local"
+source "~/.mutt-mailboxes"
