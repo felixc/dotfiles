@@ -1,4 +1,4 @@
-(require 'go-mode-load)
+(require 'go-mode)
 
 (add-hook 'go-mode-hook
   (lambda ()
