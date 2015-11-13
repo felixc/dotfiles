@@ -56,5 +56,6 @@ macro index,pager <f6> \
   "<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt --prompt search<enter><change-folder-readonly>~/.cache/notmuch/mutt/results<enter>"
 macro index,pager <f7> \
   "<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt thread<enter><change-folder-readonly>~/.cache/notmuch/mutt/results<enter><enter-command>set wait_key<enter>"
+macro index,pager y "<save-message>=archive/<enter><enter>"
 
 source "~/.mutt-mailboxes"
