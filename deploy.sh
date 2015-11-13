@@ -3,8 +3,8 @@
 set -e
 
 pwd=$(pwd)
-files=(caffrc emacs.d gitconfig gtkrc-2.0 hgrc ledgerrc msmtprc muttrc \
-       notmuch-config offlineimaprc signature quiltrc tmux.conf vimrc \
+files=(aspell.en.pws caffrc emacs.d gitconfig gtkrc-2.0 hgrc ledgerrc msmtprc \
+       muttrc notmuch-config offlineimaprc signature quiltrc tmux.conf vimrc \
        xbindkeysrc xinitrc Xresources xscreensaver zshenv zshrc)
 
 for file in $files; do;
