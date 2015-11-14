@@ -1,0 +1,6 @@
+include "%L"
+
+<Multi_key> <equal> <equal>       : "≡"   U2261   # IDENTICAL TO
+<Multi_key> <8> <less>            : "✂"   U2702   # BLACK SCISSORS
+<Multi_key> <comma> <l>           : "λ"   U03BB   # GREEK SMALL LETTER LAMBDA
+<Multi_key> <asterisk> <asterisk> : "★"   U2605   # BLACK STAR
