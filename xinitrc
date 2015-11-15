@@ -12,7 +12,8 @@ existsp x-terminal-emulator ||
   { alias x-terminal-emulator=xterm; }
 
 # Configuration
-setxkbmap -option caps:escape -option compose:menu -option terminate:ctrl_alt_bksp &
+setxkbmap -layout us,ru -variant ,phonetic -option grp:shifts_toggle \
+    -option caps:escape -option compose:menu -option terminate:ctrl_alt_bksp &
 xsetroot -cursor_name left_ptr &
 [ -f $HOME/.Xresources ] && xrdb -merge $HOME/.Xresources &
 if existsp feh && [ -d $HOME/img/wallpaper ]; then
@@ -27,7 +28,7 @@ existsp keychain && keychain &
 existsp xbindkeys && xbindkeys &
 existsp xscreensaver && xscreensaver -nosplash &
 existsp compton && compton -c -C -f -D 1 -r 10 --inactive-dim 0.05 \
-                           -z -G --shadow-exclude 'class_g = "dzen"' -b &
+    -z -G --shadow-exclude 'class_g = "dzen"' -b &
 existsp anacron && anacron -t $HOME/.anacrontab -S $HOME/.anacronspool &
 existsp supervise && existsp offlineimap && supervise $HOME/msg/.offlineimap &
 existsp git-annex && git-annex assistant --autostart &
