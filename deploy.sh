@@ -32,6 +32,12 @@ ln -fs "$pwd/xmonad.hs" "$HOME/.xmonad/xmonad.hs"
 xmonad --recompile
 xmonad --restart
 
+moz_profile_dir=$(find "$HOME/.mozilla/firefox" -name "*.default" -type d || echo "")
+if [ -n "$moz_profile_dir" ]; then
+    ln -fs "$pwd/moz-user.js" "$moz_profile_dir/user.js"
+    ln -fs "$pwd/moz-userContent.css" "$moz_profile_dir/chrome/userContent.css"
+fi
+
 ln -fsT "$HOME/.xinitrc" "$HOME/.xsession"
 
 mkdir -p "$HOME/msg/.offlineimap"
