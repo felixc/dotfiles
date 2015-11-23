@@ -27,16 +27,17 @@ ln -fs "$pwd/lbdb-ldap.rc" "$HOME/.lbdb/ldap.rc"
 mkdir -p "$HOME/.ipython/profile_default/"
 ln -fs "$pwd/ipython_config.py" "$HOME/.ipython/profile_default/ipython_config.py"
 
-mkdir -p "$HOME/.xmonad"
-ln -fs "$pwd/xmonad.hs" "$HOME/.xmonad/xmonad.hs"
-xmonad --recompile
-xmonad --restart
-
 moz_profile_dir=$(find "$HOME/.mozilla/firefox" -name "*.default" -type d || echo "")
 if [ -n "$moz_profile_dir" ]; then
     ln -fs "$pwd/moz-user.js" "$moz_profile_dir/user.js"
     ln -fs "$pwd/moz-userContent.css" "$moz_profile_dir/chrome/userContent.css"
 fi
+
+mkdir -p "$HOME/bin"
+find "$pwd/bin" -type f -exec basename '{}' \; |
+  while read cmd; do;
+    ln -fsT "$pwd/bin/$cmd" "$HOME/bin/$cmd"
+  done
 
 ln -fsT "$HOME/.xinitrc" "$HOME/.xsession"
 
@@ -46,12 +47,11 @@ chmod +x "$HOME/msg/.offlineimap/run"
 
 chmod og-rwx "$pwd/msmtprc"
 
-# Set up scripts and tools
-mkdir -p "$HOME/bin"
-find "$pwd/bin" -type f -exec basename '{}' \; |
-  while read cmd; do;
-    ln -fsT "$pwd/bin/$cmd" "$HOME/bin/$cmd"
-  done
+mkdir -p "$HOME/.xmonad"
+ln -fs "$pwd/xmonad.hs" "$HOME/.xmonad/xmonad.hs"
+if existsp xmonad; then
+  xmonad --recompile && xmonad --restart
+fi
 
 # Get cert for keyserver
 if [ ! -f "$HOME/.gnupg/sks-keyservers.netCA.pem" ]; then
@@ -61,16 +61,9 @@ fi
 
 # Let's get some icons for use in our dzen display
 if [ ! -d "$pwd/dzen/icons" ]; then;
-  wget --quiet http://bitbucket.org/jerronymous/dotfiles/src/d8b5855a5ec6/.xmonad/dzen/icon-packs/xbm8x8-0.1.tar.gz
+  wget --quiet https://bitbucket.org/jerronymous/dotfiles/raw/d8b5855a5ec6f44a4e5ac9c5d6e94ea98246b7cc/.xmonad/dzen/icon-packs/xbm8x8-0.1.tar.gz
   tar -xf xbm8x8-0.1.tar.gz
   mkdir -p dzen/icons
   mv xbm8x8/* dzen/icons
   rm -rf xbm8x8*
-fi
-
-# Before we can install packages for Emacs23, we need a package manager
-emacs --version | grep -q "GNU Emacs 23" && if [ ! -f "$pwd/emacs.d/package.el" ]; then
-  wget --quiet -O "$pwd/emacs.d/package.el" \
-    $(wget --quiet -O - http://marmalade-repo.org/ | \
-        sed -n 's|.*\(http://.*package.el\)">|\1|p')
 fi
