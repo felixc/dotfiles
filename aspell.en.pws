@@ -1,8 +1,9 @@
-personal_ws-1.1 en 31
+personal_ws-1.1 en 34
 accessor
 accessors
 Affero
 API
+config
 copyrightable
 Django
 featureful
@@ -26,7 +27,9 @@ struct
 sublicense
 sublicensing
 timelines
+timestamp
 TODO
+UI
 unparseable
 versioning
 YAML
