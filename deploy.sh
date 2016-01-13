@@ -49,7 +49,7 @@ chmod og-rwx "$pwd/msmtprc"
 
 mkdir -p "$HOME/.xmonad"
 ln -fs "$pwd/xmonad.hs" "$HOME/.xmonad/xmonad.hs"
-if existsp xmonad; then
+if command -v xmonad > /dev/null; then
   xmonad --recompile && xmonad --restart
 fi
 
