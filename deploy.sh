@@ -42,7 +42,7 @@ find "$pwd/bin" -type f -exec basename '{}' \; |
 ln -fsT "$HOME/.xinitrc" "$HOME/.xsession"
 
 mkdir -p "$HOME/msg/.offlineimap"
-echo '#!/bin/sh\nofflineimap' >! "$HOME/msg/.offlineimap/run"
+echo '#!/bin/sh\nofflineimap -u Quiet' >! "$HOME/msg/.offlineimap/run"
 chmod +x "$HOME/msg/.offlineimap/run"
 
 chmod og-rwx "$pwd/msmtprc"
