@@ -47,6 +47,8 @@ chmod +x "$HOME/msg/.offlineimap/run"
 
 chmod og-rwx "$pwd/msmtprc"
 
+crontab "$pwd/crontab"
+
 mkdir -p "$HOME/.xmonad"
 ln -fs "$pwd/xmonad.hs" "$HOME/.xmonad/xmonad.hs"
 if command -v xmonad > /dev/null; then
