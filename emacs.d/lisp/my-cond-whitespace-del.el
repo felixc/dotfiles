@@ -29,3 +29,5 @@
   (or skip-whitespace-check
       (delete-trailing-whitespace))
   nil)
+
+(provide 'my-cond-whitespace-del)

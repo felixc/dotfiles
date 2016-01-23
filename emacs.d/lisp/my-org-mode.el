@@ -91,3 +91,5 @@
     (if (bh/is-project-p)
         nil
       subtree-end)))
+
+(provide 'my-org-mode)

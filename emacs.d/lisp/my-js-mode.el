@@ -12,3 +12,4 @@
   (setq fill-column 100)
   (setq js2-basic-indent 2)
   (define-key js2-mode-map (read-kbd-macro "{") 'prefix-js2-mode-match-curly)))
+(provide 'my-js-mode)

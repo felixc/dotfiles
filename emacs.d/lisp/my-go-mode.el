@@ -7,3 +7,5 @@
     (toggle-show-tabs-show-ws)))  ; the function or in my brain.
                                   ; Starts globally on, toggling once keeps it
                                   ; on, twice turns it off.
+
+(provide 'my-go-mode)

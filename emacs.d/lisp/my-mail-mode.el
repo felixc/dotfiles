@@ -21,3 +21,5 @@
    ("^\\( *> *>\\)\\(.*\\)$"
     (1 'font-lock-comment-delimiter-face)
     (2 'mail-double-quoted-text-face))))
+
+(provide 'my-mail-mode)

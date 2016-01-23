@@ -43,7 +43,7 @@
 (global-whitespace-mode t)
 
 ; Delete trailing whitespace in *new* files, but don't mess with existing ones
-(load "my-cond-whitespace-del")
+(require 'my-cond-whitespace-del)
 (add-hook 'write-file-hooks 'maybe-delete-trailing-whitespace)
 
 ; Change yes/no questions to y/n
@@ -180,20 +180,16 @@
 (multi-web-global-mode t)
 
 ; JS2 Mode
-(load "my-js-mode")
-
-; Haskell Mode
-(require 'haskell-mode)
-(setq haskell-font-lock-symbols t)
+(require 'my-js-mode)
 
 ; Go mode
-(load "my-go-mode")
+(require 'my-go-mode)
 
 ; Rust mode
 (require 'my-rust-mode)
 
 ; Mail mode
-(load "my-mail-mode")
+(require 'my-mail-mode)
 
 ; Use typopunct in various modes
 (require 'my-typopunct-config)
@@ -228,7 +224,7 @@
        (turn-on-fci-mode))))
 
 ; Org Mode customizations
-(load "my-org-mode")
+(require 'my-org-mode)
 
 ; Ignore useless file extensions
 (add-to-list 'completion-ignored-extensions ".pyc")
