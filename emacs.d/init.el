@@ -154,8 +154,7 @@
 
 ; Highlight the current line
 (global-hl-line-mode)
-(set-face-background 'hl-line "#0f0f0f")
-(set-face-underline-p 'hl-line nil)
+(set-face-background 'hl-line "#080808")
 
 ; Yasnippet everywhere
 (yas-global-mode t)
