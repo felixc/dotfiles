@@ -6,9 +6,9 @@
 
 (defun buffer-whitespace-normalized-p ()
   (save-excursion
-    (not  (or (progn (beginning-of-buffer)
+    (not  (or (progn (goto-char (point-min))
                      (search-forward "\t" nil t))
-              (progn (beginning-of-buffer)
+              (progn (goto-char (point-min))
                      (re-search-forward " +$" nil t))))))
 
 (defun whitespace-check-find-file-hook ()
@@ -16,8 +16,8 @@
     (message "Disabling whitespace normalization for this buffer...")
     (setq skip-whitespace-check t)))
 
-(setq find-file-hooks
-      (cons #'whitespace-check-find-file-hook find-file-hooks))
+(setq find-file-hook
+      (cons #'whitespace-check-find-file-hook find-file-hook))
 
 (defun toggle-whitespace-removal ()
   (interactive)
