@@ -4,6 +4,9 @@
 ; Verify TLS certificates
 (setq gnutls-verify-error t)
 
+; Indent code in this file with two spaces
+(setq lisp-indent-offset 2)
+
 ; Install any required packages that may be missing
 (load "my-package-installer")
 
