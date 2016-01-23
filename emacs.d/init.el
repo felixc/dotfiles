@@ -287,6 +287,3 @@
     (when (current-local-map)
       (use-local-map (copy-keymap (current-local-map))))
     (local-set-key (kbd "C-x k") 'server-edit)))
-
-(require 'server)
-(unless (server-running-p) (server-start))
