@@ -1,6 +1,9 @@
 ; Search for files in a custom load-path
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
 
+; Verify TLS certificates
+(setq gnutls-verify-error t)
+
 ; Install any required packages that may be missing
 (load "my-package-installer")
 
