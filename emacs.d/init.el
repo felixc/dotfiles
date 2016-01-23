@@ -7,8 +7,8 @@
 ; Indent code in this file with two spaces
 (setq lisp-indent-offset 2)
 
-; Install any required packages that may be missing
-(load "my-package-installer")
+; Manage packages
+(load "my-package-management.el")
 
 ; Auto-break lines in text mode only
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
@@ -70,13 +70,15 @@
 (setq apropos-do-all t)
 
 ; Interactive-do mode
-(require 'ido)
-(ido-mode 'both)
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
+(use-package ido
+  :demand t
+  :config
+  (ido-mode 'both)
+  (setq ido-enable-flex-matching t)
+  (setq ido-everywhere t))
 
 ; Incremental mini-buffer completion preview
-(eval-after-load "icomplete" '(progn (require 'icomplete+)))
+(eval-after-load "icomplete" '(progn (use-package icomplete+)))
 (icomplete-mode t)
 
 ; Better buffer management
@@ -87,8 +89,10 @@
 (global-set-key (kbd "C-x K") 'ido-kill-buffer)
 
 ; Better buffer naming for duplicates
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'forward)
+(use-package uniquify
+  :ensure nil
+  :config
+  (setq uniquify-buffer-name-style 'forward))
 
 ; Move between windows easily
 (windmove-default-keybindings)
@@ -97,15 +101,16 @@
 (global-set-key (kbd "M-i") 'imenu)
 
 ; Quickly jump around to arbitrary points
-(require 'ace-jump-mode)
-(global-set-key (kbd "C-l") 'ace-jump-mode)
+(use-package ace-jump-mode
+  :bind ("C-l" . ace-jump-mode))
 
 ; Refactor by editing multiple regions simultaneously
-(require 'iedit)
+(use-package iedit)
 
 ; Better undo
-(require 'undo-tree)
-(global-undo-tree-mode)
+(use-package undo-tree
+  :config
+  (global-undo-tree-mode))
 
 ; Avoid accidentally killing emacs all the time
 (global-unset-key (kbd "C-x C-c"))
@@ -135,9 +140,10 @@
 (delete-selection-mode t)
 
 ; Line numbering
-(require 'linum)
-(global-linum-mode t)
-(setq column-number-mode t)
+(use-package linum
+  :config
+  (global-linum-mode t)
+  (setq column-number-mode t))
 
 ; Scroll only one line at a time
 (setq scroll-step 1)
@@ -147,12 +153,14 @@
 (setq mouse-wheel-follow-mouse t)
 
 ; Appearance
-(defvar zenburn-bg-1 "#0f0f0f")
-(defvar zenburn-bg "#1f1f1f")
-(defvar zenburn-bg+1 "#2f2f2f")
-(defvar zenburn-bg+2 "#3f3f3f")
-(require 'zenburn)
-(color-theme-zenburn)
+(use-package zenburn-theme
+  :init
+  (defvar zenburn-bg-1 "#0f0f0f")
+  (defvar zenburn-bg "#1f1f1f")
+  (defvar zenburn-bg+05 "#282828")
+  (defvar zenburn-bg+1 "#2f2f2f")
+  (defvar zenburn-bg+2 "#3f3f3f")
+  (defvar zenburn-bg+3 "#484848"))
 (set-frame-font "Inconsolata-13")
 
 ; Highlight the current line
@@ -175,12 +183,13 @@
 (add-hook 'sgml-mode-hook 'zencoding-mode)
 
 ; Better JS and CSS editing in HTML documents
-(require 'multi-web-mode)
-(setq mweb-default-major-mode 'html-mode)
-(setq mweb-tags '((js-mode "<script[^>]*>" "</script>")
-                  (css-mode "<style[^>]*>" "</style>")))
-(setq mweb-filename-extensions '("html"))
-(multi-web-global-mode t)
+(use-package multi-web-mode
+  :config
+  (setq mweb-default-major-mode 'html-mode)
+  (setq mweb-tags '((js-mode "<script[^>]*>" "</script>")
+                     (css-mode "<style[^>]*>" "</style>")))
+  (setq mweb-filename-extensions '("html"))
+  (multi-web-global-mode t))
 
 ; JS2 Mode
 (require 'my-js-mode)
@@ -208,23 +217,25 @@
 (set-selection-coding-system 'utf-8)
 
 ; Jump back to changes
-(require 'goto-chg)
-(global-set-key (kbd "M-.") '(lambda ()
-  (interactive)
-  (setq current-prefix-arg '(0))
-  (call-interactively 'goto-last-change)))
+(use-package goto-chg
+  :config
+  (global-set-key (kbd "M-.") '(lambda ()
+     (interactive)
+     (setq current-prefix-arg '(0))
+     (call-interactively 'goto-last-change))))
 
 ; Column limit
 (setq-default fill-column 80)
 
 ; Draw a bar at the fill-column
-(require 'fill-column-indicator)
-(add-hook 'after-change-major-mode-hook 'fci-mode)
-(add-hook 'window-configuration-change-hook
-  (lambda ()
-     (if (<= (window-width) fill-column)
-       (turn-off-fci-mode)
-       (turn-on-fci-mode))))
+(use-package fill-column-indicator
+  :config
+  (add-hook 'after-change-major-mode-hook 'fci-mode)
+  (add-hook 'window-configuration-change-hook
+    (lambda ()
+      (if (<= (window-width) fill-column)
+        (turn-off-fci-mode)
+        (turn-on-fci-mode)))))
 
 ; Org Mode customizations
 (require 'my-org-mode)
@@ -236,35 +247,37 @@
 (add-to-list 'completion-ignored-extensions ".out")
 
 ; Auto completion
-(require 'pabbrev)
-(global-pabbrev-mode t)
+(use-package pabbrev
+  :config
+  (global-pabbrev-mode t))
 
-(require 'popup)
-(define-key popup-menu-keymap (kbd "<tab>") 'popup-next)
-(defun pabbrevx-suggestions-goto-buffer (suggestions)
-  (let* ((candidates (mapcar 'car suggestions))
-         (bounds (pabbrev-bounds-of-thing-at-point))
-         (selection (popup-menu* candidates :point (car bounds) :scroll-bar t)))
-    (when selection
-      (let ((point))
-        (save-excursion
-          (progn
-            (delete-region (car bounds) (cdr bounds))
-            (insert selection)
-            (setq point (point))))
-        (if point
+(use-package popup
+  :config
+  (define-key popup-menu-keymap (kbd "<tab>") 'popup-next)
+  (defun pabbrevx-suggestions-goto-buffer (suggestions)
+    (let* ((candidates (mapcar 'car suggestions))
+            (bounds (pabbrev-bounds-of-thing-at-point))
+            (selection (popup-menu* candidates :point (car bounds) :scroll-bar t)))
+      (when selection
+        (let ((point))
+          (save-excursion
+            (progn
+              (delete-region (car bounds) (cdr bounds))
+              (insert selection)
+              (setq point (point))))
+          (if point
             (goto-char point))
-        (setq pabbrev-last-expansion-suggestions nil)))))
-
-(fset 'pabbrev-suggestions-goto-buffer 'pabbrevx-suggestions-goto-buffer)
+          (setq pabbrev-last-expansion-suggestions nil)))))
+  (fset 'pabbrev-suggestions-goto-buffer 'pabbrevx-suggestions-goto-buffer))
 
 ; When saving a file that looks like a script, make it executable
 (add-hook 'after-save-hook
   'executable-make-buffer-file-executable-if-script-p)
 
 ; Save minibuffer history
-(require 'savehist)
-(savehist-mode t)
+(use-package savehist
+  :config
+  (savehist-mode t))
 
 ; Save open files on close, reopen them lazily at startup if wanted
 (setq
