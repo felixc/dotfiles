@@ -35,7 +35,6 @@ existsp git-annex && git-annex assistant --autostart &
 
 # Foreground apps
 existsp firefox && firefox &
-existsp irssi && x-terminal-emulator -e zsh -c irssi &
 existsp ssh-add && x-terminal-emulator -e zsh -c ssh-add &
 existsp mutt && x-terminal-emulator -e zsh -c mutt &
 
