@@ -3,9 +3,10 @@
 set -e
 
 pwd=$(pwd)
-files=(aspell.en.pws caffrc emacs.d gitconfig gtkrc-2.0 hgrc ledgerrc msmtprc \
-       muttrc notmuch-config offlineimaprc signature quiltrc tmux.conf vimrc \
-       xbindkeysrc XCompose xinitrc Xresources xscreensaver zshenv zshrc)
+files=(anacrontab aspell.en.pws caffrc emacs.d gitconfig gtkrc-2.0 hgrc \
+       ledgerrc msmtprc muttrc notmuch-config offlineimaprc signature quiltrc \
+       tmux.conf vimrc xbindkeysrc XCompose xinitrc Xresources xscreensaver \
+       zshenv zshrc)
 
 for file in $files; do;
   ln -fsT "$pwd/$file" "$HOME/.$file"
@@ -26,6 +27,8 @@ ln -fs "$pwd/lbdb-ldap.rc" "$HOME/.lbdb/ldap.rc"
 
 mkdir -p "$HOME/.ipython/profile_default/"
 ln -fs "$pwd/ipython_config.py" "$HOME/.ipython/profile_default/ipython_config.py"
+
+mkdir -p "$HOME/.anacronspool"
 
 moz_profile_dir=$(find "$HOME/.mozilla/firefox" -name "*.default" -type d || echo "")
 if [ -n "$moz_profile_dir" ]; then
