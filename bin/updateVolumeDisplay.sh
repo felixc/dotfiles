@@ -18,6 +18,6 @@ if [[ $VOL_ISMUTED == "off" ]]; then
   VOL_ICON=$VOL_ICON_MUTED
 fi;
 
-VOL_GRAPH=$(echo $VOL_CURRENT | gdbar -h 10 -ss 1 -w 48 -sw 4 -s o -nonl -bg $COL_GRAPH_BORDER -fg $VOL_GRAPH_COL)
+VOL_GRAPH=$(echo $VOL_CURRENT | dzen2-gdbar -h 10 -ss 1 -w 48 -sw 4 -s o -nonl -bg $COL_GRAPH_BORDER -fg $VOL_GRAPH_COL)
 
 echo "$SEPARATOR $VOL_ICON $VOL_CURRENT% $VOL_GRAPH" > $VOL_PIPE
