@@ -60,7 +60,7 @@ setopt print_exit_value
 # Emacs-style shortcuts
 bindkey -e
 
-# Enable colors for certain commands, or at least make them nicer
+# Enable colours for certain commands, or at least make them nicer
 if existsp dircolors; then
   alias ls="ls --color=auto --human-readable --hide '__pycache__'"
   alias grep="grep -E --color=auto"
@@ -69,7 +69,7 @@ else
   alias grep="grep -E"
 fi
 
-# Provide nicer name-based access to colors
+# Provide nicer name-based access to colours
 autoload -Uz colors && colors
 zstyle ':completion:*' list-colors 'reply=( "=(#b)(*$VAR)(?)*=00=$color[green]=$color[bg-green]" )'
 zstyle ':completion:*' rehash true
@@ -85,9 +85,23 @@ zstyle ":vcs_info:*" actionformats " %F{blue}[%F{green}%b%F{3}|%F{red}%a%F{blue}
 zstyle ":vcs_info:*" formats " %F{magenta}[%F{green}%b%u%c%F{magenta}]%f"
 
 # Prompt configuration
-P_USER_HOST="%F{green}%B%n@%m%b%f"
+hostcols=(
+    yellow
+    cyan
+    green
+    blue
+)
+hosthash=0
+foreach char (${(ws::)$(hostname)})
+  hosthash=$(( $hosthash % ((2**63 - 1) / 65599) * 65599 + #char ))
+end
+hosthash=$(( $hosthash % $#hostcols + 1))
+hostcolour=$hostcols[$hosthash]
+
+P_USER="%(!~%F{red}~%F{green})%B%n%b%f"
+P_HOST="%F{$hostcolour}%B%m%b%f"
 P_PWD="%F{blue}%B%4(~.…/.)%3~%b%f"
-PROMPT='$P_USER_HOST:$P_PWD${vcs_info_msg_0_} %F{green}$%f '
+PROMPT='$P_USER%F{green}@%f$P_HOST:$P_PWD${vcs_info_msg_0_} %F{green}$%f '
 RPROMPT="%F{red}%T%f"
 
 # Every 30 seconds, redraw the prompt (to update the clock)
