@@ -34,6 +34,7 @@ moz_profile_dir=$(find "$HOME/.mozilla/firefox" -name "*.default" -type d || ech
 if [ -n "$moz_profile_dir" ]; then
     ln -fs "$pwd/moz-user.js" "$moz_profile_dir/user.js"
     ln -fs "$pwd/moz-userContent.css" "$moz_profile_dir/chrome/userContent.css"
+    ln -fs "$pwd/moz-userChrome.css" "$moz_profile_dir/chrome/userChrome.css"
 fi
 
 mkdir -p "$HOME/bin"
