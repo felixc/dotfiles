@@ -80,7 +80,7 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask, button3), (\w -> focus w >> mouseResizeWindow w))
     ]
 
-myLayout = smartSpacing 4 (ResizableTall 1 (3/100) (1/2) [] ||| Mirror (ResizableTall 1 (3/100) (1/2) []) ||| simpleTabbed)
+myLayout = smartSpacing 4 (ResizableTall 1 (3/100) (1/2) []) ||| smartSpacing 4 (Mirror (ResizableTall 1 (3/100) (1/2) [])) ||| simpleTabbed
 
 myManageHook = composeAll
     [ className =? "Iceweasel"     --> doShift "2"
