@@ -1,6 +1,5 @@
 #!/bin/sh
 
-. $HOME/.keychain/mir-sh
-
-rsync -Lazy --delete-after $HOME/snd $HOME/img $HOME/box $HOME/old $HOME/wrk \
-  molniya:~/backup/mir-running
+rsync -AXLay --delete --ignore-errors \
+  --exclude .steam --exclude .cache --exclude wrk/git-annex/.git --exclude .cargo \
+  $HOME/ /mnt/backup
