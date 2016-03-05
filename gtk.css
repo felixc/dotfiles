@@ -1,0 +1,5 @@
+.window-frame, .window-frame:backdrop {
+  box-shadow: none;
+  border-style: none;
+  margin: 0;
+}

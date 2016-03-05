@@ -14,6 +14,7 @@ done
 
 mkdir -p "$HOME/.config/gtk-3.0"
 ln -fs "$pwd/settings.ini" "$HOME/.config/gtk-3.0/settings.ini"
+ln -fs "$pwd/gtk.css" "$HOME/.config/gtk-3.0/gtk.css"
 
 mkdir -p "$HOME/.gnupg"
 ln -fs "$pwd/gpg.conf" "$HOME/.gnupg/gpg.conf"
