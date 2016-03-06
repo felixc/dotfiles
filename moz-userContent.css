@@ -1,6 +1,11 @@
 input, textarea {
-    background-color: #fff;
-    color: #222;
-    border-radius: 3px;
-    -moz-appearance: none !important;
+  background-color: #fff;
+  color: #222;
+  border-radius: 3px;
+  -moz-appearance: none !important;
+}
+
+select {
+  background-color: #fff;
+  color: #222;
 }
