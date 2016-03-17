@@ -155,17 +155,21 @@
 ; Appearance
 (use-package zenburn-theme
   :init
-  (defvar zenburn-bg-1 "#0f0f0f")
-  (defvar zenburn-bg "#1f1f1f")
-  (defvar zenburn-bg+05 "#282828")
-  (defvar zenburn-bg+1 "#2f2f2f")
-  (defvar zenburn-bg+2 "#3f3f3f")
-  (defvar zenburn-bg+3 "#484848"))
+  (defvar zenburn-override-colors-alist
+    '(("zenburn-bg-2"     . "#000000")
+      ("zenburn-bg-1"     . "#101010")
+      ("zenburn-bg-05"    . "#282828")
+      ("zenburn-bg"       . "#2F2F2F")
+      ("zenburn-bg+05"    . "#383838")
+      ("zenburn-bg+1"     . "#3F3F3F")
+      ("zenburn-bg+2"     . "#4F4F4F")
+      ("zenburn-bg+3"     . "#5F5F5F")))
+  (load-theme 'zenburn t))
 (set-frame-font "Inconsolata-13")
 
 ; Highlight the current line
 (global-hl-line-mode)
-(set-face-background 'hl-line "#080808")
+(set-face-background 'hl-line "#282828")
 
 ; Yasnippet everywhere
 (yas-global-mode t)
