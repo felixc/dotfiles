@@ -83,7 +83,7 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 myLayout = smartSpacing 4 (ResizableTall 1 (3/100) (1/2) []) ||| smartSpacing 4 (Mirror (ResizableTall 1 (3/100) (1/2) [])) ||| simpleTabbed
 
 myManageHook = composeAll
-    [ className =? "Iceweasel"     --> doShift "2"
+    [ className =? "Firefox"       --> doShift "2"
     , className =? "fontforge"     --> doFloat
     , className =? "Steam"         --> doShift "9"
     , resource =? "desktop_window" --> doIgnore
