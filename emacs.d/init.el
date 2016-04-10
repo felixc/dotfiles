@@ -59,6 +59,9 @@
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
+; Don't ask whether to follow symlinks to version-controlled files, just do it
+(setq vc-follow-symlinks t)
+
 ; Use the X clipboard as well for copy/paste
 (setq x-select-enable-clipboard t)
 (setq save-interprogram-paste-before-kill t)
