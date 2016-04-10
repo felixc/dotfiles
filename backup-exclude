@@ -1,0 +1,15 @@
+.adobe/
+.anacronspool/
+.cache/
+.cargo/
+.config/pulse/
+.dbus/
+emacs.d/auto-save-list/
+.mozilla/firefox/*/lock
+.mozilla/firefox/*/*sqlite*
+.multirust/
+.pulse/
+.steam/
+.thumbnails/
+wrk/git-annex/.git/
+.xsession-errors*
