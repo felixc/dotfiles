@@ -5,7 +5,3 @@ PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 1         10   backup-daily    nice $HOME/bin/backup.sh daily
 7         20   backup-weekly   nice $HOME/bin/backup.sh weekly
 @monthly  30   backup-monthly  nice $HOME/bin/backup.sh monthly
-1  5    update-lbdb      find $HOME/msg -type f -mtime -7 -print0 | \
-                           xargs -0 -n 1 -r /bin/sh -c \
-                             'lbdb-fetchaddr -a < "$1"' lbdb-fetchaddr; \
-                         SORT_OUTPUT=name /usr/lib/lbdb/lbdb-munge
