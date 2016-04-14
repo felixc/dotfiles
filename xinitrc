@@ -24,7 +24,7 @@ if existsp feh && [ -d $HOME/img/wallpaper ]; then
 fi
 
 # Helper daemons
-existsp keychain && keychain &
+existsp keychain && keychain -q &
 existsp xbindkeys && xbindkeys &
 existsp xscreensaver && xscreensaver -nosplash &
 existsp compton && compton -c -C -f -D 1 -r 10 --inactive-dim 0.05 \
