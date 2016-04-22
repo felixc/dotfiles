@@ -6,10 +6,9 @@ pythonfile = ~/bin/offlineimap-helpers.py
 [Account fastmail]
 localrepository = fastmail-local
 remoterepository = fastmail-remote
-
 autorefresh = 2
 quick = 5
-statusbackend = sqlite
+status_backend = sqlite
 postsynchook = ~/bin/post-mail-hooks.sh
 
 [Repository fastmail-local]
