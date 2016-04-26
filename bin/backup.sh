@@ -15,7 +15,7 @@ dest="/mnt/backup"
 
 /usr/bin/rsync \
   --archive --acls --xattrs --copy-unsafe-links \
-  --fuzzy --link-dest=$dest/latest \
+  --fuzzy --link-dest=$dest/$period-2 \
   --delete-delay --ignore-errors \
   --exclude-from=$HOME/cfg/backup-exclude \
   $HOME/ $dest/$period-1
