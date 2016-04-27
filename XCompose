@@ -1,6 +1,37 @@
 include "%L"
 
-<Multi_key> <equal> <equal>       : "≡"   U2261   # IDENTICAL TO
-<Multi_key> <8> <less>            : "✂"   U2702   # BLACK SCISSORS
-<Multi_key> <comma> <l>           : "λ"   U03BB   # GREEK SMALL LETTER LAMBDA
-<Multi_key> <asterisk> <asterisk> : "★"   U2605   # BLACK STAR
+# Symbols
+<Multi_key> <8> <less>            : "✂"  U2702  # BLACK SCISSORS
+<Multi_key> <asterisk> <asterisk> : "★"  U2605  # BLACK STAR
+<Multi_key> <V> <V>               : "✓"  U2713  # CHECK MARK
+<Multi_key> <X> <X>               : "✗"  U2717  # BALLOT X
+<Multi_key> <t> <e> <l>           : "☎"  U260E  # BLACK TELEPHONE
+<Multi_key> <t> <e> <a>           : "☕"  U2615  # HOT BEVERAGE
+<Multi_key> <m> <a> <i> <l>       : "✉"  U2709  # ENVELOPE
+<Multi_key> <w> <a> <r> <n>       : "⚠"  U26A0  # WARNING SIGN
+
+# Typography
+<Multi_key> <backslash> <space>   : "␣"  U2423  # OPEN BOX
+<Multi_key> <plus> <bar>          : "†"  U2020  # DAGGER
+<Multi_key> <plus> <plus>         : "‡"  U2021  # DOUBLE DAGGER
+<Multi_key> <2> <asterisk>        : "⁑"  U2051  # TWO ASTERISKS
+<Multi_key> <p> <p>               : "¶"  U00B6  # PILCROW SIGN
+<Multi_key> <s> <o>               : "§"  U00A7  # SECTION SIGN
+<Multi_key> <N> <o>               : "№"  U2116  # NUMERO SIGN
+
+# Greek
+<Multi_key> <ampersand> <a> <l>   : "α"  U03B1  # GREEK SMALL LETTER ALPHA
+<Multi_key> <ampersand> <b> <e>   : "β"  U03B2  # GREEK SMALL LETTER BETA
+<Multi_key> <ampersand> <D> <E>   : "Δ"  U0394  # GREEK CAPITAL LETTER DELTA
+<Multi_key> <ampersand> <e> <p>   : "ε"  U03B5  # GREEK SMALL LETTER EPSILON
+<Multi_key> <ampersand> <l> <a>   : "λ"  U03BB  # GREEK SMALL LETTER LAMBDA
+<Multi_key> <ampersand> <m> <u>   : "μ"  U03BC  # GREEK SMALL LETTER MU
+<Multi_key> <ampersand> <p> <i>   : "π"  U03C0  # GREEK SMALL LETTER PI
+<Multi_key> <ampersand> <S> <I>   : "Σ"  U03A3  # GREEK CAPITAL LETTER SIGMA
+<Multi_key> <ampersand> <O> <M>   : "Ω"  U03A9  # GREEK CAPITAL LETTER OMEGA
+
+# Math
+<Multi_key> <equal> <equal>           : "≡"  U2261  # IDENTICAL TO
+<Multi_key> <asciitilde> <asciitilde> : "≈"  U2248  # ALMOST EQUAL TO
+<Multi_key> <i> <f> <f>               : "↔"  U2194  # LEFT RIGHT ARROW
+<Multi_key> <i> <n> <f>               : "∞"  U221E  # INFINITY
