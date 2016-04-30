@@ -238,11 +238,16 @@
 (use-package fill-column-indicator
   :config
   (add-hook 'after-change-major-mode-hook 'fci-mode)
+  (advice-add 'turn-off-fci-mode :after
+    #'(lambda () (setq fci-mode-toggle nil)))
+  ; Toggle the mode as the window resizes around where the line is visible
   (add-hook 'window-configuration-change-hook
     (lambda ()
-      (if (<= (window-width) fill-column)
-        (turn-off-fci-mode)
-        (turn-on-fci-mode)))))
+      (if (and (bound-and-true-p fci-mode) (<= (window-width) fill-column))
+        (progn
+          (turn-off-fci-mode)
+          (setq fci-mode-toggle t))
+         (if (bound-and-true-p fci-mode-toggle) (turn-on-fci-mode))))))
 
 ; Org Mode customizations
 (require 'my-org-mode)
