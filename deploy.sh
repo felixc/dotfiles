@@ -29,6 +29,9 @@ ln -fs "$pwd/lbdb-ldap.rc" "$HOME/.lbdb/ldap.rc"
 mkdir -p "$HOME/.ipython/profile_default/"
 ln -fs "$pwd/ipython_config.py" "$HOME/.ipython/profile_default/ipython_config.py"
 
+mkdir -p "$HOME/.ssh"
+ln -fs "$pwd/ssh-config" "$HOME/.ssh/config"
+
 mkdir -p "$HOME/.anacronspool"
 
 moz_profile_dir=$(find "$HOME/.mozilla/firefox" -name "*.default" -type d || echo "")
