@@ -155,6 +155,32 @@
 ; Mouse wheel scrolls whatever window the mouse is over
 (setq mouse-wheel-follow-mouse t)
 
+; Writeroom mode for a nicer pure-text writing mode
+(use-package writeroom-mode
+  :config
+  (setq writeroom-extra-line-spacing 0.1)
+  (setq writeroom-width 92)
+  (advice-add 'writeroom-mode :after
+    #'(lambda (_)
+        (if (bound-and-true-p in-writeroom-mode)
+          (progn
+            (turn-on-fci-mode)
+            (linum-mode 1)
+            (global-hl-line-mode)
+            (fringe-mode nil)
+            (buffer-face-mode -1)
+            (set-frame-parameter nil 'internal-border-width 0)
+            (makunbound 'in-writeroom-mode))
+          (progn
+            (turn-off-fci-mode)
+            (linum-mode -1)
+            (global-hl-line-mode -1)
+            (global-hl-line-unhighlight)
+            (fringe-mode 0)
+            (buffer-face-set '(:height 1.05))
+            (set-frame-parameter nil 'internal-border-width 15)
+            (setq-local in-writeroom-mode t))))))
+
 ; Appearance
 (use-package zenburn-theme
   :init

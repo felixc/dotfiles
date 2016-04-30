@@ -9,9 +9,10 @@
 (package-initialize)
 
 (defvar my-package-list
-  '(ace-jump-mode fill-column-indicator flycheck goto-chg iedit icomplete+
-    js2-mode multi-web-mode pabbrev popup rainbow-mode rust-mode typopunct
-    undo-tree use-package yasnippet zencoding-mode zenburn-theme))
+  '(ace-jump-mode fill-column-indicator flycheck goto-chg helm-dash iedit
+    icomplete+ js2-mode multi-web-mode pabbrev popup rainbow-mode rust-mode
+    typopunct undo-tree use-package writeroom-mode yasnippet zencoding-mode
+    zenburn-theme))
 
 (dolist (package my-package-list)
   (when (not (package-installed-p package))
