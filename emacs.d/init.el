@@ -289,6 +289,22 @@
 ; Org Mode customizations
 (require 'my-org-mode)
 
+; Helm-Dash for browsing docs
+(use-package helm-dash
+  :config
+  (setq helm-dash-docsets-path "~/.local/share/dash/")
+  (add-hook 'emacs-lisp-mode-hook
+    (lambda () (setq-local helm-dash-docsets '("Emacs Lisp"))))
+  (add-hook 'rust-mode-hook
+    (lambda () (setq-local helm-dash-docsets '("Rust"))))
+  (add-hook 'html-mode-hook
+    (lambda () (setq-local helm-dash-docsets '("HTML"))))
+  (add-hook 'python-mode-hook
+    (lambda () (setq-local helm-dash-docsets '("Python 3"))))
+  :bind
+  ("C-h h" . helm-dash)
+  ("C-h H" . helm-dash-at-point))
+
 ; Ignore useless file extensions
 (add-to-list 'completion-ignored-extensions ".pyc")
 (add-to-list 'completion-ignored-extensions ".6")
