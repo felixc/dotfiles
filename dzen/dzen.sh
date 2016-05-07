@@ -8,11 +8,10 @@ source "$DZEN_DIR/appearance.sh"
 # Temporary pipes
 #
 BAT_PIPE="/tmp/dzen-battery-$RANDOM"
-MUSIC_PIPE="/tmp/dzen-music-$RANDOM"
 NET_PIPE="/tmp/dzen-net-$RANDOM"
 TIME_PIPE="/tmp/dzen-time-$RANDOM"
 VOL_PIPE="/tmp/dzen-volume-$RANDOM"
-TMP_FILES=(BAT_PIPE MUSIC_PIPE NET_PIPE TIME_PIPE VOL_PIPE)
+TMP_FILES=(BAT_PIPE NET_PIPE TIME_PIPE VOL_PIPE)
 
 
 #
@@ -28,15 +27,6 @@ TRAPINT() {
   return $(( 128 + $1 ))
 }
 
-
-#
-# Music Configuration
-#
-if [[ -x /usr/bin/mpd && -x /usr/bin/mpc && -x /usr/bin/alsamixer ]]; then
-  MUSIC_EXISTS=1
-else
-  MUSIC_EXISTS=0
-fi
 
 #
 # Battery Configuration
@@ -95,14 +85,6 @@ VOL_WIDTH=110
 VOL_XPOS=$(( $MARGIN_LEFT - $VOL_WIDTH ))
 MARGIN_LEFT=$(( $MARGIN_LEFT - $VOL_WIDTH ))
 
-if (( $MUSIC_EXISTS )); then
-  MUSIC_WIDTH=43
-else
-  MUSIC_WIDTH=0
-fi
-MUSIC_XPOS=$(( $MARGIN_LEFT - $MUSIC_WIDTH ))
-MARGIN_LEFT=$(( $MARGIN_LEFT - $MUSIC_WIDTH ))
-
 if (( $BAT_EXISTS )); then
   BAT_WIDTH=170
 else
@@ -111,11 +93,7 @@ fi
 BAT_XPOS=$(( $MARGIN_LEFT - $BAT_WIDTH ))
 MARGIN_LEFT=$(( $MARGIN_LEFT - $BAT_WIDTH ))
 
-if (( $NET_IS_WIFI )); then
-  NET_WIDTH=240
-else
-  NET_WIDTH=200
-fi
+NET_WIDTH=240
 NET_XPOS=$(( $MARGIN_LEFT - $NET_WIDTH ))
 MARGIN_LEFT=$(( $MARGIN_LEFT - $NET_WIDTH ))
 
@@ -141,15 +119,6 @@ TIME_CAL_COUNTER=$TIME_CAL_INTERVAL
 #
 SESSION_MENU="^fg($COL_WARN)^r(7x7)^fg()\nsudo poweroff  \nsudo reboot  \nsudo pm-suspend  \nsudo pm-hibernate  "
 (echo $SEPARATOR $SESSION_MENU | dzen2 -p -l 4 -ta l -sa r -m -tw $SESSION_WIDTH -w 160 -x $SESSION_XPOS) &
-
-#
-# Music Monitor
-#
-if (( $MUSIC_EXISTS )); then
-  mkfifo $MUSIC_PIPE
-  (tail -f $MUSIC_PIPE | dzen2 -p -ta l -tw $MUSIC_WIDTH -x $MUSIC_XPOS -e "button1=exec:togglePlay.sh;button3=exec:nextTrack.sh") &
-  updateMusicDisplay.sh $MUSIC_PIPE
-fi
 
 #
 # Volume Controls
