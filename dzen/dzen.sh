@@ -1,5 +1,8 @@
 #!/usr/bin/zsh
 
+set -eu
+
+
 DZEN_DIR="$HOME/cfg/dzen"
 
 source "$DZEN_DIR/appearance.sh"
