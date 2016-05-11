@@ -18,6 +18,7 @@ include "%L"
 <Multi_key> <p> <p>               : "¶"  U00B6  # PILCROW SIGN
 <Multi_key> <s> <o>               : "§"  U00A7  # SECTION SIGN
 <Multi_key> <N> <o>               : "№"  U2116  # NUMERO SIGN
+<Multi_key> <p> <o> <i> <n> <t>   : "☞"  U261E  # WHITE RIGHT POINTING INDEX
 
 # Greek
 <Multi_key> <ampersand> <a> <l>   : "α"  U03B1  # GREEK SMALL LETTER ALPHA
@@ -33,5 +34,6 @@ include "%L"
 # Math
 <Multi_key> <equal> <equal>           : "≡"  U2261  # IDENTICAL TO
 <Multi_key> <asciitilde> <asciitilde> : "≈"  U2248  # ALMOST EQUAL TO
+<Multi_key> <equal> <greater>         : "⇒"  U21D2  # RIGHTWARDS DOUBLE ARROW
 <Multi_key> <i> <f> <f>               : "↔"  U2194  # LEFT RIGHT ARROW
 <Multi_key> <i> <n> <f>               : "∞"  U221E  # INFINITY
