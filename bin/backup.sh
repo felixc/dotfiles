@@ -6,6 +6,8 @@ period="${1:-daily}"
 
 dest="/mnt/backup"
 
+/bin/rm -rf $dest/$period-obsolete
+
 /bin/mv $dest/$period-6 $dest/$period-obsolete
 /bin/mv $dest/$period-5 $dest/$period-6
 /bin/mv $dest/$period-4 $dest/$period-5
