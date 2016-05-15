@@ -1,9 +1,5 @@
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 
-tab[selected="true"] {
-  color: rgb(250,250,250) !important;
-}
-
 .ac-url-text {
   color: rgb(160,200,200) !important;
   font-size: 12px !important;
