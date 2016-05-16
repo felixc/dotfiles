@@ -1,8 +1,9 @@
-personal_ws-1.1 en 34
+personal_ws-1.1 en 38
 accessor
 accessors
 Affero
 API
+artefacts
 config
 copyrightable
 Django
@@ -16,11 +17,14 @@ licensors
 metadata
 noncommercially
 PGP
+productionize
+productionizing
 PyCon
 PyConCa
 PyPI
 relicense
 relicensing
+resizes
 resizing
 screenshot
 struct
