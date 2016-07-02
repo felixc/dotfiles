@@ -161,3 +161,6 @@ function pygmentize_cat {
   done
 }
 existsp pygmentize && alias cat=pygmentize_cat
+
+# Workaround for lack of autocompletion for gpg2; they're similar enough
+compdef gpg2=gpg
