@@ -13,6 +13,9 @@
 ; Auto-break lines in text mode only
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
+; Sentences are followed by one space only, not two.
+(setq sentence-end-double-space nil)
+
 ; Display long unbroken lines with the splits at word boundaries
 (global-visual-line-mode t)
 
