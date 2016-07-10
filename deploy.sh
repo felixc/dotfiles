@@ -9,45 +9,45 @@ files=(anacrontab aspell.en.pws caffrc emacs.d gitconfig gtkrc-2.0 hgrc \
        zshenv zshrc)
 
 for file in $files; do;
-  ln -fsT "$pwd/$file" "$HOME/.$file"
+  ln -srfT "$pwd/$file" "$HOME/.$file"
 done
 
 mkdir -p "$HOME/.config/gtk-3.0"
-ln -fs "$pwd/settings.ini" "$HOME/.config/gtk-3.0/settings.ini"
-ln -fs "$pwd/gtk.css" "$HOME/.config/gtk-3.0/gtk.css"
+ln -srf "$pwd/settings.ini" "$HOME/.config/gtk-3.0/settings.ini"
+ln -srf "$pwd/gtk.css" "$HOME/.config/gtk-3.0/gtk.css"
 
 mkdir -p "$HOME/.gnupg"
-ln -fs "$pwd/gpg.conf" "$HOME/.gnupg/gpg.conf"
+ln -srf "$pwd/gpg.conf" "$HOME/.gnupg/gpg.conf"
 
 mkdir -p "$HOME/.caff/gnupghome"
-ln -fs "$pwd/gpg.conf" "$HOME/.caff/gnupghome/gpg.conf"
+ln -srf "$pwd/gpg.conf" "$HOME/.caff/gnupghome/gpg.conf"
 
 mkdir -p "$HOME/.lbdb"
-ln -fs "$pwd/lbdbrc" "$HOME/.lbdb/lbdbrc"
-ln -fs "$pwd/lbdb-ldap.rc" "$HOME/.lbdb/ldap.rc"
+ln -srf "$pwd/lbdbrc" "$HOME/.lbdb/lbdbrc"
+ln -srf "$pwd/lbdb-ldap.rc" "$HOME/.lbdb/ldap.rc"
 
 mkdir -p "$HOME/.ipython/profile_default/"
-ln -fs "$pwd/ipython_config.py" "$HOME/.ipython/profile_default/ipython_config.py"
+ln -srf "$pwd/ipython_config.py" "$HOME/.ipython/profile_default/ipython_config.py"
 
 mkdir -p "$HOME/.ssh"
-ln -fs "$pwd/ssh-config" "$HOME/.ssh/config"
+ln -srf "$pwd/ssh-config" "$HOME/.ssh/config"
 
 mkdir -p "$HOME/.anacronspool"
 
 moz_profile_dir=$(find "$HOME/.mozilla/firefox" -name "*.default" -type d || echo "")
 if [ -n "$moz_profile_dir" ]; then
-    ln -fs "$pwd/moz-user.js" "$moz_profile_dir/user.js"
-    ln -fs "$pwd/moz-userContent.css" "$moz_profile_dir/chrome/userContent.css"
-    ln -fs "$pwd/moz-userChrome.css" "$moz_profile_dir/chrome/userChrome.css"
+    ln -srf "$pwd/moz-user.js" "$moz_profile_dir/user.js"
+    ln -srf "$pwd/moz-userContent.css" "$moz_profile_dir/chrome/userContent.css"
+    ln -srf "$pwd/moz-userChrome.css" "$moz_profile_dir/chrome/userChrome.css"
 fi
 
 mkdir -p "$HOME/bin"
 find "$pwd/bin" -type f -exec basename '{}' \; |
   while read cmd; do;
-    ln -fsT "$pwd/bin/$cmd" "$HOME/bin/$cmd"
+    ln -srfT "$pwd/bin/$cmd" "$HOME/bin/$cmd"
   done
 
-ln -fsT "$HOME/.xinitrc" "$HOME/.xsession"
+ln -srfT "$HOME/.xinitrc" "$HOME/.xsession"
 
 mkdir -p "$HOME/msg/.offlineimap"
 echo '#!/bin/sh\nofflineimap -u Quiet' >! "$HOME/msg/.offlineimap/run"
@@ -58,7 +58,7 @@ chmod og-rwx "$pwd/msmtprc"
 crontab "$pwd/crontab"
 
 mkdir -p "$HOME/.xmonad"
-ln -fs "$pwd/xmonad.hs" "$HOME/.xmonad/xmonad.hs"
+ln -srf "$pwd/xmonad.hs" "$HOME/.xmonad/xmonad.hs"
 if command -v xmonad > /dev/null; then
   xmonad --recompile && xmonad --restart
 fi
