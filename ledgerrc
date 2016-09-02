@@ -1,3 +1,4 @@
 --exchange $
+--effective
 --sort date
 --file ~/wrk/git-annex/ledger/main.journal
