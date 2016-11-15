@@ -19,6 +19,7 @@ ln -srf "$pwd/gtk.css" "$HOME/.config/gtk-3.0/gtk.css"
 mkdir -p "$HOME/.gnupg"
 ln -srf "$pwd/gpg.conf" "$HOME/.gnupg/gpg.conf"
 ln -srf "$pwd/scdaemon.conf" "$HOME/.gnupg/scdaemon.conf"
+ln -srf "$pwd/gpg-agent.conf" "$HOME/.gnupg/gpg-agent.conf"
 
 mkdir -p "$HOME/.caff/gnupghome"
 ln -srf "$pwd/gpg.conf" "$HOME/.caff/gnupghome/gpg.conf"
