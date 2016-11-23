@@ -4,6 +4,7 @@
 
 [core]
   excludesfile = ~/.gitignore
+  quotePath = false
 
 [color]
   ui = auto
