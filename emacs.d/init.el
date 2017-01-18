@@ -245,7 +245,7 @@
 (require 'my-go-mode)
 
 ; Rust mode
-(require 'my-rust-mode)
+(require 'my-rust-config)
 
 ; Mail mode
 (require 'my-mail-mode)

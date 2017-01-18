@@ -9,9 +9,9 @@
 (package-initialize)
 
 (defvar my-package-list
-  '(ace-jump-mode fill-column-indicator flycheck goto-chg helm-dash iedit
-    icomplete+ js2-mode multi-web-mode pabbrev popup rainbow-mode rust-mode
-    typopunct undo-tree use-package writeroom-mode yasnippet zencoding-mode
+  '(ace-jump-mode company fill-column-indicator flycheck goto-chg helm-dash
+    iedit icomplete+ js2-mode multi-web-mode pabbrev rainbow-mode racer
+    rust-mode typopunct undo-tree use-package writeroom-mode yasnippet
     zenburn-theme))
 
 (dolist (package my-package-list)
@@ -24,4 +24,3 @@
 (setq use-package-always-ensure t)
 
 (provide 'my-package-management)
-;;; my-package-management.el ends here
