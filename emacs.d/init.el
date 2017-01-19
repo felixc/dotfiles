@@ -244,6 +244,9 @@
 ; Go mode
 (require 'my-go-mode)
 
+; Python config
+(require 'my-python-config)
+
 ; Rust mode
 (require 'my-rust-config)
 
