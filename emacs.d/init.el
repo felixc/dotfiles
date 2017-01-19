@@ -226,20 +226,9 @@
 ; Recognize Markdown files
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
-; Zencoding for SGML modes
-(add-hook 'sgml-mode-hook 'zencoding-mode)
+; Web development config (JS, HTML, CSS)
+(require 'my-webdev-config)
 
-; Better JS and CSS editing in HTML documents
-(use-package multi-web-mode
-  :config
-  (setq mweb-default-major-mode 'html-mode)
-  (setq mweb-tags '((js-mode "<script[^>]*>" "</script>")
-                     (css-mode "<style[^>]*>" "</style>")))
-  (setq mweb-filename-extensions '("html"))
-  (multi-web-global-mode t))
-
-; JS2 Mode
-(require 'my-js-mode)
 
 ; Go mode
 (require 'my-go-mode)
@@ -255,9 +244,6 @@
 
 ; Use typopunct in various modes
 (require 'my-typopunct-config)
-
-; Show colours as represented by strings
-(add-hook 'css-mode-hook 'rainbow-mode)
 
 ; UTF-8 Unicode
 (prefer-coding-system        'utf-8)
