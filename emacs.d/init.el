@@ -4,11 +4,20 @@
 ; Verify TLS certificates
 (setq gnutls-verify-error t)
 
-; Indent code in this file with two spaces
-(setq lisp-indent-offset 2)
-
 ; Manage packages
 (load "my-package-management.el")
+
+; Set the width of tabs to 2 instead of 8 spaces
+(setq tab-width 2)
+
+; But of course, there shouldn't be any tabs
+(setq-default indent-tabs-mode nil)
+
+; Set the standard indentation to 2 spaces
+(setq-default c-basic-offset 2)
+
+; Indent code in this file with two spaces
+(setq lisp-indent-offset 2)
 
 ; Auto-break lines in text mode only
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
@@ -28,29 +37,6 @@
 ; No toolbar or scrollbar
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-
-; Show matching parens
-(show-paren-mode t)
-
-; Syntax highlighting
-(global-font-lock-mode t)
-
-; Set the width of tabs to 2 instead of 8 spaces
-(setq tab-width 2)
-
-; But of course, there shouldn't be any tabs
-(setq-default indent-tabs-mode nil)
-
-; Set the standard indentation to 2 spaces
-(setq-default c-basic-offset 2)
-
-; Show trailing whitespace and tabs
-(setq whitespace-style '(face tabs trailing))
-(global-whitespace-mode t)
-
-; Delete trailing whitespace in *new* files, but don't mess with existing ones
-(require 'my-cond-whitespace-del)
-(add-hook 'write-file-hooks 'maybe-delete-trailing-whitespace)
 
 ; Change yes/no questions to y/n
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -75,17 +61,8 @@
 ; Make apropos more comprehensive
 (setq apropos-do-all t)
 
-; Interactive-do mode
-(use-package ido
-  :demand t
-  :config
-  (ido-mode 'both)
-  (setq ido-enable-flex-matching t)
-  (setq ido-everywhere t))
-
-; Incremental mini-buffer completion preview
-(eval-after-load "icomplete" '(progn (use-package icomplete+)))
-(icomplete-mode t)
+; Show matching parens
+(show-paren-mode t)
 
 ; Better buffer management
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -103,20 +80,70 @@
 ; Move between windows easily
 (windmove-default-keybindings)
 
-; Quickly jump to symbols in the buffer
-(global-set-key (kbd "M-i") 'imenu)
+; When saving a file that looks like a script, make it executable
+(add-hook 'after-save-hook
+  'executable-make-buffer-file-executable-if-script-p)
 
-; Quickly jump around to arbitrary points
-(use-package ace-jump-mode
-  :bind ("C-l" . ace-jump-mode))
+; Save minibuffer history
+(use-package savehist
+  :config
+  (savehist-mode t))
 
-; Refactor by editing multiple regions simultaneously
-(use-package iedit)
+; Save open files on close, reopen them lazily at startup if wanted
+(setq
+  desktop-restore-eager 5
+  desktop-restore-frames nil
+  desktop-save t
+  desktop-load-locked-desktop t
+  desktop-dirname (expand-file-name "~/.emacs.d")
+  desktop-path (list desktop-dirname))
+(if (= (length command-line-args) 1)
+  (desktop-save-mode t))
+
+; Don't bother prompting to end processes when exiting
+(add-hook 'comint-exec-hook (lambda ()
+  (set-process-query-on-exit-flag (get-buffer-process (current-buffer)) nil)))
+
+; Use C-x k to end emacsclient sessions, rather than C-x #
+(add-hook 'server-switch-hook (lambda ()
+  (when (current-local-map)
+    (use-local-map (copy-keymap (current-local-map))))
+  (local-set-key (kbd "C-x k") 'server-edit)))
 
 ; Better undo
 (use-package undo-tree
   :config
   (global-undo-tree-mode))
+
+; UTF-8 Unicode
+(prefer-coding-system        'utf-8)
+(set-default-coding-systems  'utf-8)
+(set-terminal-coding-system  'utf-8)
+(set-keyboard-coding-system  'utf-8)
+(set-selection-coding-system 'utf-8)
+
+; Syntax highlighting
+(global-font-lock-mode t)
+
+; Show trailing whitespace and tabs
+(setq whitespace-style '(face tabs trailing))
+(global-whitespace-mode t)
+
+; Delete trailing whitespace in *new* files, but don't mess with existing ones
+(require 'my-cond-whitespace-del)
+(add-hook 'write-file-hooks 'maybe-delete-trailing-whitespace)
+
+; Interactive-do mode
+(use-package ido
+  :demand t
+  :config
+  (ido-mode 'both)
+  (setq ido-enable-flex-matching t)
+  (setq ido-everywhere t))
+
+; Incremental mini-buffer completion preview
+(eval-after-load "icomplete" '(progn (use-package icomplete+)))
+(icomplete-mode t)
 
 ; Avoid accidentally killing emacs all the time
 (global-unset-key (kbd "C-x C-c"))
@@ -128,16 +155,8 @@
 ; Make it easier to get to a dired buffer with the current file at point
 (autoload 'dired-jump-other-window "dired-x" "Jump to Dired buffer." t)
 (define-key global-map (kbd "C-x C-d") 'dired-jump-other-window)
-(add-hook 'dired-mode-hook
-  (lambda ()
-    (global-set-key (kbd "C-x C-d") 'dired-jump-other-window)))
-
-; Spelling correction, including for comments in programming modes
-(add-hook 'text-mode-hook 'flyspell-mode)
-(add-hook 'prog-mode-hook
-  (lambda ()
-    (flyspell-mode -1)
-    (flyspell-prog-mode)))
+(add-hook 'dired-mode-hook (lambda ()
+  (global-set-key (kbd "C-x C-d") 'dired-jump-other-window)))
 
 ; Make word-commands recognize in-word boundaries like capitalization
 (global-subword-mode t)
@@ -157,32 +176,6 @@
 
 ; Mouse wheel scrolls whatever window the mouse is over
 (setq mouse-wheel-follow-mouse t)
-
-; Writeroom mode for a nicer pure-text writing mode
-(use-package writeroom-mode
-  :config
-  (setq writeroom-extra-line-spacing 0.1)
-  (setq writeroom-width 92)
-  (advice-add 'writeroom-mode :after
-    #'(lambda (_)
-        (if (bound-and-true-p in-writeroom-mode)
-          (progn
-            (turn-on-fci-mode)
-            (linum-mode 1)
-            (global-hl-line-mode)
-            (fringe-mode nil)
-            (buffer-face-mode -1)
-            (set-frame-parameter nil 'internal-border-width 0)
-            (makunbound 'in-writeroom-mode))
-          (progn
-            (turn-off-fci-mode)
-            (linum-mode -1)
-            (global-hl-line-mode -1)
-            (global-hl-line-unhighlight)
-            (fringe-mode 0)
-            (buffer-face-set '(:height 1.05))
-            (set-frame-parameter nil 'internal-border-width 15)
-            (setq-local in-writeroom-mode t))))))
 
 ; Appearance
 (use-package zenburn-theme
@@ -220,45 +213,52 @@
 ; Use Flycheck everywhere
 (global-flycheck-mode)
 
-; Recognize python3 files
-(add-to-list 'interpreter-mode-alist '("python3" . python-mode))
+; Spelling correction, including for comments in programming modes
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook (lambda ()
+  (flyspell-mode -1)
+  (flyspell-prog-mode)))
+(eval-after-load "flyspell"
+  '(define-key flyspell-mode-map (kbd "C-;") nil))
 
 ; Recognize Markdown files
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
-; Web development config (JS, HTML, CSS)
-(require 'my-webdev-config)
+; Quickly jump to symbols in the buffer
+(global-set-key (kbd "M-i") 'imenu)
 
+; Quickly jump around to arbitrary points
+(use-package ace-jump-mode
+  :bind ("C-l" . ace-jump-mode))
 
-; Go mode
-(require 'my-go-mode)
+; Refactor by editing multiple regions simultaneously
+(use-package iedit)
 
-; Python config
+; Company for completions in various programming languages
+(use-package company
+  :config
+  (define-key company-active-map [tab] 'company-complete-common-or-cycle)
+  (setq company-tooltip-align-annotations t))
+
+; Language-specific configuration
 (require 'my-python-config)
-
-; Rust mode
+(require 'my-webdev-config)
+(require 'my-go-config)
 (require 'my-rust-config)
 
-; Mail mode
-(require 'my-mail-mode)
+; Email-writing configuration
+(require 'my-mail-config)
 
 ; Use typopunct in various modes
 (require 'my-typopunct-config)
-
-; UTF-8 Unicode
-(prefer-coding-system        'utf-8)
-(set-default-coding-systems  'utf-8)
-(set-terminal-coding-system  'utf-8)
-(set-keyboard-coding-system  'utf-8)
-(set-selection-coding-system 'utf-8)
 
 ; Jump back to changes
 (use-package goto-chg
   :config
   (global-set-key (kbd "M-.") '(lambda ()
-     (interactive)
-     (setq current-prefix-arg '(0))
-     (call-interactively 'goto-last-change))))
+    (interactive)
+    (setq current-prefix-arg '(0))
+    (call-interactively 'goto-last-change))))
 
 ; Column limit
 (setq-default fill-column 80)
@@ -270,13 +270,12 @@
   (advice-add 'turn-off-fci-mode :after
     #'(lambda () (setq fci-mode-toggle nil)))
   ; Toggle the mode as the window resizes around where the line is visible
-  (add-hook 'window-configuration-change-hook
-    (lambda ()
-      (if (and (bound-and-true-p fci-mode) (<= (window-width) fill-column))
-        (progn
-          (turn-off-fci-mode)
-          (setq fci-mode-toggle t))
-         (if (bound-and-true-p fci-mode-toggle) (turn-on-fci-mode))))))
+  (add-hook 'window-configuration-change-hook (lambda ()
+    (if (and (bound-and-true-p fci-mode) (<= (window-width) fill-column))
+      (progn
+        (turn-off-fci-mode)
+        (setq fci-mode-toggle t))
+      (if (bound-and-true-p fci-mode-toggle) (turn-on-fci-mode))))))
 
 ; Org Mode customizations
 (require 'my-org-mode)
@@ -303,57 +302,28 @@
 (add-to-list 'completion-ignored-extensions ".8")
 (add-to-list 'completion-ignored-extensions ".out")
 
-; Auto completion
-(use-package pabbrev
+; Writeroom mode for a nicer pure-text writing mode
+(use-package writeroom-mode
   :config
-  (global-pabbrev-mode t))
-
-(use-package popup
-  :config
-  (define-key popup-menu-keymap (kbd "<tab>") 'popup-next)
-  (defun pabbrevx-suggestions-goto-buffer (suggestions)
-    (let* ((candidates (mapcar 'car suggestions))
-            (bounds (pabbrev-bounds-of-thing-at-point))
-            (selection (popup-menu* candidates :point (car bounds) :scroll-bar t)))
-      (when selection
-        (let ((point))
-          (save-excursion
-            (progn
-              (delete-region (car bounds) (cdr bounds))
-              (insert selection)
-              (setq point (point))))
-          (if point
-            (goto-char point))
-          (setq pabbrev-last-expansion-suggestions nil)))))
-  (fset 'pabbrev-suggestions-goto-buffer 'pabbrevx-suggestions-goto-buffer))
-
-; When saving a file that looks like a script, make it executable
-(add-hook 'after-save-hook
-  'executable-make-buffer-file-executable-if-script-p)
-
-; Save minibuffer history
-(use-package savehist
-  :config
-  (savehist-mode t))
-
-; Save open files on close, reopen them lazily at startup if wanted
-(setq
-  desktop-restore-eager 5
-  desktop-save t
-  desktop-load-locked-desktop t
-  desktop-dirname (expand-file-name "~/.emacs.d")
-  desktop-path (list desktop-dirname))
-(if (= (length command-line-args) 1)
-    (desktop-save-mode t))
-
-; Don't bother prompting to end processes when exiting
-(add-hook 'comint-exec-hook
-  (lambda ()
-    (set-process-query-on-exit-flag (get-buffer-process (current-buffer)) nil)))
-
-; Use C-x k to end emacsclient sessions, rather than C-x #
-(add-hook 'server-switch-hook
-  (lambda ()
-    (when (current-local-map)
-      (use-local-map (copy-keymap (current-local-map))))
-    (local-set-key (kbd "C-x k") 'server-edit)))
+  (setq writeroom-extra-line-spacing 0.1)
+  (setq writeroom-width 92)
+  (advice-add 'writeroom-mode :after
+    #'(lambda (_)
+        (if (bound-and-true-p in-writeroom-mode)
+          (progn
+            (turn-on-fci-mode)
+            (linum-mode 1)
+            (global-hl-line-mode)
+            (fringe-mode nil)
+            (buffer-face-mode -1)
+            (set-frame-parameter nil 'internal-border-width 0)
+            (makunbound 'in-writeroom-mode))
+          (progn
+            (turn-off-fci-mode)
+            (linum-mode -1)
+            (global-hl-line-mode -1)
+            (global-hl-line-unhighlight)
+            (fringe-mode 0)
+            (buffer-face-set '(:height 1.05))
+            (set-frame-parameter nil 'internal-border-width 15)
+            (setq-local in-writeroom-mode t))))))

@@ -8,4 +8,4 @@
                                   ; Starts globally on, toggling once keeps it
                                   ; on, twice turns it off.
 
-(provide 'my-go-mode)
+(provide 'my-go-config)

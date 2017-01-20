@@ -7,7 +7,6 @@
 (add-hook 'python-mode-hook (lambda ()
   (add-to-list 'company-backends 'company-jedi)
   (company-mode)
-  (define-key python-mode-map (kbd "TAB") #'company-indent-or-complete-common)
-  (define-key company-active-map [tab] 'company-complete-common-or-cycle)))
+  (define-key python-mode-map (kbd "TAB") #'company-indent-or-complete-common)))
 
 (provide 'my-python-config)

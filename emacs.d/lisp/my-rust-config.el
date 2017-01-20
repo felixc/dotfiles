@@ -16,7 +16,5 @@
   (company-mode)))
 
 (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
-(define-key company-active-map [tab] 'company-complete-common-or-cycle)
-(setq company-tooltip-align-annotations t)
 
 (provide 'my-rust-config)
