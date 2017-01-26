@@ -180,7 +180,7 @@ while true; do
     NET_INTERFACE=$(route -n | grep -E " UGH? " | awk 'END {print $8}')
     if [[ $NET_INTERFACE != "" ]]; then
       NET_IS_WIFI=0
-      if [[ $NET_INTERFACE == $(/sbin/iwconfig 2> /dev/null | awk 'NR == 1 {print $1}') ]]; then
+      if [[ $NET_INTERFACE == $(/sbin/iw dev | sed -n 's/.*Interface \(.*\)/\1/p') ]]; then
         NET_IS_WIFI=1
       fi
 
@@ -210,12 +210,14 @@ while true; do
       fi
 
       if (( $NET_IS_WIFI )); then
-        NET_ESSID=$(/sbin/iwconfig $NET_INTERFACE | sed -ne "s/.*ESSID:\"\(.*\)\".*/\1/p")
-        NET_IP=$(/sbin/ifconfig $NET_INTERFACE | sed -ne '/inet addr/ s/.*addr:\([^ ]*\).*/\1/p')
-        NET_LINK_QUALITY=$(/sbin/iwconfig $NET_INTERFACE | sed -ne "s/.*Link Quality=\([0-9]*\)\/\([0-9]*\).*/\1 \2/p")
-        NET_BIT_RATE=$(/sbin/iwconfig $NET_INTERFACE | sed -ne "s/.*Rate=\([0-9]* Mb\/s\).*/\1/p")
+        NET_ESSID=$(/sbin/iw dev $NET_INTERFACE link | sed -ne "s/.*SSID: \(.*\)/\1/p")
+        NET_IP=$(/bin/ip addr show $NET_INTERFACE scope global | sed -ne 's/.*inet \([^ ]*\)\/.*/\1/p')
+        NET_LINK_QUALITY=$(/sbin/iw dev wlan0 link | sed -n 's/.*signal: -\(.*\) .*/\1/p')
+        NET_BIT_RATE=$(/sbin/iw dev $NET_INTERFACE link | sed -ne "s/.*bitrate: \([0-9.]*\) MBit.*/\1/p")" Mb/s"
 
-        NET_GRAPH=$(echo $NET_LINK_QUALITY | dzen2-gdbar -h 10 -ss 1 -w 48 -sw 4 -s o -nonl -bg $COL_GRAPH_BORDER -fg $COL_HIGHLIGHT)
+        # Converting dB log scale from 84 to 63 (minus sign dropped) into a linear 0–5 one:
+        # 5 * (1 - (ln(x) - ln(63))/(ln(84) - ln(63))) = 77.0089 - ln(x)/0.0575
+        NET_GRAPH=$(echo "77.0089 - l($NET_LINK_QUALITY)/0.0575" | bc -l | dzen2-gdbar -max 5 -min 0 -h 10 -ss 1 -w 33 -sw 5 -s o -nonl -bg $COL_GRAPH_BORDER -fg $COL_HIGHLIGHT)
 
         echo "^tw()$SEPARATOR $NET_ICON $NET_GRAPH $NET_RX_RATE $NET_RX_ICON  $NET_TX_RATE $NET_TX_ICON " > $NET_PIPE
         echo "  ESSID: $NET_ESSID\n  IP: $NET_IP\n  Bit Rate: $NET_BIT_RATE" > $NET_PIPE
