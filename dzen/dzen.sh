@@ -156,7 +156,6 @@ while true; do
   # Date
   #
   if (( $TIME_CAL_COUNTER >= $TIME_CAL_INTERVAL )); then
-
     TIME_CAL_OUTPUT=$(cal -h -A 2 | tail -n 8 | sed -r -e "1,2 s/.*/^fg(white)&^fg()/")
 
     TIME_TZS_OUTPUT=""
@@ -180,17 +179,14 @@ while true; do
     NET_INTERFACE=$(route -n | grep -E " UGH? " | awk 'END {print $8}')
     if [[ $NET_INTERFACE != "" ]]; then
       NET_IS_WIFI=0
-      if [[ $NET_INTERFACE == $(/sbin/iw dev | sed -n 's/.*Interface \(.*\)/\1/p') ]]; then
+      if [[ -x /sbin/iw && $NET_INTERFACE == $(/sbin/iw dev | sed -n 's/.*Interface \(.*\)/\1/p') ]]; then
         NET_IS_WIFI=1
       fi
 
       if [[ ! -p $NET_PIPE ]]; then
         mkfifo $NET_PIPE
-        if (( $NET_IS_WIFI )); then
-          (tail -n 13 -f $NET_PIPE | dzen2 -p -ta r -sa l -tw $NET_WIDTH -x $NET_XPOS -l 3 -w 160 -e "button1=togglecollapse") &
-        else
-          (tail -n 13 -f $NET_PIPE | dzen2 -p -ta r -tw $NET_WIDTH -x $NET_XPOS) &
-        fi
+        NET_SUB_WINDOW_LINES=$((( $NET_IS_WIFI )) && echo 3 || echo 1)
+        (tail -f $NET_PIPE | dzen2 -p -ta r -sa l -tw $NET_WIDTH -x $NET_XPOS -l $NET_SUB_WINDOW_LINES -w 160 -e "button1=togglecollapse") &
       fi
 
       NET_TX_BYTES=$(cat /sys/class/net/$NET_INTERFACE/statistics/tx_bytes)
@@ -209,9 +205,10 @@ while true; do
         NET_TX_RATE="${NET_TX_RATE}kB/s"
       fi
 
+      NET_IP=$(/bin/ip addr show $NET_INTERFACE scope global | sed -ne 's/.*inet \([^ ]*\)\/.*/\1/p')
+
       if (( $NET_IS_WIFI )); then
         NET_ESSID=$(/sbin/iw dev $NET_INTERFACE link | sed -ne "s/.*SSID: \(.*\)/\1/p")
-        NET_IP=$(/bin/ip addr show $NET_INTERFACE scope global | sed -ne 's/.*inet \([^ ]*\)\/.*/\1/p')
         NET_LINK_QUALITY=$(/sbin/iw dev wlan0 link | sed -n 's/.*signal: -\(.*\) .*/\1/p')
         NET_BIT_RATE=$(/sbin/iw dev $NET_INTERFACE link | sed -ne "s/.*bitrate: \([0-9.]*\) MBit.*/\1/p")" Mb/s"
 
@@ -222,7 +219,8 @@ while true; do
         echo "^tw()$SEPARATOR $NET_ICON $NET_GRAPH $NET_RX_RATE $NET_RX_ICON  $NET_TX_RATE $NET_TX_ICON " > $NET_PIPE
         echo "  ESSID: $NET_ESSID\n  IP: $NET_IP\n  Bit Rate: $NET_BIT_RATE" > $NET_PIPE
       else
-        echo "$SEPARATOR $NET_INTERFACE: $NET_RX_RATE $NET_RX_ICON  $NET_TX_RATE $NET_TX_ICON " > $NET_PIPE
+        echo "^tw()$SEPARATOR $NET_INTERFACE: $NET_RX_RATE $NET_RX_ICON  $NET_TX_RATE $NET_TX_ICON " > $NET_PIPE
+        echo "  IP: $NET_IP" > $NET_PIPE
       fi
 
       NET_RX_BYTES_OLD=$NET_RX_BYTES
