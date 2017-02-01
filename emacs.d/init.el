@@ -277,9 +277,6 @@
         (setq fci-mode-toggle t))
       (if (bound-and-true-p fci-mode-toggle) (turn-on-fci-mode))))))
 
-; Org Mode customizations
-(require 'my-org-mode)
-
 ; Helm-Dash for browsing docs
 (use-package helm-dash
   :config
