@@ -9,13 +9,13 @@
 
 ; Show colours as represented by strings
 (add-hook 'css-mode-hook '(lambda ()
+  (use-package rainbow-mode :diminish 'rainbow-mode)
   (rainbow-mode)
   (setq css-indent-offset 2)))
 
 (use-package js2-mode
+  :mode "\\.js\\'"
   :config
-  (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-
   (defun prefix-js2-mode-match-curly ()
     "Call js2-mode's match-curly with a prefix argument to avoid a newline."
     (interactive)
