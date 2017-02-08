@@ -1,3 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 
-exec emacsclient --alternate-editor="" -c "$@"
+TTY_FLAG=""
+if [ -t 0 ]; then  # Is stdin open; i.e. is this being run from a terminal?
+  TTY_FLAG="--tty"
+fi
+
+exec emacsclient --alternate-editor="" --create-frame $TTY_FLAG "$@"
