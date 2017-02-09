@@ -1,11 +1,10 @@
-(require 'go-mode)
-
-(add-hook 'go-mode-hook
-  (lambda ()
+(use-package go-mode
+  :mode "\\.go\\'"
+  :config
+  (add-hook 'go-mode-hook (lambda ()
     (setq tab-width 2)
-    (toggle-show-tabs-show-ws)    ; Toggled twice to work around a bug either in
-    (toggle-show-tabs-show-ws)))  ; the function or in my brain.
-                                  ; Starts globally on, toggling once keeps it
-                                  ; on, twice turns it off.
-
+    (toggle-show-tabs-show-ws)     ; Toggled twice to work around a bug either
+    (toggle-show-tabs-show-ws))))  ; in the function or in my brain.
+                                   ; Starts globally on, toggling once keeps it
+                                   ; on, twice turns it off.
 (provide 'my-go-config)
