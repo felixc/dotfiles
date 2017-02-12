@@ -18,6 +18,9 @@
 [transfer]
   fsckObjects = true
 
+[rerere]
+  enabled = true
+
 [alias]
   co = checkout
   br = branch
