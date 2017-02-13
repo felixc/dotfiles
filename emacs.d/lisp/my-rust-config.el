@@ -19,6 +19,7 @@
       (diminish 'eldoc-mode))))
   :config
   (setq rust-rustfmt-bin "~/.cargo/bin/rustfmt")
+  (setq rust-format-on-save t)
   (add-hook 'rust-mode-hook (lambda ()
     (racer-mode)
     (setq fill-column 100)))
