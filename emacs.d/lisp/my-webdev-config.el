@@ -9,7 +9,7 @@
 
 ; Show colours as represented by strings
 (add-hook 'css-mode-hook '(lambda ()
-  (use-package rainbow-mode :diminish 'rainbow-mode)
+  (use-package rainbow-mode :diminish rainbow-mode)
   (rainbow-mode)
   (setq css-indent-offset 2)))
 
