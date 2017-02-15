@@ -4,13 +4,12 @@
 
 (use-package rust-mode
   :mode "\\.rs\\'"
-  :ensure flycheck-rust
   :init
+  (use-package flycheck-rust)
   (use-package racer
     :diminish racer-mode
-    :ensure company
-    :ensure company-racer
     :config
+    (use-package company-racer)
     (setq racer-rust-src-path
       "~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")
     (add-hook 'racer-mode-hook (lambda ()
