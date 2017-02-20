@@ -1,3 +1,13 @@
+; We don't want GC pauses to slow down interactive operations
+(defun disable-gc ()
+  (setq gc-cons-threshold most-positive-fixnum))
+(defun enable-gc ()
+  (setq gc-cons-threshold 3000000))
+(add-hook 'minibuffer-setup-hook #'disable-gc)
+(add-hook 'minibuffer-exit-hook #'enable-gc)
+
+(disable-gc)
+
 ; Search for files in a custom load-path
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
 
@@ -324,3 +334,6 @@
             (buffer-face-set '(:height 1.05))
             (set-frame-parameter nil 'internal-border-width 15)
             (setq-local in-writeroom-mode t))))))
+
+; Garbage collection was disabled at the top of this file to speed up startup
+(enable-gc)
