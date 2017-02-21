@@ -44,9 +44,8 @@
 ; Turn off bell
 (setq ring-bell-function 'ignore)
 
-; No toolbar or scrollbar
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+; No toolbar
+(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 
 ; Change yes/no questions to y/n
 (fset 'yes-or-no-p 'y-or-n-p)
