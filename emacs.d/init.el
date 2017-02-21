@@ -73,6 +73,15 @@
 ; Show matching parens
 (show-paren-mode t)
 
+; Cycle between moving to the start the line and the first non-whitespace char
+(defun move-to-start-of-line ()
+  (interactive)
+  (if (bolp)
+      (back-to-indentation)
+    (beginning-of-line)))
+
+(global-set-key (kbd "C-a") 'move-to-start-of-line)
+
 ; Better buffer management
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
