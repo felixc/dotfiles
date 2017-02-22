@@ -89,6 +89,17 @@
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
 (global-set-key (kbd "C-x K") 'ido-kill-buffer)
 
+; Nicer mode line
+(use-package powerline
+  :config
+  (setq powerline-height 20)
+  (setq powerline-text-scale-factor 0.98)
+  (setq powerline-display-buffer-size nil)
+  (setq powerline-utf-8-separator-left 9625)
+  (setq powerline-utf-8-separator-right 9631)
+  (setq powerline-default-separator 'wave)
+  (powerline-default-theme))
+
 ; Better buffer naming for duplicates
 (use-package uniquify
   :ensure nil
