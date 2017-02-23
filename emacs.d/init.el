@@ -11,9 +11,6 @@
 ; Search for files in a custom load-path
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
 
-; Verify TLS certificates
-(setq gnutls-verify-error t)
-
 ; Manage packages
 (load "my-package-management.el")
 
