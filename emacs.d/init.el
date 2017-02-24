@@ -12,7 +12,7 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
 
 ; Manage packages
-(load "my-package-management.el")
+(load "my-package-management")
 
 ; Set the width of tabs to 2 instead of 8 spaces
 (setq tab-width 2)
