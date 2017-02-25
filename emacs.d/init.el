@@ -28,12 +28,14 @@
 
 ; Auto-break lines in text mode only
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
+(diminish 'auto-fill-function)
 
 ; Sentences are followed by one space only, not two.
 (setq sentence-end-double-space nil)
 
 ; Display long unbroken lines with the splits at word boundaries
 (global-visual-line-mode t)
+(diminish 'visual-line-mode)
 
 ; No startup message
 (setq inhibit-startup-message t)
@@ -138,6 +140,7 @@
 
 ; Better undo
 (use-package undo-tree
+  :diminish undo-tree-mode
   :config
   (global-undo-tree-mode))
 
@@ -154,6 +157,7 @@
 ; Show trailing whitespace and tabs
 (setq whitespace-style '(face tabs trailing))
 (global-whitespace-mode t)
+(diminish 'global-whitespace-mode)
 
 ; Delete trailing whitespace in *new* files, but don't mess with existing ones
 (require 'my-cond-whitespace-del)
@@ -186,6 +190,7 @@
 
 ; Make word-commands recognize in-word boundaries like capitalization
 (global-subword-mode t)
+(diminish 'subword-mode)
 
 ; Make the selection behave like in most other applications
 (delete-selection-mode t)
@@ -262,6 +267,7 @@
 
 ; Company for completions in various programming languages
 (use-package company
+  :diminish company-mode
   :config
   (define-key company-active-map [tab] 'company-complete-common-or-cycle)
   (setq company-tooltip-align-annotations t))
