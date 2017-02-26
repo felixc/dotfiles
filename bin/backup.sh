@@ -6,7 +6,7 @@ period="${1:-daily}"
 
 dest="/mnt/backup"
 
-/usr/bin/nice --adjustment 20 /usr/bin/ionice --class 2 --classdata 7 \
+/usr/bin/nice --adjustment 19 /usr/bin/ionice --class 2 --classdata 7 \
   /usr/bin/rsync \
     --archive --acls --xattrs --copy-unsafe-links \
     --fuzzy --link-dest="$dest/$period-2" \
@@ -24,5 +24,5 @@ dest="/mnt/backup"
 
 /bin/ln -fsT "$dest/$period-1" "$dest/latest"
 
-/usr/bin/nice --adjustment 20 /usr/bin/ionice --class 2 --classdata 7 \
+/usr/bin/nice --adjustment 19 /usr/bin/ionice --class 2 --classdata 7 \
   /bin/rm -rf "$dest/$period-obsolete"
