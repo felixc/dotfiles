@@ -38,7 +38,7 @@
 (diminish 'visual-line-mode)
 
 ; No startup message
-(setq inhibit-startup-message t)
+(setq inhibit-startup-screen t)
 
 ; Turn off bell
 (setq ring-bell-function 'ignore)
