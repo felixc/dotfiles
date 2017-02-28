@@ -112,6 +112,9 @@
 (add-hook 'after-save-hook
   'executable-make-buffer-file-executable-if-script-p)
 
+; I'll manage my own version control
+(setq vc-handled-backends nil)
+
 ; Save minibuffer history
 (use-package savehist
   :config
