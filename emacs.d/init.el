@@ -120,17 +120,6 @@
   :config
   (savehist-mode t))
 
-; Save open files on close, reopen them lazily at startup if wanted
-(setq
-  desktop-restore-eager 5
-  desktop-restore-frames nil
-  desktop-save t
-  desktop-load-locked-desktop t
-  desktop-dirname (expand-file-name "~/.emacs.d")
-  desktop-path (list desktop-dirname))
-(if (= (length command-line-args) 1)
-  (desktop-save-mode t))
-
 ; Don't bother prompting to end processes when exiting
 (add-hook 'comint-exec-hook (lambda ()
   (set-process-query-on-exit-flag (get-buffer-process (current-buffer)) nil)))
