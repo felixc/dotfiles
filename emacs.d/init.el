@@ -314,7 +314,7 @@
 
 ; Helm-Dash for browsing docs
 (use-package helm-dash
-  :config
+  :init
   (setq helm-dash-docsets-path "~/.local/share/dash/")
   (add-hook 'emacs-lisp-mode-hook
     (lambda () (setq-local helm-dash-docsets '("Emacs Lisp"))))
