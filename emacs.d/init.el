@@ -227,7 +227,10 @@
 (set-face-background 'hl-line "#282828")
 
 ; Yasnippet everywhere
-(yas-global-mode t)
+(use-package yasnippet
+  :diminish yas-minor-mode
+  :defer 2
+  :config (yas-global-mode t))
 
 ; Use Flycheck everywhere
 (global-flycheck-mode)
