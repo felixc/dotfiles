@@ -161,9 +161,11 @@
 (eval-after-load "icomplete" '(progn (use-package icomplete+)))
 (icomplete-mode t)
 
-; Avoid accidentally killing emacs all the time
+; Better control over quitting emacs/emacsclient.
 (global-unset-key (kbd "C-x C-c"))
-(global-set-key (kbd "C-x ESC") 'save-buffers-kill-emacs)
+(if (daemonp)
+  (global-set-key (kbd "C-x ESC") 'delete-frame)
+  (global-set-key (kbd "C-x ESC") 'save-buffers-kill-emacs))
 
 ; We often have to refresh buffers from disk
 (global-set-key (kbd "<f5>") 'revert-buffer)
