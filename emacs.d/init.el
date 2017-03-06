@@ -151,7 +151,6 @@
 
 ; Interactive-do mode
 (use-package ido
-  :demand t
   :config
   (ido-mode 'both)
   (setq ido-enable-flex-matching t)
