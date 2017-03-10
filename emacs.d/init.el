@@ -232,7 +232,9 @@
   :config (yas-global-mode t))
 
 ; Use Flycheck everywhere
-(global-flycheck-mode)
+(use-package flycheck
+  :diminish flycheck-mode
+  :config (global-flycheck-mode))
 
 ; Spelling correction, including for comments in programming modes
 (add-hook 'text-mode-hook 'flyspell-mode)
