@@ -209,17 +209,6 @@
       ("zenburn-bg+3"     . "#5F5F5F")))
   (load-theme 'zenburn t))
 
-(custom-set-faces
- '(markdown-header-delimiter-face ((t (:inherit font-lock-function-name-face :height 0.8 :foreground "dim gray"))))
- '(markdown-header-rule-face ((t (:inherit font-lock-function-name-face :foreground "dim gray" :weight bold :height 1.4))))
- '(markdown-header-face ((t (:inherit font-lock-function-name-face :foreground "cadet blue" :weight bold))))
- '(markdown-header-face-1 ((t (:inherit markdown-header-face :height 1.6))))
- '(markdown-header-face-2 ((t (:inherit markdown-header-face :height 1.4))))
- '(markdown-header-face-3 ((t (:inherit markdown-header-face :height 1.3))))
- '(markdown-header-face-4 ((t (:inherit markdown-header-face :height 1.2))))
- '(markdown-bold-face ((t (:inherit basic :weight bold))))
- '(markdown-italic-face ((t (:inherit basic :slant italic :height 0.9 :family "Source Code Pro")))))
-
 ; Set the appearance of graphical frames
 (defun configure-new-frame-appearance (frame)
   (with-selected-frame frame
@@ -255,8 +244,21 @@
 (eval-after-load "flyspell"
   '(define-key flyspell-mode-map (kbd "C-;") nil))
 
-; Recognize Markdown files
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+;; Working with Markdown
+(use-package markdown-mode
+  :mode "\\.md\\'"
+  :config
+  (use-package markdown-toc)
+  (custom-set-faces
+    '(markdown-bold-face ((t (:inherit basic :weight bold))))
+    '(markdown-header-delimiter-face ((t (:inherit font-lock-function-name-face :height 0.8 :foreground "dim gray"))))
+    '(markdown-header-face ((t (:inherit font-lock-function-name-face :foreground "cadet blue" :weight bold))))
+    '(markdown-header-face-1 ((t (:inherit markdown-header-face :height 1.6))))
+    '(markdown-header-face-2 ((t (:inherit markdown-header-face :height 1.4))))
+    '(markdown-header-face-3 ((t (:inherit markdown-header-face :height 1.3))))
+    '(markdown-header-face-4 ((t (:inherit markdown-header-face :height 1.2))))
+    '(markdown-header-rule-face ((t (:inherit font-lock-function-name-face :foreground "dim gray" :weight bold :height 1.4))))
+    '(markdown-italic-face ((t (:inherit basic :slant italic :height 0.9 :family "Source Code Pro"))))))
 
 ; Quickly jump to symbols in the buffer
 (global-set-key (kbd "M-i") 'imenu)
