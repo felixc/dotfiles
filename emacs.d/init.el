@@ -317,12 +317,6 @@
   ("C-h h" . helm-dash)
   ("C-h H" . helm-dash-at-point))
 
-; Ignore useless file extensions
-(add-to-list 'completion-ignored-extensions ".pyc")
-(add-to-list 'completion-ignored-extensions ".6")
-(add-to-list 'completion-ignored-extensions ".8")
-(add-to-list 'completion-ignored-extensions ".out")
-
 ; Writeroom mode for a nicer pure-text writing mode
 (use-package writeroom-mode
   :config
