@@ -237,12 +237,15 @@
   :config (global-flycheck-mode))
 
 ; Spelling correction, including for comments in programming modes
-(add-hook 'text-mode-hook 'flyspell-mode)
-(add-hook 'prog-mode-hook (lambda ()
-  (flyspell-mode -1)
-  (flyspell-prog-mode)))
-(eval-after-load "flyspell"
-  '(define-key flyspell-mode-map (kbd "C-;") nil))
+(use-package flyspell
+  :diminish flyspell-mode
+  :diminish flyspell-prog-mode
+  :config
+  (add-hook 'text-mode-hook 'flyspell-mode)
+  (add-hook 'prog-mode-hook (lambda ()
+    (flyspell-mode -1)
+    (flyspell-prog-mode)))
+  (define-key flyspell-mode-map (kbd "C-;") nil))
 
 ;; Working with Markdown
 (use-package markdown-mode
