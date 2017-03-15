@@ -272,7 +272,8 @@
   :bind ("C-l" . ace-jump-mode))
 
 ; Refactor by editing multiple regions simultaneously
-(use-package iedit)
+(use-package iedit
+  :bind ("C-;" . iedit-mode))
 
 ; Company for completions in various programming languages
 (use-package company
