@@ -199,14 +199,15 @@
 (use-package zenburn-theme
   :init
   (defvar zenburn-override-colors-alist
-    '(("zenburn-bg-2"     . "#000000")
-      ("zenburn-bg-1"     . "#101010")
-      ("zenburn-bg-05"    . "#282828")
-      ("zenburn-bg"       . "#2F2F2F")
-      ("zenburn-bg+05"    . "#383838")
-      ("zenburn-bg+1"     . "#3F3F3F")
-      ("zenburn-bg+2"     . "#4F4F4F")
-      ("zenburn-bg+3"     . "#5F5F5F")))
+    '(("zenburn-bg-2"  . "#000000")
+      ("zenburn-bg-1"  . "#101010")
+      ("zenburn-bg-05" . "#282828")
+      ("zenburn-bg"    . "#2F2F2F")
+      ("zenburn-bg+05" . "#383838")
+      ("zenburn-bg+1"  . "#3F3F3F")
+      ("zenburn-bg+2"  . "#4F4F4F")
+      ("zenburn-bg+3"  . "#5F5F5F")))
+  :config
   (load-theme 'zenburn t))
 
 ; Set the appearance of graphical frames
@@ -308,7 +309,7 @@
   :config
   (add-hook 'after-change-major-mode-hook 'fci-mode)
   (advice-add 'turn-off-fci-mode :after
-    #'(lambda () (setq fci-mode-toggle nil)))
+    (lambda () (setq fci-mode-toggle nil)))
   ; Toggle the mode as the window resizes around where the line is visible
   (add-hook 'window-configuration-change-hook (lambda ()
     (if (and (bound-and-true-p fci-mode) (<= (window-width) fill-column))
@@ -338,26 +339,27 @@
   :config
   (setq writeroom-extra-line-spacing 0.1)
   (setq writeroom-width 92)
+  (defvar in-writeroom-mode)
   (advice-add 'writeroom-mode :after
-    #'(lambda (_)
-        (if (bound-and-true-p in-writeroom-mode)
-          (progn
-            (turn-on-fci-mode)
-            (linum-mode 1)
-            (global-hl-line-mode)
-            (fringe-mode nil)
-            (buffer-face-mode -1)
-            (set-frame-parameter nil 'internal-border-width 0)
-            (makunbound 'in-writeroom-mode))
-          (progn
-            (turn-off-fci-mode)
-            (linum-mode -1)
-            (global-hl-line-mode -1)
-            (global-hl-line-unhighlight)
-            (fringe-mode 0)
-            (buffer-face-set '(:height 1.05))
-            (set-frame-parameter nil 'internal-border-width 15)
-            (setq-local in-writeroom-mode t))))))
+    (lambda (_)
+      (if (bound-and-true-p in-writeroom-mode)
+        (progn
+          (turn-on-fci-mode)
+          (linum-mode 1)
+          (global-hl-line-mode)
+          (fringe-mode nil)
+          (buffer-face-mode -1)
+          (set-frame-parameter nil 'internal-border-width 0)
+          (makunbound 'in-writeroom-mode))
+        (progn
+          (turn-off-fci-mode)
+          (linum-mode -1)
+          (global-hl-line-mode -1)
+          (global-hl-line-unhighlight)
+          (fringe-mode 0)
+          (buffer-face-set '(:height 1.05))
+          (set-frame-parameter nil 'internal-border-width 15)
+          (setq-local in-writeroom-mode t))))))
 
 ; Garbage collection was disabled at the top of this file to speed up startup
 (enable-gc)
