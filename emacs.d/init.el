@@ -280,7 +280,13 @@
   :diminish company-mode
   :config
   (define-key company-active-map [tab] 'company-complete-common-or-cycle)
-  (setq company-tooltip-align-annotations t))
+  (setq company-tooltip-align-annotations t)
+  (defun toggle-fci-around-company (command)
+    (when (string= "show" command)
+      (turn-off-fci-mode))
+    (when (string= "hide" command)
+      (turn-on-fci-mode)))
+  (advice-add 'company-call-frontends :before #'toggle-fci-around-company))
 
 ; Language-specific configuration
 (require 'my-python-config)
