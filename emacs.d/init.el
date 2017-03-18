@@ -303,10 +303,11 @@
 ; Jump back to changes
 (use-package goto-chg
   :config
-  (global-set-key (kbd "M-.") '(lambda ()
+  (defun go-to-last-change-and-describe ()
     (interactive)
     (setq current-prefix-arg '(0))
-    (call-interactively 'goto-last-change))))
+    (call-interactively 'goto-last-change))
+  :bind ("M-." . go-to-last-change-and-describe))
 
 ; Column limit
 (setq-default fill-column 80)
