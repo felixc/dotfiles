@@ -99,6 +99,18 @@
   (setq powerline-default-separator 'wave)
   (powerline-default-theme))
 
+; Get help with remembering keybindings
+(use-package which-key
+  :diminish which-key-mode
+  :config
+  (setq which-key-idle-delay 0.5)
+  (push '(("RET" . nil) . ("↵" . nil)) which-key-replacement-alist)
+  (push '(("SPC" . nil) . ("␣" . nil)) which-key-replacement-alist)
+  (push '(("TAB" . nil) . ("⇥" . nil)) which-key-replacement-alist)
+  (push '(("DEL" . nil) . ("⌫" . nil)) which-key-replacement-alist)
+  (push '(("ESC" . nil) . ("⎋" . nil)) which-key-replacement-alist)
+  (which-key-mode))
+
 ; Better buffer naming for duplicates
 (use-package uniquify
   :ensure nil
