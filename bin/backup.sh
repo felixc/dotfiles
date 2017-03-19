@@ -6,6 +6,9 @@ period="${1:-daily}"
 
 dest="/mnt/backup"
 
+/bin/mountpoint -q "$dest" ||
+  { echo "Error: $dest is not mounted" >&2; exit 1; }
+
 /usr/bin/nice --adjustment 19 /usr/bin/ionice --class 2 --classdata 7 \
   /usr/bin/rsync \
     --archive --acls --xattrs --copy-unsafe-links \
