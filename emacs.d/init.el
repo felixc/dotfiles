@@ -56,9 +56,6 @@
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
-; Don't ask whether to follow symlinks to version-controlled files, just do it
-(setq vc-follow-symlinks t)
-
 ; Use the X clipboard as well for copy/paste
 (setq x-select-enable-clipboard t)
 (setq save-interprogram-paste-before-kill t)
@@ -124,8 +121,17 @@
 (add-hook 'after-save-hook
   'executable-make-buffer-file-executable-if-script-p)
 
+; Don't ask whether to follow symlinks to version-controlled files, just do it
+(setq vc-follow-symlinks t)
+
 ; I'll manage my own version control
 (setq vc-handled-backends nil)
+
+; Help with writing Git commit messages
+(use-package git-commit
+  :config
+  (add-hook 'git-commit-setup-hook (lambda ()
+    (setq fill-column 72))))
 
 ; Save minibuffer history
 (use-package savehist
