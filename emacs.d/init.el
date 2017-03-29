@@ -66,6 +66,9 @@
 ; Make apropos more comprehensive
 (setq apropos-do-all t)
 
+; Do not treat all whitespace as equivalent when searching
+(setq search-whitespace-regexp nil)
+
 ; Show matching parens
 (show-paren-mode t)
 
