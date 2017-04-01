@@ -15,6 +15,9 @@
 [push]
   default = current
 
+[fetch]
+  prune = true
+
 [transfer]
   fsckObjects = true
 
