@@ -46,6 +46,9 @@
 ; No toolbar
 (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 
+; Hide the right hand side fringe
+(fringe-mode '(nil . 0))
+
 ; Change yes/no questions to y/n
 (fset 'yes-or-no-p 'y-or-n-p)
 
