@@ -5,11 +5,13 @@
 .config/pulse/
 .dbus/
 emacs.d/auto-save-list/
+emacs.d/elpa/
 .mozilla/firefox/*/lock
 .mozilla/firefox/*/*sqlite*
-.multirust/
+.rustup/
 .pulse/
 .steam/
 .thumbnails/
+.venv/
 wrk/git-annex/.git/
 .xsession-errors*
