@@ -12,7 +12,7 @@ dest="/mnt/backup"
 /usr/bin/nice --adjustment 19 /usr/bin/ionice --class 2 --classdata 7 \
   /usr/bin/rsync \
     --archive --acls --xattrs --copy-unsafe-links \
-    --fuzzy --link-dest="$dest/$period-2" \
+    --fuzzy --link-dest="$dest/$period-1" \
     --delete-delay --ignore-errors \
     --exclude-from="$HOME/cfg/backup-exclude" \
     "$HOME/" "$dest/$period-in-progress"
