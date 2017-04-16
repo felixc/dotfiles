@@ -1,7 +1,7 @@
 Host github.com
   User git
 
-Host molniya vostok voskhod
+Host molniya vostok voskhod salyut
   HostName %h.felixcrux.com
 
 Host *.felixcrux.com
