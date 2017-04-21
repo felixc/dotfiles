@@ -30,7 +30,7 @@ folderfilter = lambda folder: folder not in ['INBOX.Junk Mail']
 
 [mbnames]
 enabled = yes
-filename = ~/.mutt-mailboxes
+filename = ~/.mutt/mailboxes
 header = "mailboxes "
 peritem = "=%(foldername)s"
 sep = " \\\n          "

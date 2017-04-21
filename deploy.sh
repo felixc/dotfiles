@@ -4,7 +4,7 @@ set -e
 
 pwd=$(pwd)
 files=(anacrontab aspell.en.pws caffrc emacs.d gitconfig gtkrc-2.0 hgrc \
-       ledgerrc msmtprc muttrc notmuch-config offlineimaprc signature quiltrc \
+       ledgerrc msmtprc mutt notmuch-config offlineimaprc signature quiltrc \
        tmux.conf vimrc xbindkeysrc XCompose xinitrc Xresources xscreensaver \
        zshenv zshrc)
 

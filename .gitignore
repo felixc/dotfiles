@@ -2,3 +2,4 @@ dzen/icons/
 emacs.d/*
 !emacs.d/lisp/
 *.elc
+mutt/mailboxes
