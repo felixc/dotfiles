@@ -1,0 +1,31 @@
+color normal     color188 default
+color error      color166 default
+color markers    color142 default
+color tilde      color108 default
+color status     color108 color234
+
+color indicator  color108 color235
+color tree       color65  default
+color index      color188 default ~A
+color index      color108 default ~N
+color index      color188 default ~O
+color index      color223 default ~F
+color index      color174 default ~D
+
+color hdrdefault color66 default
+color body       color109 default "(http|https)://[^ >]*"
+color body       color109 default "www\\.[-.a-z0-9]+\\.[a-z][a-z][a-z]?([-_./~a-z0-9]+)?"
+color body       color109 default "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+color signature  brightblack default
+color attachment color31 default
+
+color quoted     color108 default
+color quoted1    color116 default
+color quoted2    color247 default
+color quoted3    color108 default
+color quoted4    color116 default
+color quoted5    color247 default
+color quoted6    color108 default
+color quoted7    color116 default
+color quoted8    color247 default
+color quoted9    color108 default
