@@ -9,6 +9,9 @@
 [color]
   ui = auto
 
+[diff]
+  indentHeuristic = on
+
 [help]
   autocorrect = 1
 
