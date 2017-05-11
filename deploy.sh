@@ -12,6 +12,8 @@ for file in $files; do;
   ln -srfT "$pwd/$file" "$HOME/.$file"
 done
 
+ln -srfT "$HOME/.xinitrc" "$HOME/.xsessionrc"
+
 mkdir -p "$HOME/.config/gtk-3.0"
 ln -srf "$pwd/settings.ini" "$HOME/.config/gtk-3.0/settings.ini"
 ln -srf "$pwd/gtk.css" "$HOME/.config/gtk-3.0/gtk.css"
@@ -48,8 +50,6 @@ find "$pwd/bin" -type f -exec basename '{}' \; |
   while read cmd; do;
     ln -srfT "$pwd/bin/$cmd" "$HOME/bin/$cmd"
   done
-
-ln -srfT "$HOME/.xinitrc" "$HOME/.xsession"
 
 mkdir -p "$HOME/msg/.offlineimap"
 echo '#!/bin/sh\nofflineimap -u Quiet' >! "$HOME/msg/.offlineimap/run"
