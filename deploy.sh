@@ -38,8 +38,9 @@ ln -srf "$pwd/ssh-config" "$HOME/.ssh/config"
 
 mkdir -p "$HOME/.anacronspool"
 
-moz_profile_dir=$(find "$HOME/.mozilla/firefox" -name "*.default" -type d || echo "")
+moz_profile_dir=$(find "$HOME/.mozilla/firefox" -name "*.default" -type d 2> /dev/null)
 if [ -n "$moz_profile_dir" ]; then
+    mkdir -p "$moz_profile_dir/chrome"
     ln -srf "$pwd/moz-user.js" "$moz_profile_dir/user.js"
     ln -srf "$pwd/moz-userContent.css" "$moz_profile_dir/chrome/userContent.css"
     ln -srf "$pwd/moz-userChrome.css" "$moz_profile_dir/chrome/userChrome.css"
