@@ -156,7 +156,7 @@ while true; do
   # Date
   #
   if (( $TIME_CAL_COUNTER >= $TIME_CAL_INTERVAL )); then
-    TIME_CAL_OUTPUT=$(cal -h -A 2 | tail -n 8 | sed -r -e "1,2 s/.*/^fg(white)&^fg()/")
+    TIME_CAL_OUTPUT=$(ncal -b -h -A 2 | tail -n 8 | sed -r -e "1,2 s/.*/^fg(white)&^fg()/")
 
     TIME_TZS_OUTPUT=""
     for ((i=1; i <= ${#TIME_ZONES}; i++)) {
