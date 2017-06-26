@@ -1,3 +1,5 @@
+CanonicalizeHostname yes
+
 Host github.com
   User git
 
