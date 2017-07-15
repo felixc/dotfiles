@@ -40,6 +40,4 @@ existsp mutt && x-terminal-emulator -e zsh -c mutt &
 
 # Windowing environment
 [ -x $HOME/cfg/dzen/dzen.sh ] && $HOME/cfg/dzen/dzen.sh &
-[ -x $HOME/.cabal/bin/xmonad ] && exec $HOME/.cabal/bin/xmonad ||
-  { existsp xmonad && exec xmonad; } ||
-  { exec x-terminal-emulator; }
+existsp xmonad && exec xmonad || exec x-terminal-emulator
