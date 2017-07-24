@@ -120,8 +120,8 @@ TIME_CAL_COUNTER=$TIME_CAL_INTERVAL
 #
 # Session Management Configuration
 #
-SESSION_MENU="^fg($COL_WARN)^r(7x7)^fg()\nsudo poweroff  \nsudo reboot  \nsudo pm-suspend  \nsudo pm-hibernate  "
-(echo $SEPARATOR $SESSION_MENU | dzen2 -p -l 4 -ta l -sa r -m -tw $SESSION_WIDTH -w 160 -x $SESSION_XPOS) &
+SESSION_MENU="^fg($COL_WARN)^r(7x7)^fg()\npoweroff \nreboot \nsystemctl suspend \nsystemctl hibernate "
+(echo $SEPARATOR $SESSION_MENU | dzen2 -p -l 4 -ta l -sa r -m -tw $SESSION_WIDTH -w 150 -x $SESSION_XPOS) &
 
 #
 # Volume Controls
