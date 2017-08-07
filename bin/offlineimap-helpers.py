@@ -1,34 +1,43 @@
 import gnomekeyring as gkey
-import itertools
 
 
-f_names = (
-  ('INBOX', 'inbox'),
-  ('INBOX.Sent Items', 'sent'),
+FOLDER_NAMES = (
+    ("INBOX", "inbox"),
+    ("INBOX.Sent Items", "sent"),
 )
 
 
-def local_to_remote(name):
-  '''Convert a local folder name into its remote equivalent'''
-  try:
-    return itertools.dropwhile(lambda pair: pair[1] != name, f_names).next()[0]
-  except:
-    return "INBOX." + name.title()
+def first(predicate, collection):
+    """Return the first item in 'collection' for which 'predicate' is true."""
+    return next(x for x in collection if predicate(x))
 
 
-def remote_to_local(name):
-  '''Convert a remote folder name into its local equivalent.'''
-  try:
-    return itertools.dropwhile(lambda pair: pair[0] != name, f_names).next()[1]
-  except:
-    return name.replace("INBOX.", "").lower()
+def local_to_remote(local_name):
+    """Convert a local folder name into its remote equivalent"""
+    try:
+        return first(lambda mapping: mapping[1] == local_name, FOLDER_NAMES)[0]
+    except StopIteration:
+        return "INBOX." + (
+            local_name
+            if local_name.startswith("lists")
+            else local_name.title())
+
+
+def remote_to_local(remote_name):
+    """Convert a remote folder name into its local equivalent."""
+    try:
+        return first(lambda mapping: mapping[0] == remote_name, FOLDER_NAMES)[1]
+    except StopIteration:
+        return remote_name.replace("INBOX.", "").lower()
 
 
 def get_password():
-  '''Look up the account's IMAP password from the Gnome Keyring.'''
-  return gkey.find_items_sync(
-    gkey.ITEM_NETWORK_PASSWORD,
-    {'protocol': 'imap',
-     'server': 'mail.messagingengine.com',
-     'user': 'felixc@felixcrux.com'}
+    """Look up the account's IMAP password from the Gnome Keyring."""
+    return gkey.find_items_sync(
+        gkey.ITEM_NETWORK_PASSWORD,
+        {
+            "protocol": "imap",
+            "server": "mail.messagingengine.com",
+            "user": "felixc@felixcrux.com"
+        }
     )[0].secret

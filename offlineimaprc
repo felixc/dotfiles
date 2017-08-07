@@ -8,7 +8,6 @@ localrepository = fastmail-local
 remoterepository = fastmail-remote
 autorefresh = 2
 quick = 5
-status_backend = sqlite
 postsynchook = ~/bin/post-mail-hooks.sh
 
 [Repository fastmail-local]
@@ -24,9 +23,12 @@ ssl = yes
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 remoteuser = felixc@felixcrux.com
 remotepasseval = get_password()
-idlefolders = ['INBOX']
+idlefolders = ["INBOX"]
 nametrans = remote_to_local
-folderfilter = lambda folder: folder not in ['INBOX.Junk Mail']
+folderfilter = lambda folder_name: (
+    folder_name not in ("INBOX.Junk Mail") and
+    not folder_name.startswith("INBOX.Archive.20") and
+    not folder_name.startswith("INBOX.Sent.20"))
 
 [mbnames]
 enabled = yes
