@@ -19,11 +19,17 @@ user_pref("browser.sessionstore.restore_on_demand", true);
 // Don't switch to new tabs upon opening them
 user_pref("browser.tabs.loadInBackground", true);
 
+// Don't show suggested sites in the New Tab page
+user_pref("browser.newtabpage.enhanced", false);
+
 // Search using Google
 user_pref("browser.search.defaultenginename", "Google");
 
+// Don't recommend search suggestions
+user_pref("browser.search.suggest.enabled", false);
+
 // Accepted languages
-user_pref("intl.accept_languages", "en-ca,en-gb,en-us,en,sv,es,fr");
+user_pref("intl.accept_languages", "en-ca,en-gb,en,sv,es,fr");
 
 // Reset print-to-file filename to sensible default
 user_pref("print.print_to_filename", "~/mozilla.pdf");
@@ -42,11 +48,21 @@ user_pref("privacy.donottrackheader.enabled", true);
 // Use Tracking Protection mode everywhere, not just in Private Browsing
 user_pref("privacy.trackingprotection.enabled", true);
 
-// Don't remember form history
-user_pref("browser.formfill.enable", false);
+// Don't send telemetry or health reports
+user_pref("datareporting.healthreport.uploadEnabled", false);
+user_pref("datareporting.policy.dataSubmissionEnabled", false);
+
+// Don't allow use of the Beacon APIs
+user_pref("beacon.enabled", false);
 
 // Accept cookies, but third-party ones only from sites we've visited
 user_pref("network.cookie.cookieBehavior", 3);
+
+// Don't remember form history
+user_pref("browser.formfill.enable", false);
+
+// Don't try to guess TLDs for things entered in the address bar
+user_pref("browser.fixup.alternate.enabled", false);
 
 // Don't force a wait before installing an addon
 user_pref("security.dialog_enable_delay", 0);
