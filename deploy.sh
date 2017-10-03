@@ -22,6 +22,8 @@ mkdir -p "$HOME/.gnupg"
 ln -srf "$pwd/gpg.conf" "$HOME/.gnupg/gpg.conf"
 ln -srf "$pwd/scdaemon.conf" "$HOME/.gnupg/scdaemon.conf"
 ln -srf "$pwd/gpg-agent.conf" "$HOME/.gnupg/gpg-agent.conf"
+find "$HOME/.gnupg/" -type f -exec chmod 600 '{}' \;
+find "$HOME/.gnupg/" -type d -exec chmod 700 '{}' \;
 
 mkdir -p "$HOME/.caff/gnupghome"
 ln -srf "$pwd/gpg.conf" "$HOME/.caff/gnupghome/gpg.conf"
