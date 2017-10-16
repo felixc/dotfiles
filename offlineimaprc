@@ -33,7 +33,7 @@ folderfilter = lambda folder_name: (
 [mbnames]
 enabled = yes
 filename = ~/.mutt/mailboxes
-header = "mailboxes "
+header = "mailboxes \\\n  \"=inbox\" \\\n  "
 peritem = "=%(foldername)s"
-sep = " \\\n          "
+sep = " \\\n  "
 footer = "\n"
