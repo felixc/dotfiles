@@ -1,0 +1,75 @@
+OPTIONS=name:Felix
+OPTIONS=catname:Mimi, dogname:Bork, horsename:Stanislav
+OPTIONS=fruit:cactus
+
+OPTIONS=pettype:cat
+
+OPTIONS=hilite_pet, safe_pet
+
+OPTIONS=number_pad:1
+
+OPTIONS=tombstone, toptenwin, disclose:+iavgco
+
+OPTIONS=lit_corridor
+
+OPTIONS=showexp
+
+OPTIONS=autoquiver
+
+OPTIONS=time
+
+SYMBOLS=S_boulder:0
+
+OPTIONS=pickup_types:$?!/=+"
+
+OPTIONS=sortloot:full
+
+
+OPTIONS=color
+OPTIONS=use_darkgray
+
+OPTIONS=menucolors
+MENUCOLOR=" blessed "=cyan
+MENUCOLOR=" holy "=cyan
+MENUCOLOR=" blessed .* (being worn)"=green
+MENUCOLOR=" uncursed "=white
+MENUCOLOR=" cursed "=orange
+MENUCOLOR=" unholy "=orange
+MENUCOLOR=" unholy .* (being worn)"=red
+
+OPTIONS=hpmon
+
+# OPTIONS=statuscolors
+# STATUSCOLOR=hp%100=green,hp%75=yellow,hp%50=orange,hp%25=red&bold,hp%10:red&inverse
+# STATUSCOLOR=burdened:yellow,stressed:orange,strained:red,overtaxed:red&bold,overloaded:red&inverse
+# STATUSCOLOR=satiated:yellow,hungry:orange,weak:red,fainting:red&bold,fainted:red&inverse
+# STATUSCOLOR=hallu:yellow,conf:orange,stun:red
+# STATUSCOLOR=ill:red&bold,foodpois:red&bold,slime:red&bold,blind:red&bold
+
+
+MSGTYPE=hide "With great effort you move the boulder"
+MSGTYPE=hide "You displaced *"
+MSGTYPE=hide "You swap places with *"
+
+MSGTYPE=stop "The couatl swings itself around you!"
+MSGTYPE=stop "The electric eel swings itself around you!"
+MSGTYPE=stop "The giant eel swings itself around you!"
+MSGTYPE=stop "The kraken swings itself around you!"
+MSGTYPE=stop "The python grabs you!"
+MSGTYPE=stop "You don't feel very well."
+MSGTYPE=stop "You are turning a little green."
+MSGTYPE=stop "Your limbs are getting oozy."
+MSGTYPE=stop "Your skin begins to peel away."
+MSGTYPE=stop "You are turning into a green slime."
+MSGTYPE=stop "You are slowing down."
+MSGTYPE=stop "Your limbs are stiffening."
+MSGTYPE=stop "It constricts your throat!"
+MSGTYPE=stop "You find it hard to breathe."
+MSGTYPE=stop "You're gasping for air."
+MSGTYPE=stop "Your blood is having trouble reaching your brain."
+MSGTYPE=stop "You can no longer breathe."
+MSGTYPE=stop "You're turning blue."
+MSGTYPE=stop "Your consciousness is fading."
+MSGTYPE=stop "You feel deathly sick."
+MSGTYPE=stop "You feel much worse."
+MSGTYPE=stop "You feel even worse."
