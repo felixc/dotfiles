@@ -4,8 +4,8 @@
 .cargo/
 .config/pulse/
 .dbus/
-emacs.d/auto-save-list/
-emacs.d/elpa/
+.emacs.d/auto-save-list/
+.emacs.d/elpa/
 .mozilla/firefox/*/lock
 .mozilla/firefox/*/*sqlite*
 .rustup/
