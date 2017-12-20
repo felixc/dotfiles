@@ -48,11 +48,7 @@ if [ -n "$moz_profile_dir" ]; then
     ln -srf "$pwd/moz-userChrome.css" "$moz_profile_dir/chrome/userChrome.css"
 fi
 
-mkdir -p "$HOME/bin"
-find "$pwd/bin" -type f -exec basename '{}' \; |
-  while read cmd; do;
-    ln -srfT "$pwd/bin/$cmd" "$HOME/bin/$cmd"
-  done
+ln -srfT "$pwd/bin" "$HOME/bin"
 
 mkdir -p "$HOME/msg/.offlineimap"
 echo '#!/bin/sh\nofflineimap -u Quiet' >! "$HOME/msg/.offlineimap/run"
