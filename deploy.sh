@@ -12,7 +12,7 @@ for file in $files; do;
   ln -srfT "$pwd/$file" "$HOME/.$file"
 done
 
-ln -srfT "$HOME/.xinitrc" "$HOME/.xsessionrc"
+ln -srf "$HOME/.xinitrc" "$HOME/.xsessionrc"
 
 mkdir -p "$HOME/.config/gtk-3.0"
 ln -srf "$pwd/settings.ini" "$HOME/.config/gtk-3.0/settings.ini"
