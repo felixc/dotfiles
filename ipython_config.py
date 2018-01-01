@@ -1,7 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-"""Configuration for IPython."""
+from IPython.terminal.prompts import Prompts, Token
 
 
 c = get_config()
@@ -12,6 +9,13 @@ c.InteractiveShell.confirm_exit = False
 c.InteractiveShellApp.extensions = ["autoreload"]
 c.InteractiveShellApp.exec_lines = ["%autoreload 2"]
 
-c.PromptManager.justify = False
-c.PromptManager.in_template = "{color.LightGreen}>> "
-c.PromptManager.out_template = "{color.LightRed}> "
+
+class MyPrompt(Prompts):
+    def in_prompt_tokens(self, cli=None):
+        return [(Token.Prompt, '>>> ')]
+
+    def out_prompt_tokens(self):
+        return [(Token.OutPrompt, '> ')]
+
+
+c.TerminalInteractiveShell.prompts_class = MyPrompt
