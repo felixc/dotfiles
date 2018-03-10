@@ -10,6 +10,7 @@
   ui = auto
 
 [diff]
+  colorMoved = dimmed_zebra
   indentHeuristic = on
 
 [help]
