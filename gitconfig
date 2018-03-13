@@ -38,7 +38,7 @@
   co = checkout
   br = branch
   ls = log --graph --stat --date=relative --pretty=format:"%C(yellow)%h\\ %C(green)%ad\\ %C(blue)%aN%C(auto)%d%n\\ %C(reset)%s%n"
-  lsp = log --graph --stat --patch --date=relative --pretty=format:"%C(yellow)%h\\ %C(green)%ad\\ %C(blue)%aN%C(auto)%d%n\\ %C(reset)%s%n"
+  lsp = !git ls --patch
   amend = commit --amend --no-edit
   amend-msg = commit --amend
   amend-date = !GIT_COMMITTER_DATE=\"$(date)\" git commit --amend --no-edit --date=\"$(date)\"
