@@ -37,7 +37,7 @@
 [alias]
   co = checkout
   br = branch
-  ls = log --graph --stat --date=relative --pretty=format:"%C(yellow)%h\\ %C(green)%ad\\ %C(blue)%aN%C(auto)%d%n\\ %C(reset)%s%n"
+  ls = log --graph --stat --date=format:"%a\\ %b\\ %d" --pretty=format:"%C(yellow)%h\\ %C(green)%cr\\ (%cd)\\ %C(blue)%aN%C(auto)%d%n\\ %C(reset)%s%n"
   lsp = !git ls --patch
   amend = commit --amend --no-edit
   amend-msg = commit --amend
