@@ -3,10 +3,10 @@
 set -e
 
 pwd=$(pwd)
-files=(anacrontab aspell.en.pws caffrc emacs.d fonts.conf gitconfig gtkrc-2.0 \
-       hgrc ledgerrc msmtprc mutt notmuch-config offlineimaprc signature \
-       quiltrc tmux.conf vimrc xbindkeysrc XCompose xinitrc Xresources \
-       xscreensaver zshenv zshrc)
+files=(anacrontab aspell.en.pws caffrc emacs.d fonts.conf gitconfig gitignore \
+       gtkrc-2.0 hgrc ledgerrc msmtprc mutt notmuch-config offlineimaprc \
+       signature quiltrc tmux.conf vimrc xbindkeysrc XCompose xinitrc \
+       Xresources xscreensaver zshenv zshrc)
 
 for file in $files; do;
   ln -srfT "$pwd/$file" "$HOME/.$file"
