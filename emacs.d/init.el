@@ -222,7 +222,7 @@
 ; Appearance
 (use-package zenburn-theme
   :init
-  (defvar zenburn-override-colors-alist
+  (setq zenburn-override-colors-alist
     '(("zenburn-bg-2"  . "#000000")
       ("zenburn-bg-1"  . "#101010")
       ("zenburn-bg-05" . "#282828")
