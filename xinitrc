@@ -14,6 +14,7 @@ existsp x-terminal-emulator ||
 # Configuration
 setxkbmap -layout us,ru -variant ,phonetic -option grp:shifts_toggle \
     -option caps:escape -option compose:menu -option terminate:ctrl_alt_bksp &
+existsp numlockx && numlockx
 xsetroot -cursor_name left_ptr &
 [ -f $HOME/.Xresources ] && xrdb -merge $HOME/.Xresources &
 if existsp feh && [ -d $HOME/img/wallpaper ]; then
