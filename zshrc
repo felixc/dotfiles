@@ -150,7 +150,7 @@ function venv_pwd {
   if [ "${relative}" = "${PWD}" ] || [ "${relative}" = "" ]; then return; fi
   local venv_dir="$HOME/.venv${relative}"
   mkdir -p "$venv_dir"
-  pyvenv "$venv_dir"
+  python3 -m venv "$venv_dir"
   auto_activate_venv
 }
 
