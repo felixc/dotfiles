@@ -251,6 +251,7 @@
 (set-face-background 'hl-line "#282828")
 
 ; Yasnippet everywhere
+(use-package yasnippet-snippets)
 (use-package yasnippet
   :diminish yas-minor-mode
   :defer 2
