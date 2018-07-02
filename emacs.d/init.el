@@ -154,6 +154,12 @@
   :config
   (global-undo-tree-mode))
 
+; Automatically use local coding styles defined in .editorconfig files
+(use-package editorconfig
+  :diminish editorconfig-mode
+  :config
+  (editorconfig-mode 1))
+
 ; UTF-8 Unicode
 (prefer-coding-system        'utf-8)
 (set-default-coding-systems  'utf-8)
