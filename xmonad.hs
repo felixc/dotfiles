@@ -86,6 +86,7 @@ myManageHook = composeAll
     [ className =? "Firefox"       --> doShift "2"
     , className =? "fontforge"     --> doFloat
     , className =? "Steam"         --> doShift "9"
+    , className =? "Steam"         --> doFloat
     , resource =? "desktop_window" --> doIgnore
     , isFullscreen                 --> doFullFloat
     , manageDocks
