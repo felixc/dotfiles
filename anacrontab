@@ -2,6 +2,6 @@ MAILTO=felixc@felixcrux.com
 SHELL=/bin/sh
 PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 
-1         10   backup-daily    nice $HOME/bin/backup.sh daily
-7         20   backup-weekly   nice $HOME/bin/backup.sh weekly
-@monthly  30   backup-monthly  nice $HOME/bin/backup.sh monthly
+1         5    remote-backup-daily    $HOME/bin/remote-backup.sh daily >> /var/log/cron.log 2>&1
+7         15   remote-backup-weekly   $HOME/bin/remote-backup.sh weekly >> /var/log/cron.log 2>&1
+@monthly  25   remote-backup-monthly  $HOME/bin/remote-backup.sh monthly >> /var/log/cron.log 2>&1

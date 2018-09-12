@@ -1,5 +1,5 @@
 MAILTO=felixc@felixcrux.com
 RANDOM_DELAY=5
 
-@reboot /usr/sbin/anacron -s -S $HOME/.anacronspool -t $HOME/.anacrontab
-@hourly /usr/sbin/anacron -s -S $HOME/.anacronspool -t $HOME/.anacrontab
+@reboot /usr/sbin/anacron -s -S $HOME/.anacronspool -t $HOME/.anacrontab >> /var/log/cron.log 2>&1
+@hourly /usr/sbin/anacron -s -S $HOME/.anacronspool -t $HOME/.anacrontab >> /var/log/cron.log 2>&1
