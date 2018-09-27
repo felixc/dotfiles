@@ -7,6 +7,9 @@
     ("marmalade" . "https://marmalade-repo.org/packages/")
     ("melpa" . "https://melpa.org/packages/")))
 
+(setq package--init-file-ensured t)
+(setq package-enable-at-startup nil)
+
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
