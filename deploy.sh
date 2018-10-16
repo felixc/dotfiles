@@ -3,10 +3,10 @@
 set -e
 
 pwd=$(pwd)
-files=(anacrontab aspell.en.pws caffrc emacs.d fonts.conf gitconfig gitignore \
-       gtkrc-2.0 hgrc ledgerrc msmtprc mutt notmuch-config offlineimaprc \
-       signature quiltrc tmux.conf vimrc xbindkeysrc XCompose xinitrc \
-       Xresources xscreensaver zshenv zshrc)
+files=(anacrontab aspell.en.pws caffrc emacs.d gitconfig gitignore gtkrc-2.0 \
+       hgrc ledgerrc msmtprc mutt notmuch-config offlineimaprc signature \
+       quiltrc tmux.conf vimrc xbindkeysrc XCompose xinitrc Xresources \
+       xscreensaver zshenv zshrc)
 
 for file in $files; do;
   ln -srfT "$pwd/$file" "$HOME/.$file"
@@ -17,6 +17,9 @@ ln -srf "$HOME/.xinitrc" "$HOME/.xsessionrc"
 mkdir -p "$HOME/.config/gtk-3.0"
 ln -srf "$pwd/settings.ini" "$HOME/.config/gtk-3.0/settings.ini"
 ln -srf "$pwd/gtk.css" "$HOME/.config/gtk-3.0/gtk.css"
+
+mkdir -p "$HOME/.config/fontconfig"
+ln -srf "$pwd/fonts.conf" "$HOME/.config/fontconfig/fonts.conf"
 
 mkdir -p "$HOME/.gnupg"
 ln -srf "$pwd/gpg.conf" "$HOME/.gnupg/gpg.conf"
