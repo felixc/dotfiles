@@ -1,7 +1,7 @@
 MAILTO=felixc@felixcrux.com
 SHELL=/bin/sh
-PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
+PATH=/home/felix/bin/:/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin
 
-1         5    remote-backup-daily    $HOME/bin/remote-backup.sh daily >> /var/log/cron.log 2>&1
-7         15   remote-backup-weekly   $HOME/bin/remote-backup.sh weekly >> /var/log/cron.log 2>&1
-@monthly  25   remote-backup-monthly  $HOME/bin/remote-backup.sh monthly >> /var/log/cron.log 2>&1
+1         5    remote-backup-daily    log-cron 'remote-backup.sh daily'
+7         15   remote-backup-weekly   log-cron 'remote-backup.sh weekly'
+@monthly  25   remote-backup-monthly  log-cron 'remote-backup.sh monthly'

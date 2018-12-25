@@ -1,0 +1,3 @@
+#!/bin/sh
+
+chronic mispipe "echo '[running] $@' && $@ 2>&1" "ts '%Y-%m-%d %H:%M:%S'" | tee --append /var/log/cron.log
