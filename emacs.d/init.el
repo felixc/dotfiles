@@ -43,8 +43,11 @@
 ; Turn off bell
 (setq ring-bell-function 'ignore)
 
-; No toolbar
-(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+; No app chrome (toolbar, menu, scrollbar)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(menu-bar-mode -1)
+(tooltip-mode -1)
 
 ; Hide the right hand side fringe
 (fringe-mode '(nil . 0))
