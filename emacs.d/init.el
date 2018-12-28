@@ -243,21 +243,19 @@
   :config
   (load-theme 'zenburn t))
 
-; Set the appearance of graphical frames
+; Highlight the current line
+(global-hl-line-mode)
+(set-face-background 'hl-line "#282828")
+
+; Helper function to set the appearance of graphical frames
 (defun configure-new-frame-appearance (frame)
   (with-selected-frame frame
     (when (display-graphic-p frame)
       (set-frame-font "Inconsolata 13"))))
 
-; Run for already-existing frames
+; Run for already-existing frames, and run when a new frame is created
 (mapc 'configure-new-frame-appearance (frame-list))
-
-; Run when a new frame is created
 (add-hook 'after-make-frame-functions 'configure-new-frame-appearance)
-
-; Highlight the current line
-(global-hl-line-mode)
-(set-face-background 'hl-line "#282828")
 
 ; Yasnippet everywhere
 (use-package yasnippet-snippets
