@@ -60,13 +60,15 @@ setopt print_exit_value
 # Emacs-style shortcuts
 bindkey -e
 
-# Enable colours for certain commands, or at least make them nicer
+# Sane defaults for various commands
+alias df="df --human-readable --exclude-type tmpfs --exclude-type=devtmpfs"
+alias grep="grep --extended-regexp"
+alias ls="ls --human-readable --hide '__pycache__'"
+
+# Enable colours for commands if possible
 if existsp dircolors; then
-  alias ls="ls --color=auto --human-readable --hide '__pycache__'"
-  alias grep="grep -E --color=auto"
-else
-  alias ls="ls --human-readable --hide '__pycache__'"
-  alias grep="grep -E"
+  alias ls="ls --human-readable --hide '__pycache__' --color=auto"
+  alias grep="grep --extended-regexp --color=auto"
 fi
 
 # Provide nicer name-based access to colours
