@@ -29,5 +29,5 @@ dest_path="/depot/mir"
 
   /bin/rm -rf "$dest_path/$period-obsolete"
 
-  /bin/ln -sf "$dest_path/$period-1" "$dest_path/latest"
+  /bin/ln -sfn "$dest_path/$period-1" "$dest_path/latest"
 EOF
