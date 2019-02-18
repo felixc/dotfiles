@@ -12,9 +12,11 @@ URxvt.fading: 20
 URxvt.background: [90]#080808
 URxvt.urgentOnBell: true
 URxvt.scrollBar: false
+URxvt.scrollTtyOutput: false
 URxvt.scrollWithBuffer: true
+URxvt.scrollTtyKeypress: true
 URxvt.internalBorder: 8
-URxvt.font: xft:Inconsolata,xft:Dejavu Sans Mono:pixelsize=14,xft:Unifont
+URxvt.font: xft:Inconsolata:size=12,xft:Dejavu Sans Mono:pixelsize=12,xft:Unifont
 URxvt.perl-ext-common: default,matcher
 URxvt.url-launcher: firefox
 URxvt.matcher.button: 1
