@@ -64,6 +64,7 @@ bindkey -e
 alias df="df --human-readable --exclude-type tmpfs --exclude-type=devtmpfs"
 alias grep="grep --extended-regexp"
 alias ls="ls --human-readable --hide '__pycache__'"
+alias rg="rg --smart-case --search-zip"
 
 # Enable colours for commands if possible
 if existsp dircolors; then
