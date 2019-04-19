@@ -3,7 +3,7 @@ import gnomekeyring as gkey
 
 FOLDER_NAMES = (
     ("INBOX", "inbox"),
-    ("INBOX.Sent Items", "sent"),
+    ("Sent Items", "sent"),
 )
 
 
@@ -17,7 +17,7 @@ def local_to_remote(local_name):
     try:
         return first(lambda mapping: mapping[1] == local_name, FOLDER_NAMES)[0]
     except StopIteration:
-        return "INBOX." + (
+        return (
             local_name
             if local_name.startswith("lists")
             else local_name.title())
@@ -28,7 +28,7 @@ def remote_to_local(remote_name):
     try:
         return first(lambda mapping: mapping[0] == remote_name, FOLDER_NAMES)[1]
     except StopIteration:
-        return remote_name.replace("INBOX.", "").lower()
+        return remote_name.lower()
 
 
 def get_password():

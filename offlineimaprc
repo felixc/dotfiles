@@ -18,7 +18,7 @@ nametrans = local_to_remote
 
 [Repository fastmail-remote]
 type = IMAP
-remotehost = mail.messagingengine.com
+remotehost = imap.fastmail.com
 ssl = yes
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 remoteuser = felixc@felixcrux.com
@@ -26,9 +26,9 @@ remotepasseval = get_password()
 idlefolders = ["INBOX"]
 nametrans = remote_to_local
 folderfilter = lambda folder_name: (
-    folder_name not in ("INBOX.Junk Mail") and
-    not folder_name.startswith("INBOX.Archive.20") and
-    not folder_name.startswith("INBOX.Sent.20"))
+    folder_name not in ("Junk Mail", "Notes") and
+    not folder_name.startswith("Archive/20") and
+    not folder_name.startswith("Sent/20"))
 
 [mbnames]
 enabled = yes
