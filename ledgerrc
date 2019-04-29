@@ -1,4 +1,4 @@
 --exchange $
 --pedantic
 --sort date
---file ~/wrk/git-annex/ledger/main.journal
+--file ~/usr/ledger/main.journal
