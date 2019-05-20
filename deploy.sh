@@ -43,7 +43,7 @@ ln -srf "$pwd/ssh-config" "$HOME/.ssh/config"
 
 mkdir -p "$HOME/.anacronspool"
 
-moz_profile_dir=$(find "$HOME/.mozilla/firefox" -name "*.default" -type d 2> /dev/null)
+moz_profile_dir=$(find "$HOME/.mozilla/firefox" -name "*.default" -type d 2> /dev/null || echo "")
 if [ -n "$moz_profile_dir" ]; then
     mkdir -p "$moz_profile_dir/chrome"
     ln -srf "$pwd/moz-user.js" "$moz_profile_dir/user.js"
