@@ -1,4 +1,3 @@
-MAILTO=felixc@felixcrux.com
 RANDOM_DELAY=5
 
 @reboot /usr/sbin/anacron -s -S $HOME/.anacronspool -t $HOME/.anacrontab
