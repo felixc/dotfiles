@@ -9,7 +9,7 @@ URxvt.depth: 32
 URxvt.blurRadius: 5
 URxvt.fadeColor: #0a0a0a
 URxvt.fading: 20
-URxvt.background: [90]#080808
+URxvt.background: [95]#080808
 URxvt.urgentOnBell: true
 URxvt.scrollBar: false
 URxvt.scrollTtyOutput: false
