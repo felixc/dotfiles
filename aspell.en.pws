@@ -1,4 +1,4 @@
-personal_ws-1.1 en 39
+personal_ws-1.1 en 42
 accessor
 accessors
 Affero
@@ -9,11 +9,13 @@ copyrightable
 dereferencing
 Django
 featureful
+generalizable
 GitHub
 GPL
 installable
 IRC
 JSON
+licensor
 licensors
 metadata
 noncommercially
@@ -36,5 +38,6 @@ timestamp
 TODO
 UI
 unparseable
+vCard
 versioning
 YAML
