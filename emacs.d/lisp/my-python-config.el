@@ -19,6 +19,7 @@
     (add-hook 'python-mode-hook 'py-autopep8-enable-on-save))
   (add-hook 'python-mode-hook #'company-mode)
   (setq flycheck-python-pylint-executable "pylint3")
+  (setq flycheck-python-pycompile-executable "python3")
   :bind (:map python-mode-map
           ([tab] . company-indent-or-complete-common)))
 
