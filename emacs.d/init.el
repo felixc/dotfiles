@@ -330,9 +330,6 @@
 ; Email-writing configuration
 (require 'my-mail-config)
 
-; Use typopunct in various modes
-(require 'my-typopunct-config)
-
 ; Jump back to changes
 (use-package goto-chg
   :config
