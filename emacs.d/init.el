@@ -190,7 +190,6 @@
   (setq ido-everywhere t))
 
 ; Incremental mini-buffer completion preview
-(eval-after-load "icomplete" '(use-package icomplete+))
 (icomplete-mode t)
 
 ; Better control over quitting emacs/emacsclient.
