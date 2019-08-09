@@ -4,7 +4,7 @@ set -eux
 
 
 # We'll use this to specialize our installation.
-hostname=$(hostname)
+hostname=$(hostname --short)
 
 
 # To start, get into a clean and ready state.
