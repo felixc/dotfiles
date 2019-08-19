@@ -287,7 +287,7 @@
   (use-package markdown-toc)
   (custom-set-faces
     '(markdown-bold-face ((t (:inherit basic :weight bold))))
-    '(markdown-header-delimiter-face ((t (:inherit font-lock-function-name-face :height 0.8 :foreground "dim gray"))))
+    '(markdown-header-delimiter-face ((t (:inherit font-lock-function-name-face :height 1.0 :foreground "dim gray"))))
     '(markdown-header-face ((t (:inherit font-lock-function-name-face :foreground "cadet blue" :weight bold))))
     '(markdown-header-face-1 ((t (:inherit markdown-header-face :height 1.6))))
     '(markdown-header-face-2 ((t (:inherit markdown-header-face :height 1.4))))
