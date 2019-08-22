@@ -7,6 +7,41 @@ set -eux
 hostname=$(hostname --short)
 
 
+# First we have to set up our installation sources.
+tee /etc/apt/sources.list > /dev/null << EOF
+deb      http://deb.debian.org/debian/  buster            main contrib non-free
+deb-src  http://deb.debian.org/debian/  buster            main contrib non-free
+
+deb      http://security.debian.org/    buster/updates    main contrib non-free
+deb-src  http://security.debian.org/    buster/updates    main contrib non-free
+
+deb      http://deb.debian.org/debian/  buster-updates    main contrib non-free
+deb-src  http://deb.debian.org/debian/  buster-updates    main contrib non-free
+
+deb      http://deb.debian.org/debian/  buster-backports  main contrib non-free
+
+deb      http://deb.debian.org/debian/  unstable          main contrib non-free
+deb-src  http://deb.debian.org/debian/  unstable          main contrib non-free
+
+deb      http://deb.debian.org/debian/  experimental      main contrib non-free
+deb-src  http://deb.debian.org/debian/  experimental      main contrib non-free
+EOF
+
+
+#
+# Track stable but make packages from Unstable and Experimental available
+#
+tee /etc/apt/preferences.d/non-stable-repo-priorities > /dev/null << EOF
+Package: *
+Pin: release a=unstable
+Pin-Priority: -1
+
+Package: *
+Pin: release a=experimental
+Pin-Priority: -1
+EOF
+
+
 # To start, get into a clean and ready state.
 apt update
 apt upgrade
