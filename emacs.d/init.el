@@ -280,6 +280,14 @@
     (flyspell-prog-mode)))
   (define-key flyspell-mode-map (kbd "C-;") nil))
 
+; Better typography in certain modes (curly quotes, dashes, etc)
+(use-package typo
+  :diminish typo-mode
+  :config
+  (add-hook 'git-commit-mode 'typo-mode)
+  (add-hook 'markdown-mode-hook 'typo-mode)
+  (typo-global-mode))
+
 ;; Working with Markdown
 (use-package markdown-mode
   :mode "\\.md\\'"
