@@ -363,48 +363,5 @@
         (setq fci-mode-toggle t))
       (if (bound-and-true-p fci-mode-toggle) (turn-on-fci-mode))))))
 
-; Helm-Dash for browsing docs
-(use-package helm-dash
-  :init
-  (setq helm-dash-docsets-path "~/.local/share/dash/")
-  (add-hook 'emacs-lisp-mode-hook
-    (lambda () (setq-local helm-dash-docsets '("Emacs Lisp"))))
-  (add-hook 'rust-mode-hook
-    (lambda () (setq-local helm-dash-docsets '("Rust"))))
-  (add-hook 'html-mode-hook
-    (lambda () (setq-local helm-dash-docsets '("HTML"))))
-  (add-hook 'python-mode-hook
-    (lambda () (setq-local helm-dash-docsets '("Python 3"))))
-  :bind
-  ("C-h h" . helm-dash)
-  ("C-h H" . helm-dash-at-point))
-
-; Writeroom mode for a nicer pure-text writing mode
-(use-package writeroom-mode
-  :config
-  (setq writeroom-extra-line-spacing 0.1)
-  (setq writeroom-width 92)
-  (defvar in-writeroom-mode)
-  (advice-add 'writeroom-mode :after
-    (lambda (_)
-      (if (bound-and-true-p in-writeroom-mode)
-        (progn
-          (turn-on-fci-mode)
-          (linum-mode 1)
-          (global-hl-line-mode)
-          (fringe-mode nil)
-          (buffer-face-mode -1)
-          (set-frame-parameter nil 'internal-border-width 0)
-          (makunbound 'in-writeroom-mode))
-        (progn
-          (turn-off-fci-mode)
-          (linum-mode -1)
-          (global-hl-line-mode -1)
-          (global-hl-line-unhighlight)
-          (fringe-mode 0)
-          (buffer-face-set '(:height 1.05))
-          (set-frame-parameter nil 'internal-border-width 15)
-          (setq-local in-writeroom-mode t))))))
-
 ; Garbage collection was disabled at the top of this file to speed up startup
 (enable-gc)
