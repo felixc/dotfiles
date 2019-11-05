@@ -3,3 +3,6 @@ emacs.d/*
 !emacs.d/lisp/
 *.elc
 mutt/mailboxes
+bin/ff/
+bin/firefox
+TODO
