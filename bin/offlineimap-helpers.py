@@ -1,4 +1,4 @@
-import gnomekeyring as gkey
+import keyring
 
 
 FOLDER_NAMES = (
@@ -32,12 +32,8 @@ def remote_to_local(remote_name):
 
 
 def get_password():
-    """Look up the account's IMAP password from the Gnome Keyring."""
-    return gkey.find_items_sync(
-        gkey.ITEM_NETWORK_PASSWORD,
-        {
-            "protocol": "imap",
-            "server": "mail.messagingengine.com",
-            "user": "felixc@felixcrux.com"
-        }
-    )[0].secret
+    """Look up the account's password from the Gnome Keyring."""
+    return keyring.get_password(
+        "mail.messagingengine.com",
+        "felixc@felixcrux.com",
+    )
