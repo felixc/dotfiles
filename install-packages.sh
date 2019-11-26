@@ -82,7 +82,8 @@ if \
   [ "$hostname" = "salyut" ]
 then
   apt install \
-    emacs-nox
+    --no-install-recommends \
+      emacs-nox
 fi
 
 
@@ -157,6 +158,9 @@ fi
 if [ "$hostname" = "salyut" ]; then
   apt install \
     fbi kodi kodi-visualization-shadertoy nfs-common
+
+  apt autoremove --purge \
+    avahi-daemon bluetooth dhcpcd5 pi-bluetooth wpasupplicant
 fi
 
 
@@ -168,9 +172,13 @@ then
   apt install \
     --target-release stretch-backports \
       certbot nginx-extras
+
+  apt autoremove --purge \
+    awscli 'google-*' 'python*-boto*'
 fi
 
 
 # Finally, clean up after ourselves.
-apt autoremove
-apt-get clean
+apt autoremove --purge
+apt purge $(dpkg -l | awk '/^rc/ { print $2 }')
+apt clean
