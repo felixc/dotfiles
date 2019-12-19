@@ -86,6 +86,14 @@ then
       emacs-nox
 fi
 
+# Packages for systems where I want to keep track of HDD state.
+if \
+  [ "$hostname" = "molniya" ] || \
+  [ "$hostname" = "mir" ]
+then
+  apt install exim4 smartmontools
+fi
+
 
 # Packages for non-server machines.
 if \
