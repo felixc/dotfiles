@@ -77,15 +77,18 @@ autoload -Uz colors && colors
 zstyle ':completion:*' list-colors 'reply=( "=(#b)(*$VAR)(?)*=00=$color[green]=$color[bg-green]" )'
 zstyle ':completion:*' rehash true
 
+autoload -U add-zsh-hook
+
 # VCS info configuration
 autoload -Uz vcs_info
-precmd_functions=("${precmd_functions[@]}" vcs_info)
 zstyle ":vcs_info:*" enable git hg
 zstyle ":vcs_info:*" check-for-changes true
 zstyle ":vcs_info:*" stagedstr "%F{cyan}!%f"
 zstyle ":vcs_info:*" unstagedstr "%F{yellow}!%f"
 zstyle ":vcs_info:*" actionformats " %F{blue}[%F{green}%b%F{3}|%F{red}%a%F{blue}]%f"
 zstyle ":vcs_info:*" formats " %F{magenta}[%F{green}%b%u%c%F{magenta}]%f"
+
+add-zsh-hook precmd vcs_info
 
 # Prompt configuration
 hostcols=(
