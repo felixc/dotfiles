@@ -186,6 +186,13 @@ then
 fi
 
 
+# Configure unattended upgrades
+apt install unattended-upgrades
+sed -Ei \
+  's|//      "o=Debian Backports,a=\$\{distro_codename\}-backports,l=Debian Backports";|        "o=Debian Backports,a=${distro_codename}-backports,l=Debian Backports";|' \
+  /etc/apt/apt.conf.d/50unattended-upgrades
+
+
 # Finally, clean up after ourselves.
 apt autoremove --purge
 apt purge $(dpkg -l | awk '/^rc/ { print $2 }')
