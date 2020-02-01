@@ -330,6 +330,7 @@
   (advice-add 'company-call-frontends :before #'toggle-fci-around-company))
 
 ; Language-specific configuration
+(require 'my-language-server-config)
 (require 'my-python-config)
 (require 'my-webdev-config)
 (require 'my-go-config)
