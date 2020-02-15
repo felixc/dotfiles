@@ -63,6 +63,9 @@ setopt print_exit_value
 # Emacs-style shortcuts
 bindkey -e
 
+# When jumping/deleting words, treat punctuation as word boundaries
+WORDCHARS=""
+
 # Sane defaults for various commands
 alias df="df --human-readable --exclude-type tmpfs --exclude-type=devtmpfs"
 alias grep="grep --extended-regexp"
