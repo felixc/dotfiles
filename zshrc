@@ -5,6 +5,9 @@ existsp() {
   command -v $1 > /dev/null
 }
 
+# Helper to add hook functions
+autoload -U add-zsh-hook
+
 # Tab completion
 autoload -Uz compinit
 compinit
@@ -77,8 +80,6 @@ autoload -Uz colors && colors
 zstyle ':completion:*' list-colors 'reply=( "=(#b)(*$VAR)(?)*=00=$color[green]=$color[bg-green]" )'
 zstyle ':completion:*' rehash true
 
-autoload -U add-zsh-hook
-
 # VCS info configuration
 autoload -Uz vcs_info
 zstyle ":vcs_info:*" enable git hg
@@ -128,7 +129,7 @@ function pwd_to_title {
   [[ -o interactive ]] || return
   print -Pn "\e]2;xterm: %~\a"
 }
-chpwd_functions=("${chpwd_functions[@]}" pwd_to_title)
+add-zsh-hook chpwd pwd_to_title
 pwd_to_title
 
 # Automatically activate the virtualenv corresponding to the current directory
@@ -148,8 +149,7 @@ function auto_activate_venv {
   done
   existsp deactivate && deactivate
 }
-chpwd_functions=("${chpwd_functions[@]}" auto_activate_venv)
-auto_activate_venv
+add-zsh-hook chpwd auto_activate_venv
 
 function venv_pwd {
   local relative="${PWD#$HOME}"
