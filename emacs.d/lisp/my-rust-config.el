@@ -1,28 +1,15 @@
-; Prerequisite configuration:
-; $ rustup component add rust-src
-; $ cargo install racer
+; Prerequisite: rustup component add rls rust-analysis rust-src rustfmt
 
 (use-package rust-mode
-  :mode "\\.rs\\'"
-  :init
-  (use-package flycheck-rust)
-  (use-package racer
-    :diminish racer-mode
-    :config
-    (use-package company-racer)
-    (setq racer-rust-src-path
-      "~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")
-    (add-hook 'racer-mode-hook (lambda ()
-      (eldoc-mode)
-      (company-mode)
-      (diminish 'eldoc-mode))))
+  :hook (rust-mode . lsp-deferred)
   :config
-  (setq rust-rustfmt-bin "~/.cargo/bin/rustfmt")
-  (setq rust-format-on-save t)
-  (add-hook 'rust-mode-hook (lambda ()
-    (racer-mode)
-    (setq fill-column 100)))
-  :bind (:map rust-mode-map
-         ([tab] . company-indent-or-complete-common)))
+    (add-to-list 'exec-path "~/.cargo/bin")
+    (setq rust-format-on-save t)
+    (add-hook 'rust-mode-hook '(lambda ()
+      (setq fill-column 100)))
+    (use-package flycheck-rust
+      :config
+        (with-eval-after-load 'rust-mode
+          (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))))
 
 (provide 'my-rust-config)
