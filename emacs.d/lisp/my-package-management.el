@@ -2,12 +2,10 @@
 
 (setq gnutls-verify-error t)
 
-(setq package-archives
-  '(("gnu-elpa" . "https://elpa.gnu.org/packages/")
-    ("melpa" . "https://melpa.org/packages/")))
-
 ; Workaround for https://debbugs.gnu.org/cgi/bugreport.cgi?bug=34341
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
 (setq package--init-file-ensured t)
 (setq package-enable-at-startup nil)
