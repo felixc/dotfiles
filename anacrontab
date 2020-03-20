@@ -1,8 +1,8 @@
 SHELL=/bin/sh
 PATH=/home/felix/bin/:/home/felix/.cargo/bin:/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin
 
-1         5    remote-backup-daily    log-cron 'remote-backup.sh daily'
-7         15   remote-backup-weekly   log-cron 'remote-backup.sh weekly'
-@monthly  25   remote-backup-monthly  log-cron 'remote-backup.sh monthly'
+1         10  remote-backup-daily    log-cron 'remote-backup.sh daily'
+7         15  remote-backup-weekly   log-cron 'remote-backup.sh weekly'
+@monthly  20  remote-backup-monthly  log-cron 'remote-backup.sh monthly'
 
 @monthly  30  upgrade-rust           log-cron 'rustup update'
