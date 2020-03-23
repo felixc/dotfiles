@@ -24,6 +24,7 @@ URxvt.termName: xterm-256color
 URxvt.inheritPixmap: true
 URxvt.transparent: true
 URxvt.shading: 10
+URxvt.saveLines: 4096
 
 !! Emacs
 Emacs.font: Inconsolata-13
