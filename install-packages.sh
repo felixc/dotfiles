@@ -49,29 +49,39 @@ apt upgrade
 
 # Base packages used on all systems.
 apt install \
-  anacron apt-transport-https bc curl daemontools debian-keyring \
-  firmware-linux git git-annex htop iotop iperf make moreutils rsync \
-  smartmontools sudo tmux unzip util-linux vim-nox zsh
-
-apt install \
-  --target-release unstable \
-    ripgrep
+  bc curl daemontools debian-keyring firmware-linux git make moreutils ripgrep \
+  rsync sudo tmux unzip util-linux vim-nox zsh
 
 if lscpu | grep -q "GenuineIntel"; then
   apt install \
-    --target-release stretch-backports \
+    --target-release buster-backports \
       intel-microcode
 elif lscpu | grep -q "AuthenticAMD"; then
   apt install \
-    --target-release stretch-backports \
+    --target-release buster-backports \
       amd64-microcode
 fi
 
 if [ "$(dpkg --print-architecture)" = "amd64" ]; then
-  apt install \
-    --target-release stretch-backports \
+  if \
+    [ "$hostname" = "vostok" ] || \
+    [ "$hostname" = "voskhod" ]
+  then
+    apt install \
+      --target-release buster-backports \
+      linux-image-cloud-amd64
+  else
+    apt install \
+      --target-release buster-backports \
       linux-image-amd64
+  fi
 fi
+
+tee /etc/apt/preferences.d/backports-core-packages > /dev/null << EOF
+Package: amd64-microcode intel-microcode linux-image-amd64 linux-image-cloud-amd64
+Pin: release a=buster-backports
+Pin-Priority: 500
+EOF
 
 
 # Packages used only on servers/headless systems.
@@ -101,26 +111,18 @@ if \
   [ "$hostname" = "zond" ]
 then
   apt install \
-    alsa-utils build-essential chromium compton dzen2 emacs eog evince feh \
+    alsa-utils anacron build-essential chromium dzen2 emacs eog evince feh \
     ffmpeg fonts-inconsolata fonts-liberation gdb gimp git-email git-extras \
-    gksu gnome-disk-utility gnome-screenshot gnupg-agent gnupg2 gparted \
-    imagemagick inkscape ipython3 irssi irssi-scripts keychain lbdb ledger \
-    libghc-xmonad-contrib-dev libghc-xmonad-dev libsecret-tools lightdm mpv \
-    msmtp msmtp-gnome numlockx pass pavucontrol pulseaudio pylint3 python \
-    python3 python3-flake8 python3-jedi python3-venv rxvt-unicode-256color \
-    scdaemon shellcheck strace ttf-bitstream-vera ttf-dejavu \
-    ttf-mscorefonts-installer ttf-xfree86-nonfree unicode-screensaver unifont \
-    vlc wmctrl xbindkeys xsel xinit xlsx2csv xmonad xorg xscreensaver \
-    xscreensaver-data-extra xscreensaver-gl xscreensaver-gl-extra \
-    xscreensaver-screensaver-bsod xserver-xorg-input-all
-
-  apt install \
-    --no-install-recommends \
-      gnome-control-center
-
-  apt install \
-    --target-release unstable \
-      firefox
+    gnome-disk-utility gnome-screenshot gnupg-agent gnupg2 gparted imagemagick \
+    inkscape ipython3 irssi irssi-scripts keychain lbdb ledger \
+    libghc-xmonad-contrib-dev libghc-xmonad-dev libsecret-tools lightdm \
+    mpv msmtp msmtp-gnome numlockx pass pavucontrol pulseaudio pylint3 python \
+    python-ledger python3 python3-flake8 python3-jedi python3-venv \
+    rxvt-unicode-256color scdaemon shellcheck steam strace ttf-bitstream-vera \
+    ttf-dejavu ttf-mscorefonts-installer ttf-xfree86-nonfree \
+    unicode-screensaver unifont vlc wmctrl xbindkeys xsel xinit xlsx2csv \
+    xmonad xorg xscreensaver xscreensaver-data-extra xscreensaver-gl \
+    xscreensaver-gl-extra xscreensaver-screensaver-bsod xserver-xorg-input-all
 fi
 
 
@@ -131,14 +133,23 @@ if [ "$hostname" = "mir" ]; then
     fonts-ebgaramond fonts-ebgaramond-extra fonts-lato fonts-linuxlibertine \
     fonts-ocr-a fonts-opensymbol fonts-sil-charis fonts-sil-gentium \
     fonts-vollkorn fonts-yanone-kaffeesatz geeqie gnome-font-viewer libdvdcss2 \
-    mutt notmuch notmuch-mutt offlineimap signing-party texlive \
-    texlive-bibtex-extra texlive-font-utils texlive-fonts-extra \
+    neomutt notmuch notmuch-mutt offlineimap python-keyring signing-party \
+    texlive texlive-bibtex-extra texlive-font-utils texlive-fonts-extra \
     texlive-fonts-recommended texlive-pictures texlive-pstricks texlive-xetex \
     xsane
 
   apt install \
-    --target-release stretch-backports \
-      linux-headers-amd64 nvidia-driver
+    --target-release buster-backports \
+      linux-headers-amd64 nvidia-driver nvidia-driver-libs nvidia-driver-libs-i386
+
+  tee /etc/apt/preferences.d/backports-nvidia-driver > /dev/null <<- EOF
+	Package: linux-headers-amd64 nvidia-driver nvidia-driver-libs nvidia-driver-libs-i386
+	Pin: release a=buster-backports
+	Pin-Priority: 500
+	EOF
+
+  apt autoremove --purge \
+    avahi-daemon
 fi
 
 
@@ -146,19 +157,15 @@ fi
 if [ "$hostname" = "zond" ]; then
   apt install \
     acpi firmware-iwlwifi firmware-realtek laptop-mode-tools xbacklight \
-    xserver-xorg-input-synaptics
+    xserver-xorg-input-synaptics xserver-xorg-video-intel
 fi
 
 
 # Home server packages.
 if [ "$hostname" = "molniya" ]; then
   apt install \
-    apcupsd hddtemp nfs-common nfs-kernel-server openjdk-8-jre-headless samba \
-    sane-utils tarsnap task-print-server unifi
-
-  apt install \
-    --target-release stretch-backports \
-    netdata
+    apcupsd hddtemp netdata nfs-common nfs-kernel-server \
+    openjdk-8-jre-headless samba sane-utils tarsnap task-print-server unifi
 fi
 
 
@@ -178,8 +185,7 @@ if \
   [ "$hostname" = "voskhod" ]
 then
   apt install \
-    --target-release stretch-backports \
-      certbot nginx-extras
+    certbot nginx-extras
 
   apt autoremove --purge \
     awscli 'google-*' 'python*-boto*'
