@@ -346,7 +346,7 @@
     (interactive)
     (setq current-prefix-arg '(0))
     (call-interactively 'goto-last-change))
-  :bind ("M-." . go-to-last-change-and-describe))
+  :bind ("C-M-/" . go-to-last-change-and-describe))
 
 ; Column limit
 (setq-default fill-column 80)
