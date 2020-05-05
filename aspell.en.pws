@@ -1,4 +1,4 @@
-personal_ws-1.1 en 42
+personal_ws-1.1 en 44
 accessor
 accessors
 Affero
@@ -9,6 +9,7 @@ copyrightable
 dereferencing
 Django
 featureful
+filesystem
 generalizable
 GitHub
 GPL
@@ -20,6 +21,7 @@ licensors
 metadata
 noncommercially
 PGP
+preprocessed
 productionize
 productionizing
 PyCon
