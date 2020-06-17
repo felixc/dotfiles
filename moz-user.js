@@ -69,3 +69,6 @@ user_pref("security.dialog_enable_delay", 0);
 
 // Don't warn about making changes in about:config
 user_pref("general.warnOnAboutConfig", false);
+
+// Load userChrome.css at startup
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
