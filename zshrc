@@ -78,6 +78,11 @@ if existsp dircolors; then
   alias grep="grep --extended-regexp --color=auto"
 fi
 
+# Saner ripgrep
+if existsp rg; then
+  alias rg="rg --smart-case --follow --hidden --ignore-file ~/cfg/ripgrepignore"
+fi
+
 # Provide nicer name-based access to colours
 autoload -Uz colors && colors
 zstyle ':completion:*' list-colors 'reply=( "=(#b)(*$VAR)(?)*=00=$color[green]=$color[bg-green]" )'
