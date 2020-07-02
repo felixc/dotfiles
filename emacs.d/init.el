@@ -335,6 +335,7 @@
 (require 'my-webdev-config)
 (require 'my-go-config)
 (require 'my-rust-config)
+(require 'my-typescript-config)
 
 ; Email-writing configuration
 (require 'my-mail-config)
