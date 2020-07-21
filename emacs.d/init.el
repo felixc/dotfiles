@@ -140,7 +140,7 @@
 (use-package git-commit
   :config
   (add-hook 'git-commit-setup-hook (lambda ()
-    (setq fill-column 72))))
+    (setq fill-column 76))))
 
 ; Save minibuffer history
 (use-package savehist
