@@ -28,7 +28,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- launch a terminal
     [ ((modMask,               xK_Return), spawn $ XMonad.terminal conf)
     -- run program launcher
-    , ((modMask,               xK_o     ), shellPrompt defaultXPConfig)
+    , ((modMask,               xK_o     ), shellPrompt myLauncherConfig)
     -- lock screen
     , ((modMask,               xK_s     ), spawn "xscreensaver-command -lock")
     -- close focused window
@@ -103,9 +103,14 @@ myDzenPP = defaultPP
   , ppLayout = (\x -> "")
   }
 
+myLauncherConfig = def
+  { font = "xft:Inconsolata:size=12"
+  , height = 38
+  }
+
 main = do
   replace
-  h <- spawnPipe "processWindowTitle.sh | dzen2 -ta l -p -e 'onstart=lower'"
+  h <- spawnPipe "processWindowTitle.sh | dzen2 -dock -h 32 -ta l -p -e 'onstart=lower'"
   xmonad $ withUrgencyHook NoUrgencyHook $ ewmh defaultConfig {
     terminal           = myTerminal,
     focusFollowsMouse  = True,
