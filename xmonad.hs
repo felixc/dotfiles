@@ -89,7 +89,6 @@ myManageHook = composeAll
     , className =? "Steam"         --> doFloat
     , resource =? "desktop_window" --> doIgnore
     , isFullscreen                 --> doFullFloat
-    , manageDocks
     ]
 
 myDzenPP = defaultPP
@@ -111,7 +110,7 @@ myLauncherConfig = def
 main = do
   replace
   h <- spawnPipe "processWindowTitle.sh | dzen2 -dock -h 32 -ta l -p -e 'onstart=lower'"
-  xmonad $ withUrgencyHook NoUrgencyHook $ ewmh defaultConfig {
+  xmonad $ docks $ withUrgencyHook NoUrgencyHook $ ewmh defaultConfig {
     terminal           = myTerminal,
     focusFollowsMouse  = True,
     borderWidth        = 0,
