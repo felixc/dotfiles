@@ -7,6 +7,9 @@ DZEN_DIR="$HOME/cfg/dzen"
 
 source "$DZEN_DIR/appearance.sh"
 
+DZEN=(dzen2 -h $DOCK_HEIGHT -p)
+
+
 #
 # Temporary pipes
 #
@@ -63,7 +66,7 @@ NET_TX_BYTES_OLD=0
 #
 TIME_ICON="^fg($COL_HIGHLIGHT)^i($DZEN_DIR/icons/clock.xbm)^fg()"
 TIME_SLAVE_LINES=12
-TIME_SLAVE_WIDTH=530
+TIME_SLAVE_WIDTH=940
 TIME_FORMAT='%a %d %b %Y %H:%M'
 
 TIME_ZONES=(America/Toronto America/Chicago America/Los_Angeles)
@@ -76,15 +79,15 @@ TIME_ZONE_NAMES=(Ontario Texas California)
 SCREEN_WIDTH=$(xrandr --current 2> /dev/null | sed -ne "s/.* current \([0-9]\{4\}\).*/\1/p")
 MARGIN_LEFT=$SCREEN_WIDTH
 
-SESSION_WIDTH=23
+SESSION_WIDTH=44
 SESSION_XPOS=$(( MARGIN_LEFT - SESSION_WIDTH ))
 MARGIN_LEFT=$(( MARGIN_LEFT - SESSION_WIDTH ))
 
-TIME_WIDTH=180
+TIME_WIDTH=330
 TIME_XPOS=$(( MARGIN_LEFT - TIME_WIDTH ))
 MARGIN_LEFT=$(( MARGIN_LEFT - TIME_WIDTH ))
 
-VOL_WIDTH=110
+VOL_WIDTH=200
 VOL_XPOS=$(( MARGIN_LEFT - VOL_WIDTH ))
 MARGIN_LEFT=$(( MARGIN_LEFT - VOL_WIDTH ))
 
@@ -96,7 +99,7 @@ fi
 BAT_XPOS=$(( MARGIN_LEFT - BAT_WIDTH ))
 MARGIN_LEFT=$(( MARGIN_LEFT - BAT_WIDTH ))
 
-NET_WIDTH=240
+NET_WIDTH=500
 NET_XPOS=$(( MARGIN_LEFT - NET_WIDTH ))
 MARGIN_LEFT=$(( MARGIN_LEFT - NET_WIDTH ))
 
@@ -120,15 +123,17 @@ TIME_CAL_COUNTER=$TIME_CAL_INTERVAL
 #
 # Session Management Configuration
 #
-SESSION_MENU="^fg($COL_WARN)^r(7x7)^fg()\npoweroff \nreboot \nsystemctl suspend \nsystemctl hibernate "
-(echo $SEPARATOR $SESSION_MENU | dzen2 -p -l 4 -ta l -sa r -m -tw $SESSION_WIDTH -w 150 -x $SESSION_XPOS) &
+SESSION_MENU="^fg($COL_WARN)^r(13x13)^fg()\npoweroff \nreboot \nsystemctl suspend \nsystemctl hibernate "
+(echo $SEPARATOR $SESSION_MENU | ${DZEN[@]} -l 4 -ta l -sa r -m -tw $SESSION_WIDTH -w 280 -x $SESSION_XPOS) &
+
 
 #
 # Volume Controls
 #
 mkfifo $VOL_PIPE
-(tail -f $VOL_PIPE | dzen2 -p -ta l -tw $VOL_WIDTH -x $VOL_XPOS -e "button4=exec:volUp.sh;button5=exec:volDown.sh;button2=exec:toggleMute.sh") &
+(tail -f $VOL_PIPE | ${DZEN[@]} -ta l -tw $VOL_WIDTH -x $VOL_XPOS -e "button4=exec:volUp.sh;button5=exec:volDown.sh;button2=exec:toggleMute.sh") &
 updateVolumeDisplay.sh $VOL_PIPE
+
 
 #
 # Main loop
@@ -142,7 +147,7 @@ while true; do
   if (( $TIME_COUNTER >= $TIME_INTERVAL )); then
     if [[ ! -p $TIME_PIPE ]]; then
       mkfifo $TIME_PIPE
-      (tail -n 13 -f $TIME_PIPE | dzen2 -p -ta l -sa c -tw $TIME_WIDTH -w $TIME_SLAVE_WIDTH -l $TIME_SLAVE_LINES -x $TIME_XPOS -e "button1=togglecollapse") &
+      (tail -n 13 -f $TIME_PIPE | ${DZEN[@]} -ta l -sa c -tw $TIME_WIDTH -w $TIME_SLAVE_WIDTH -l $TIME_SLAVE_LINES -x $TIME_XPOS -e "button1=togglecollapse") &
     fi
 
     echo "^tw()$SEPARATOR $TIME_ICON "$(date +$TIME_FORMAT) > $TIME_PIPE
@@ -186,7 +191,7 @@ while true; do
       if [[ ! -p $NET_PIPE ]]; then
         mkfifo $NET_PIPE
         NET_SUB_WINDOW_LINES=$((( $NET_IS_WIFI )) && echo 3 || echo 1)
-        (tail -f $NET_PIPE | dzen2 -p -ta r -sa l -tw $NET_WIDTH -x $NET_XPOS -l $NET_SUB_WINDOW_LINES -w 160 -e "button1=togglecollapse") &
+        (tail -f $NET_PIPE | ${DZEN[@]} -ta r -sa l -tw $NET_WIDTH -x $NET_XPOS -l $NET_SUB_WINDOW_LINES -w 260 -e "button1=togglecollapse") &
       fi
 
       NET_TX_BYTES=$(cat /sys/class/net/$NET_INTERFACE/statistics/tx_bytes)
@@ -214,7 +219,7 @@ while true; do
 
         # Converting dB log scale from 84 to 63 (minus sign dropped) into a linear 0–5 one:
         # 5 * (1 - (ln(x) - ln(63))/(ln(84) - ln(63))) = 77.0089 - ln(x)/0.0575
-        NET_GRAPH=$(echo "77.0089 - l($NET_LINK_QUALITY)/0.0575" | bc -l | dzen2-gdbar -max 5 -min 0 -h 10 -ss 1 -w 33 -sw 5 -s o -nonl -bg $COL_GRAPH_BORDER -fg $COL_HIGHLIGHT)
+        NET_GRAPH=$(echo "77.0089 - l($NET_LINK_QUALITY)/0.0575" | bc -l | dzen2-gdbar -max 5 -min 0 -h 20 -ss 1 -w 33 -sw 5 -s o -nonl -bg $COL_GRAPH_BORDER -fg $COL_HIGHLIGHT)
 
         echo "^tw()$SEPARATOR $NET_ICON $NET_GRAPH $NET_RX_RATE $NET_RX_ICON  $NET_TX_RATE $NET_TX_ICON " > $NET_PIPE
         echo "  ESSID: $NET_ESSID\n  IP: $NET_IP\n  Bit Rate: $NET_BIT_RATE" > $NET_PIPE
@@ -236,7 +241,7 @@ while true; do
   if (( $BAT_EXISTS )) && (( $BAT_COUNTER >= $BAT_INTERVAL )); then
     if [[ ! -p $BAT_PIPE ]]; then
       mkfifo $BAT_PIPE
-      (tail -n 13 -f $BAT_PIPE | dzen2 -p -ta r -tw $BAT_WIDTH -x $BAT_XPOS) &
+      (tail -n 13 -f $BAT_PIPE | ${DZEN[@]} -ta r -tw $BAT_WIDTH -x $BAT_XPOS) &
     fi
 
     BAT_STATE=$(acpi | awk '{print $3}')
@@ -258,7 +263,7 @@ while true; do
       BAT_ICON=$BAT_ICON_CHARGING
     fi
 
-    BAT_GRAPH=$(echo $(( $BAT_PCT_REMAINING + 1 )) | dzen2-gdbar -h 10 -ss 1 -sw 4 -w 48 -s o -nonl -bg $COL_GRAPH_BORDER -fg $BAT_GRAPH_COL)
+    BAT_GRAPH=$(echo $(( $BAT_PCT_REMAINING + 1 )) | dzen2-gdbar -h 20 -ss 1 -sw 4 -w 48 -s o -nonl -bg $COL_GRAPH_BORDER -fg $BAT_GRAPH_COL)
     echo "$SEPARATOR $BAT_ICON $BAT_TIME_REMAINING ($BAT_PCT_REMAINING%) $BAT_GRAPH " > $BAT_PIPE
 
     BAT_COUNTER=0
