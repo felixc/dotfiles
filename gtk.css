@@ -3,3 +3,11 @@
   border-style: none;
   margin: 0;
 }
+
+.scrollbar.vertical slider, scrollbar.vertical slider {
+  min-width: 0.6rem;
+}
+
+.scrollbar.horizontal slider, scrollbar.horizontal slider {
+  min-height: 0.6rem;
+}
