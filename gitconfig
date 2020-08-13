@@ -4,6 +4,7 @@
 
 [core]
   excludesfile = ~/.gitignore
+  attributesfile = ~/.gitattributes
   quotePath = false
 
 [color]
