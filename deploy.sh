@@ -64,7 +64,7 @@ crontab "$pwd/crontab"
 mkdir -p "$HOME/.xmonad"
 ln -srf "$pwd/xmonad.hs" "$HOME/.xmonad/xmonad.hs"
 if command -v xmonad > /dev/null; then
-  xmonad --recompile && xmonad --restart
+  xmonad --recompile
 fi
 
 # Get cert for keyserver
