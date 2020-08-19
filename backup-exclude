@@ -1,7 +1,6 @@
 .adobe/
 .anacronspool/
 /bin/
-bin/ff/
 .cache/
 .cargo/
 cfg/bin/ff/
