@@ -33,9 +33,10 @@ existsp supervise && existsp offlineimap && supervise $HOME/msg/.offlineimap &
 existsp git-annex && ( sleep 90 && git-annex assistant --autostart ) &
 
 # Foreground apps
-existsp firefox && firefox &
 existsp ssh-add && x-terminal-emulator -e zsh -c ssh-add &
 existsp mutt && x-terminal-emulator -e zsh -c mutt &
+existsp steam && steam &
+existsp firefox && firefox &
 
 # Windowing environment
 [ -x $HOME/cfg/dzen/dzen.sh ] && $HOME/cfg/dzen/dzen.sh &
