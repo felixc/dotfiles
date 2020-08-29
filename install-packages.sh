@@ -28,10 +28,8 @@ deb-src  http://deb.debian.org/debian/  experimental      main contrib non-free
 EOF
 
 
-#
 # Track stable but make packages from Unstable and Experimental available
-#
-tee /etc/apt/preferences.d/non-stable-repo-priorities > /dev/null << EOF
+tee /etc/apt/preferences.d/non-stable-repos > /dev/null << EOF
 Package: *
 Pin: release a=unstable
 Pin-Priority: -1
