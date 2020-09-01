@@ -40,6 +40,15 @@ Pin-Priority: -1
 EOF
 
 
+# Machines for everyday personal use need to support i386 as well.
+if \
+  [ "$hostname" = "mir" ] || \
+  [ "$hostname" = "zond" ]
+then
+  dpkg --add-architecture i386
+fi
+
+
 # To start, get into a clean and ready state.
 apt update
 apt upgrade
@@ -138,10 +147,10 @@ if [ "$hostname" = "mir" ]; then
 
   apt install \
     --target-release buster-backports \
-      linux-headers-amd64 nvidia-driver nvidia-driver-libs nvidia-driver-libs-i386
+      linux-headers-amd64 nvidia-driver nvidia-driver-libs nvidia-driver-libs:i386
 
   tee /etc/apt/preferences.d/backports-nvidia-driver > /dev/null <<- EOF
-	Package: linux-headers-amd64 nvidia-driver nvidia-driver-libs nvidia-driver-libs-i386
+	Package: linux-headers-amd64 nvidia-driver nvidia-driver-libs
 	Pin: release a=buster-backports
 	Pin-Priority: 500
 	EOF
