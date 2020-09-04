@@ -156,7 +156,7 @@ if [ "$hostname" = "mir" ]; then
 	EOF
 
   apt autoremove --purge \
-    avahi-daemon
+    avahi-daemon wpasupplicant yelp
 fi
 
 
@@ -165,6 +165,9 @@ if [ "$hostname" = "zond" ]; then
   apt install \
     acpi firmware-iwlwifi firmware-realtek laptop-mode-tools xbacklight \
     xserver-xorg-input-synaptics xserver-xorg-video-intel
+
+  apt autoremove --purge \
+    avahi-daemon yelp
 fi
 
 
@@ -183,6 +186,9 @@ if [ "$hostname" = "molniya" ]; then
 	Pin: release a=buster-backports
 	Pin-Priority: 500
 	EOF
+
+  apt autoremove --purge \
+    avahi-daemon bluetooth wpasupplicant yelp
 fi
 
 
