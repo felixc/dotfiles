@@ -173,6 +173,16 @@ if [ "$hostname" = "molniya" ]; then
   apt install \
     apcupsd hddtemp netdata nfs-common nfs-kernel-server \
     openjdk-8-jre-headless samba sane-utils tarsnap task-print-server unifi
+
+  apt install \
+    --no-install-recommends --target-release buster-backports \
+      youtube-dl
+
+  tee /etc/apt/preferences.d/youtube-dl > /dev/null <<- EOF
+	Package: youtube-dl
+	Pin: release a=buster-backports
+	Pin-Priority: 500
+	EOF
 fi
 
 
