@@ -130,6 +130,10 @@ then
     unicode-screensaver unifont vlc wmctrl xbindkeys xsel xinit xlsx2csv \
     xmonad xorg xscreensaver xscreensaver-data-extra xscreensaver-gl \
     xscreensaver-gl-extra xscreensaver-screensaver-bsod xserver-xorg-input-all
+
+  apt install \
+    --no-install-recommends \
+      nautilus
 fi
 
 
