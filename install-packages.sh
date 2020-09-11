@@ -120,16 +120,17 @@ then
   apt install \
     alsa-utils anacron build-essential chromium dzen2 emacs eog evince feh \
     ffmpeg fonts-inconsolata fonts-liberation gdb gimp git-email git-extras \
-    gnome-disk-utility gnome-screenshot gnupg-agent gnupg2 gparted imagemagick \
-    inkscape ipython3 irssi irssi-scripts keychain lbdb ledger \
-    libghc-xmonad-contrib-dev libghc-xmonad-dev libsecret-tools lightdm \
-    mpv msmtp msmtp-gnome numlockx pass pavucontrol pulseaudio pylint3 python \
-    python-ledger python3 python3-flake8 python3-jedi python3-venv \
-    rxvt-unicode-256color scdaemon shellcheck steam strace ttf-bitstream-vera \
-    ttf-dejavu ttf-mscorefonts-installer ttf-xfree86-nonfree \
-    unicode-screensaver unifont vlc wmctrl xbindkeys xsel xinit xlsx2csv \
-    xmonad xorg xscreensaver xscreensaver-data-extra xscreensaver-gl \
-    xscreensaver-gl-extra xscreensaver-screensaver-bsod xserver-xorg-input-all
+    gnome-disk-utility gnome-screenshot gnupg-agent gnupg2 gparted \
+    gvfs-backends imagemagick inkscape ipython3 irssi irssi-scripts keychain \
+    lbdb ledger libghc-xmonad-contrib-dev libghc-xmonad-dev libsecret-tools \
+    libssl-dev lightdm net-tools msmtp msmtp-gnome nfs-common numlockx pass \
+    pavucontrol pulseaudio pylint3 python python-ledger python3 python3-flake8 \
+    python3-jedi python3-venv rxvt-unicode scdaemon shellcheck steam strace \
+    ttf-bitstream-vera ttf-dejavu ttf-mscorefonts-installer \
+    ttf-xfree86-nonfree unicode-screensaver unifont vlc wmctrl xbindkeys \
+    xsel xinit xlsx2csv xmonad xorg xscreensaver xscreensaver-data-extra \
+    xscreensaver-gl xscreensaver-gl-extra xscreensaver-screensaver-bsod \
+    xserver-xorg-input-all
 
   apt install \
     --no-install-recommends \
@@ -143,11 +144,11 @@ if [ "$hostname" = "mir" ]; then
     cups darktable fonts-cantarell fonts-dejavu fonts-dejavu-extra \
     fonts-ebgaramond fonts-ebgaramond-extra fonts-lato fonts-linuxlibertine \
     fonts-ocr-a fonts-opensymbol fonts-sil-charis fonts-sil-gentium \
-    fonts-vollkorn fonts-yanone-kaffeesatz geeqie gnome-font-viewer libdvdcss2 \
-    neomutt notmuch notmuch-mutt offlineimap python-keyring signing-party \
-    texlive texlive-bibtex-extra texlive-font-utils texlive-fonts-extra \
-    texlive-fonts-recommended texlive-pictures texlive-pstricks texlive-xetex \
-    xsane
+    fonts-vollkorn fonts-yanone-kaffeesatz geeqie gnome-font-viewer \
+    neomutt notmuch notmuch-mutt openssh-server offlineimap python-keyring \
+    signing-party texlive texlive-bibtex-extra texlive-font-utils \
+    texlive-fonts-extra texlive-fonts-recommended texlive-pictures \
+    texlive-pstricks texlive-xetex xsane
 
   apt install \
     --target-release buster-backports \
