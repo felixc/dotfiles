@@ -1,0 +1,23 @@
+-- Do not echo back the commands from this file
+\set QUIET 1
+
+-- Display null values as [NULL]
+\pset null '[NULL]'
+
+-- Switch to expanded table format when there's a lot of data
+\x auto
+
+-- Verbose error reports
+\set VERBOSITY verbose
+
+-- Don't store duplicate records in history file
+\set HISTCONTROL ignoredups
+
+-- Autocomplete keywords (like SELECT) in upper-case
+\set COMP_KEYWORD_CASE upper
+
+-- Roll back transactions on error
+\set ON_ERROR_ROLLBACK interactive
+
+-- Unset QUIET set at the beggining of this file
+\unset QUIET
