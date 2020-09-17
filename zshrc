@@ -142,19 +142,33 @@ pwd_to_title
 
 # Automatically activate the virtualenv corresponding to the current directory
 function auto_activate_venv {
+  # First, check for any virtualenvs in the local directory
+  local venv_locations=(".venv" ".virtualenv")
+  for venv_location in $venv_locations; do
+    if [ -f "$venv_location/bin/activate" ]; then
+      source "$venv_location/bin/activate"
+      return
+    fi
+  done
+
+  # If no local virtualenvs are found, we'll look in our standard location
   local relative="${PWD#$HOME}"
   if [ "${relative}" = "${PWD}" ] || [ "${relative}" = "" ]; then return; fi
   while true; do
     local venv="$HOME/.venv${relative}"
     local activate="${venv}/bin/activate"
     if [ -f "${activate}" ]; then
-      source "${activate}";
-      return;
+      source "${activate}"
+      return
     else
       relative=$(dirname "${relative}")
       if [ "${relative}" = "/" ]; then break; fi
     fi
   done
+
+  # Finally, if there are no virtualenvs anywhere, we should ensure we
+  # deactivate any that might be currently in use.
+  # TODO: Should we do this before activating a different one?
   existsp deactivate && deactivate
 }
 add-zsh-hook chpwd auto_activate_venv
