@@ -4,10 +4,10 @@
   margin: 0;
 }
 
+/* Make scrollbars "fatter" so they're easier to click. */
 .scrollbar.vertical slider, scrollbar.vertical slider {
   min-width: 0.6rem;
 }
-
 .scrollbar.horizontal slider, scrollbar.horizontal slider {
   min-height: 0.6rem;
 }
