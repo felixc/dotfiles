@@ -69,12 +69,12 @@ WORDCHARS=""
 # Sane defaults for various commands
 alias df="df --human-readable --exclude-type tmpfs --exclude-type=devtmpfs"
 alias grep="grep --extended-regexp"
-alias ls="ls --human-readable --hide '__pycache__'"
+alias ls="ls --human-readable --hide '__pycache__' --hide 'target'"
 alias rg="rg --smart-case --search-zip"
 
 # Enable colours for commands if possible
 if existsp dircolors; then
-  alias ls="ls --human-readable --hide '__pycache__' --color=auto"
+  alias ls="ls --human-readable --hide '__pycache__' --hide 'target' --color=auto"
   alias grep="grep --extended-regexp --color=auto"
 fi
 
