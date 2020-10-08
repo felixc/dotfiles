@@ -3,6 +3,9 @@ CanonicalizeHostname yes
 Host github.com gitlab.com
   User git
 
+Host *.rsync.net
+  User 57323
+
 Host mir molniya proton salyut voskhod vostok zond
   HostName %h.felixcrux.com
 
