@@ -14,6 +14,9 @@ done
 
 ln -srf "$HOME/.xinitrc" "$HOME/.xsessionrc"
 
+mkdir -p "$HOME/.config"
+ln -srf "$pwd/user-dirs.dirs" "$HOME/.config/user-dirs.dirs"
+
 mkdir -p "$HOME/.config/gtk-3.0"
 ln -srf "$pwd/settings.ini" "$HOME/.config/gtk-3.0/settings.ini"
 ln -srf "$pwd/gtk.css" "$HOME/.config/gtk-3.0/gtk.css"
