@@ -10,6 +10,9 @@
 [color]
   ui = auto
 
+[init]
+  defaultBranch = main
+
 [diff]
   colorMoved = dimmed_zebra
   indentHeuristic = on
