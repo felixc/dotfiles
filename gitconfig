@@ -20,12 +20,15 @@
 [help]
   autocorrect = 1
 
+[fetch]
+  prune = true
+
+[pull]
+  rebase = true
+
 [push]
   default = current
   followTags = true
-
-[fetch]
-  prune = true
 
 [transfer]
   fsckObjects = true
