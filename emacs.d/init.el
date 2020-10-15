@@ -320,6 +320,9 @@
 (use-package company
   :diminish company-mode
   :config
+  (use-package company-quickhelp
+    :config
+    (add-hook 'company-mode-hook 'company-quickhelp-mode))
   (define-key company-active-map [tab] 'company-complete-common-or-cycle)
   (setq company-tooltip-align-annotations t)
   (defun toggle-fci-around-company (command)
