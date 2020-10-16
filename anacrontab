@@ -6,4 +6,4 @@ PATH=/home/felix/bin/:/home/felix/.cargo/bin:/usr/local/bin:/usr/bin:/usr/sbin:/
 @monthly  20  remote-backup-monthly  log-cron 'remote-backup.sh monthly'
 
 @monthly  30  upgrade-rust           log-cron 'rustup update'
-@monthly  45  upgrade-rust-tools     log-cron 'cargo install-update --all'
+@monthly  45  upgrade-rust-tools     log-cron "cargo install $(cargo install --list | awk '/    / {all=all$0} END {print all}')"
