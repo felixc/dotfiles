@@ -98,6 +98,8 @@ if \
   [ "$hostname" = "molniya" ] || \
   [ "$hostname" = "salyut" ]
 then
+  apt install openssh-server
+
   apt install \
     --no-install-recommends \
       emacs-nox
