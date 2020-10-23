@@ -163,7 +163,7 @@ if [ "$hostname" = "mir" ]; then
 	EOF
 
   apt autoremove --purge \
-    avahi-daemon wpasupplicant yelp
+    wpasupplicant yelp
 fi
 
 
@@ -174,7 +174,7 @@ if [ "$hostname" = "zond" ]; then
     xserver-xorg-input-synaptics xserver-xorg-video-intel
 
   apt autoremove --purge \
-    avahi-daemon yelp
+    yelp
 fi
 
 
@@ -195,7 +195,7 @@ if [ "$hostname" = "molniya" ]; then
 	EOF
 
   apt autoremove --purge \
-    avahi-daemon bluetooth wpasupplicant yelp
+    bluetooth wpasupplicant yelp
 fi
 
 
@@ -205,7 +205,7 @@ if [ "$hostname" = "salyut" ]; then
     fbi kodi kodi-visualization-shadertoy nfs-common
 
   apt autoremove --purge \
-    avahi-daemon bluetooth dhcpcd5 pi-bluetooth wpasupplicant
+    bluetooth dhcpcd5 pi-bluetooth wpasupplicant
 fi
 
 
