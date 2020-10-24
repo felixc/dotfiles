@@ -127,7 +127,7 @@ then
     lbdb ledger libghc-xmonad-contrib-dev libghc-xmonad-dev libsecret-tools \
     libssl-dev lightdm net-tools msmtp msmtp-gnome nfs-common numlockx pass \
     pavucontrol pulseaudio pylint3 python python-ledger python3 python3-flake8 \
-    python3-jedi python3-venv rxvt-unicode scdaemon shellcheck steam strace \
+    python3-venv rxvt-unicode scdaemon shellcheck steam strace \
     ttf-bitstream-vera ttf-dejavu ttf-mscorefonts-installer \
     ttf-xfree86-nonfree unicode-screensaver unifont vlc wmctrl xbindkeys \
     xsel xinit xlsx2csv xmonad xorg xscreensaver xscreensaver-data-extra \
