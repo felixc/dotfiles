@@ -129,10 +129,10 @@ then
     pavucontrol pulseaudio pylint3 python python-ledger python3 python3-flake8 \
     python3-venv rxvt-unicode scdaemon shellcheck steam strace \
     ttf-bitstream-vera ttf-dejavu ttf-mscorefonts-installer \
-    ttf-xfree86-nonfree unicode-screensaver unifont vlc wmctrl xbindkeys \
-    xsel xinit xlsx2csv xmonad xorg xscreensaver xscreensaver-data-extra \
-    xscreensaver-gl xscreensaver-gl-extra xscreensaver-screensaver-bsod \
-    xserver-xorg-input-all
+    ttf-xfree86-nonfree unicode-screensaver unifont virtualenv vlc wmctrl \
+    xbindkeys xsel xinit xlsx2csv xmonad xorg xscreensaver \
+    xscreensaver-data-extra xscreensaver-gl xscreensaver-gl-extra \
+    xscreensaver-screensaver-bsod xserver-xorg-input-all
 
   apt install \
     --no-install-recommends \
