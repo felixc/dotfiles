@@ -147,10 +147,10 @@ if [ "$hostname" = "mir" ]; then
     fonts-ebgaramond fonts-ebgaramond-extra fonts-lato fonts-linuxlibertine \
     fonts-ocr-a fonts-opensymbol fonts-sil-charis fonts-sil-gentium \
     fonts-vollkorn fonts-yanone-kaffeesatz geeqie gnome-font-viewer \
-    neomutt notmuch notmuch-mutt openssh-server offlineimap python-keyring \
-    signing-party texlive texlive-bibtex-extra texlive-font-utils \
-    texlive-fonts-extra texlive-fonts-recommended texlive-pictures \
-    texlive-pstricks texlive-xetex xsane
+    neomutt notmuch notmuch-mutt offlineimap python-keyring signing-party \
+    texlive texlive-bibtex-extra texlive-font-utils texlive-fonts-extra \
+    texlive-fonts-recommended texlive-pictures texlive-pstricks texlive-xetex \
+    xsane
 
   apt install \
     --target-release buster-backports \
