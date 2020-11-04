@@ -1,3 +1,9 @@
+"x-terminal-emulator"
+Mod4 + Return
+
+"xscreensaver-command -lock"
+Mod4 + s
+
 "volDown.sh"
 XF86AudioLowerVolume
 

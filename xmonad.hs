@@ -20,17 +20,12 @@ import Data.Monoid(All(..))
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
-myTerminal      = "x-terminal-emulator"
 myModMask       = mod4Mask
 myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
-    -- launch a terminal
-    [ ((modMask,               xK_Return), spawn $ XMonad.terminal conf)
     -- run program launcher
-    , ((modMask,               xK_o     ), shellPrompt myLauncherConfig)
-    -- lock screen
-    , ((modMask,               xK_s     ), spawn "xscreensaver-command -lock")
+    [ ((modMask,               xK_o     ), shellPrompt myLauncherConfig)
     -- close focused window
     , ((modMask .|. shiftMask, xK_c     ), kill1)
      -- Rotate through the available layout algorithms
@@ -110,7 +105,6 @@ main = do
   replace
   h <- spawnPipe "processWindowTitle.sh | dzen2 -dock -h 32 -ta l -p -e 'onstart=lower'"
   xmonad $ docks $ withUrgencyHook NoUrgencyHook $ ewmh defaultConfig {
-    terminal           = myTerminal,
     focusFollowsMouse  = True,
     borderWidth        = 0,
     modMask            = myModMask,
