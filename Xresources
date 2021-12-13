@@ -19,7 +19,7 @@ URxvt.scrollTtyOutput: false
 URxvt.scrollWithBuffer: true
 URxvt.scrollTtyKeypress: true
 URxvt.internalBorder: 8
-URxvt.font: xft:Inconsolata:size=12,xft:Dejavu Sans Mono:pixelsize=24,xft:Unifont
+URxvt.font: xft:Inconsolata:size=12,xft:Dejavu Sans Mono:pixelsize=24,xft:Symbola,xft:Unifont
 URxvt.perl-ext-common: default,matcher
 URxvt.url-launcher: firefox
 URxvt.matcher.button: 1
