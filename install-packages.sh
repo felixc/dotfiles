@@ -9,26 +9,26 @@ hostname=$(hostname --short)
 
 # First we have to set up our installation sources.
 tee /etc/apt/sources.list > /dev/null << EOF
-deb      http://deb.debian.org/debian/  buster            main contrib non-free
-deb-src  http://deb.debian.org/debian/  buster            main contrib non-free
+deb      http://deb.debian.org/debian/  bullseye            main contrib non-free
+deb-src  http://deb.debian.org/debian/  bullseye            main contrib non-free
 
-deb      http://security.debian.org/    buster/updates    main contrib non-free
-deb-src  http://security.debian.org/    buster/updates    main contrib non-free
+deb      http://security.debian.org/    bullseye-security   main contrib non-free
+deb-src  http://security.debian.org/    bullseye-security   main contrib non-free
 
-deb      http://deb.debian.org/debian/  buster-updates    main contrib non-free
-deb-src  http://deb.debian.org/debian/  buster-updates    main contrib non-free
+deb      http://deb.debian.org/debian/  bullseye-updates    main contrib non-free
+deb-src  http://deb.debian.org/debian/  bullseye-updates    main contrib non-free
 
-deb      http://deb.debian.org/debian/  buster-backports  main contrib non-free
+deb      http://deb.debian.org/debian/  bullseye-backports  main contrib non-free
 
-deb      http://deb.debian.org/debian/  unstable          main contrib non-free
-deb-src  http://deb.debian.org/debian/  unstable          main contrib non-free
+deb      http://deb.debian.org/debian/  unstable            main contrib non-free
+deb-src  http://deb.debian.org/debian/  unstable            main contrib non-free
 
-deb      http://deb.debian.org/debian/  experimental      main contrib non-free
-deb-src  http://deb.debian.org/debian/  experimental      main contrib non-free
+deb      http://deb.debian.org/debian/  experimental        main contrib non-free
+deb-src  http://deb.debian.org/debian/  experimental        main contrib non-free
 EOF
 
 
-# Track stable but make packages from Unstable and Experimental available
+# Track stable but make packages from Unstable and Experimental available.
 tee /etc/apt/preferences.d/non-stable-repos > /dev/null << EOF
 Package: *
 Pin: release a=unstable
@@ -38,6 +38,17 @@ Package: *
 Pin: release a=experimental
 Pin-Priority: -1
 EOF
+
+
+
+
+# Main desktop needs some things from non-standard sources.
+if [ "$hostname" = "mir" ]; then
+  tee /etc/apt/sources.list.d/deb-multimedia.list > /dev/null <<- EOF
+	deb http://www.deb-multimedia.org  bullseye            main contrib non-free
+	deb http://www.deb-multimedia.org  bullseye-backports  main contrib non-free
+	EOF
+fi
 
 
 # Machines for everyday personal use need to support i386 as well.
@@ -59,13 +70,17 @@ apt install \
   bc curl daemontools debian-keyring firmware-linux git make moreutils ripgrep \
   rsync sudo tmux unzip util-linux vim-nox zsh
 
+tee /etc/apt/preferences.d/backports-core-packages > /dev/null << EOF
+Package: amd64-microcode intel-microcode linux-image-amd64 linux-image-cloud-amd64
+Pin: release a=bullseye-backports
+Pin-Priority: 500
+EOF
+
 if lscpu | grep -q "GenuineIntel"; then
   apt install \
-    --target-release buster-backports \
       intel-microcode
 elif lscpu | grep -q "AuthenticAMD"; then
   apt install \
-    --target-release buster-backports \
       amd64-microcode
 fi
 
@@ -75,20 +90,12 @@ if [ "$(dpkg --print-architecture)" = "amd64" ]; then
     [ "$hostname" = "voskhod" ]
   then
     apt install \
-      --target-release buster-backports \
       linux-image-cloud-amd64
   else
     apt install \
-      --target-release buster-backports \
       linux-image-amd64
   fi
 fi
-
-tee /etc/apt/preferences.d/backports-core-packages > /dev/null << EOF
-Package: amd64-microcode intel-microcode linux-image-amd64 linux-image-cloud-amd64
-Pin: release a=buster-backports
-Pin-Priority: 500
-EOF
 
 
 # Packages used only on servers/headless systems.
@@ -158,7 +165,7 @@ if [ "$hostname" = "mir" ]; then
 
   tee /etc/apt/preferences.d/backports-nvidia-driver > /dev/null <<- EOF
 	Package: linux-headers-amd64 nvidia-driver nvidia-driver-libs
-	Pin: release a=buster-backports
+	Pin: release a=bullseye-backports
 	Pin-Priority: 500
 	EOF
 
