@@ -7,3 +7,5 @@ PATH=/home/felix/bin/:/home/felix/.cargo/bin:/usr/local/bin:/usr/bin:/usr/sbin:/
 
 @monthly  30  upgrade-rust           log-cron 'rustup update'
 @monthly  45  upgrade-rust-tools     log-cron "cargo install $(cargo install --list | awk '/    / {all=all$0} END {print all}')"
+
+1          7  borg-backup            log-cron 'borg-backup.sh'
