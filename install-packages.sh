@@ -40,6 +40,32 @@ Pin-Priority: -1
 EOF
 
 
+# The home server needs to install some tools from non-standard sources.
+if [ "$hostname" = "molniya" ]; then
+  apt install curl gnupg
+
+  curl -fsSL https://pkg.tarsnap.com/tarsnap-deb-packaging-key.asc \
+    | gpg --dearmor > /usr/share/keyrings/tarsnap-archive.gpg
+  tee /etc/apt/preferences.d/limit-tarsnap-repo > /dev/null <<-EOF
+	Package: *
+	Pin: origin pkg.tarsnap.com
+	Pin-Priority: 100
+	EOF
+  tee /etc/apt/sources.list.d/tarsnap.list > /dev/null <<- EOF
+	deb [signed-by=/usr/share/keyrings/tarsnap-archive.gpg] http://pkg.tarsnap.com/deb/bullseye ./
+	EOF
+
+  curl -fsSL https://pkgs.tailscale.com/stable/debian/bullseye.gpg \
+    | gpg --dearmor > /usr/share/keyrings/tailscale-archive.gpg
+  tee /etc/apt/preferences.d/limit-tailscale-repo > /dev/null <<-EOF
+	Package: *
+	Pin: origin pkgs.tailscale.com
+	Pin-Priority: 100
+	EOF
+  tee /etc/apt/sources.list.d/tailscale.list > /dev/nul <<- EOF
+	deb [signed-by=/usr/share/keyrings/tailscale-archive.gpg] https://pkgs.tailscale.com/stable/debian bullseye main
+	EOF
+fi
 
 
 # Main desktop needs some things from non-standard sources.
