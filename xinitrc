@@ -31,8 +31,7 @@ existsp xbindkeys && xbindkeys &
 existsp xscreensaver && xscreensaver -nosplash &
 existsp urxvtd && urxvtd --quiet --opendisplay --fork
 existsp anacron && anacron -t $HOME/.anacrontab -S $HOME/.anacronspool &
-existsp supervise && existsp offlineimap && supervise $HOME/msg/.offlineimap &
-existsp git-annex && ( sleep 90 && git-annex assistant --autostart ) &
+existsp emacs && emacs --daemon &
 
 # Foreground apps
 existsp ssh-add && x-terminal-emulator -e zsh -c ssh-add &
