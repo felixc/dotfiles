@@ -93,8 +93,8 @@ apt upgrade
 
 # Base packages used on all systems.
 apt install \
-  bc curl daemontools debian-keyring firmware-linux git make moreutils ripgrep \
-  rsync sudo tmux unzip util-linux vim-nox zsh
+  bc curl daemontools debian-keyring dnsutils firmware-linux git make \
+  moreutils ripgrep rsync sudo tmux ufw unzip util-linux vim-nox zsh
 
 tee /etc/apt/preferences.d/backports-core-packages > /dev/null << EOF
 Package: amd64-microcode intel-microcode linux-image-amd64 linux-image-cloud-amd64
@@ -153,16 +153,16 @@ if \
   [ "$hostname" = "zond" ]
 then
   apt install \
-    alsa-utils anacron build-essential chromium dzen2 emacs eog evince feh \
-    ffmpeg fonts-inconsolata fonts-liberation gdb gimp git-email git-extras \
-    gnome-disk-utility gnome-screenshot gnupg-agent gnupg2 gparted \
-    gvfs-backends imagemagick inkscape ipython3 irssi irssi-scripts keychain \
-    lbdb ledger libghc-xmonad-contrib-dev libghc-xmonad-dev libsecret-tools \
-    libssl-dev lightdm net-tools msmtp msmtp-gnome nfs-common numlockx pass \
-    pavucontrol pulseaudio pylint3 python python-ledger python3 python3-flake8 \
-    python3-venv rxvt-unicode scdaemon shellcheck steam strace \
-    ttf-bitstream-vera ttf-dejavu ttf-mscorefonts-installer \
-    ttf-xfree86-nonfree unicode-screensaver unifont virtualenv vlc wmctrl \
+    alsa-utils anacron borgbackup build-essential chromium dzen2 emacs entr \
+    eog evince feh ffmpeg fonts-dejavu fonts-inconsolata fonts-liberation \
+    fonts-symbola gdb gimp git-email git-extras gnome-disk-utility \
+    gnome-screenshot gnupg-agent gnupg2 gparted gron gvfs-backends imagemagick \
+    inkscape ipython3 irssi irssi-scripts keychain lbdb \
+    libghc-xmonad-contrib-dev libghc-xmonad-dev libsecret-tools libssl-dev \
+    lightdm net-tools msmtp nfs-common numlockx pass pavucontrol pulseaudio \
+    pylint3 python2 python3 python3-flake8 python3-venv rxvt-unicode scdaemon \
+    shellcheck steam strace ttf-bitstream-vera ttf-mscorefonts-installer \
+    ttf-xfree86-nonfree unicode-screensaver unifont virtualenv vlc w3m wmctrl \
     xbindkeys xsel xinit xlsx2csv xmonad xorg xscreensaver \
     xscreensaver-data-extra xscreensaver-gl xscreensaver-gl-extra \
     xscreensaver-screensaver-bsod xserver-xorg-input-all
@@ -170,6 +170,9 @@ then
   apt install \
     --no-install-recommends \
       nautilus
+
+  apt autoremove --purge \
+    yelp
 fi
 
 
@@ -179,15 +182,11 @@ if [ "$hostname" = "mir" ]; then
     cups darktable fonts-cantarell fonts-dejavu fonts-dejavu-extra \
     fonts-ebgaramond fonts-ebgaramond-extra fonts-lato fonts-linuxlibertine \
     fonts-ocr-a fonts-opensymbol fonts-sil-charis fonts-sil-gentium \
-    fonts-vollkorn fonts-yanone-kaffeesatz geeqie gnome-font-viewer \
-    neomutt notmuch notmuch-mutt offlineimap python-keyring signing-party \
-    texlive texlive-bibtex-extra texlive-font-utils texlive-fonts-extra \
-    texlive-fonts-recommended texlive-pictures texlive-pstricks texlive-xetex \
-    xsane
-
-  apt install \
-    --target-release buster-backports \
-      linux-headers-amd64 nvidia-driver nvidia-driver-libs nvidia-driver-libs:i386
+    fonts-vollkorn fonts-yanone-kaffeesatz geeqie gnome-font-viewer ledger \
+    libdvdcss2 neomutt notmuch notmuch-mutt offlineimap python-keyring \
+    python-ledger signing-party texlive texlive-bibtex-extra \
+    texlive-font-utils texlive-fonts-extra texlive-fonts-recommended \
+    texlive-pictures texlive-pstricks texlive-xetex xsane
 
   tee /etc/apt/preferences.d/backports-nvidia-driver > /dev/null <<- EOF
 	Package: linux-headers-amd64 nvidia-driver nvidia-driver-libs
@@ -195,8 +194,11 @@ if [ "$hostname" = "mir" ]; then
 	Pin-Priority: 500
 	EOF
 
+  apt install \
+      linux-headers-amd64 nvidia-driver nvidia-driver-libs nvidia-driver-libs:i386
+
   apt autoremove --purge \
-    wpasupplicant yelp
+    wpasupplicant
 fi
 
 
@@ -205,30 +207,28 @@ if [ "$hostname" = "zond" ]; then
   apt install \
     acpi firmware-iwlwifi firmware-realtek laptop-mode-tools xbacklight \
     xserver-xorg-input-synaptics xserver-xorg-video-intel
-
-  apt autoremove --purge \
-    yelp
 fi
 
 
 # Home server packages.
 if [ "$hostname" = "molniya" ]; then
   apt install \
-    apcupsd hddtemp netdata nfs-common nfs-kernel-server \
-    openjdk-8-jre-headless samba sane-utils tarsnap task-print-server unifi
-
-  apt install \
-    --no-install-recommends --target-release buster-backports \
-      youtube-dl
+    apcupsd borgbackup certbot cups docker.io mdadm minidlna netdata \
+    nfs-common nfs-kernel-server nginx-light python3-certbot-dns-cloudflare \
+    samba sane-utils sensors-detect tailscale tarsnap xserver-xorg-video-amdgpu
 
   tee /etc/apt/preferences.d/youtube-dl > /dev/null <<- EOF
 	Package: youtube-dl
-	Pin: release a=buster-backports
+	Pin: release a=bullseye-backports
 	Pin-Priority: 500
 	EOF
 
+  apt install \
+    --no-install-recommends \
+      youtube-dl
+
   apt autoremove --purge \
-    bluetooth wpasupplicant yelp
+    bluetooth dhcpcd5 wpasupplicant yelp
 fi
 
 
@@ -238,7 +238,7 @@ if [ "$hostname" = "salyut" ]; then
     fbi kodi kodi-visualization-shadertoy nfs-common
 
   apt autoremove --purge \
-    bluetooth dhcpcd5 pi-bluetooth wpasupplicant
+    avahi-daemon bluetooth dhcpcd5 pi-bluetooth wpasupplicant
 fi
 
 
@@ -248,7 +248,7 @@ if \
   [ "$hostname" = "voskhod" ]
 then
   apt install \
-    certbot nginx-extras
+    certbot nginx-extras python3-certbot-dns-cloudflare
 
   apt autoremove --purge \
     awscli 'google-*' 'python*-boto*'
