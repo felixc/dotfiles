@@ -70,5 +70,8 @@ user_pref("security.dialog_enable_delay", 0);
 // Don't warn about making changes in about:config
 user_pref("general.warnOnAboutConfig", false);
 
+// Make scrollbars wider than the default
+user_pref("widget.non-native-theme.scrollbar.size.override", 28);
+
 // Load userChrome.css at startup
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
