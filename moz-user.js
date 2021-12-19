@@ -29,7 +29,7 @@ user_pref("browser.search.defaultenginename", "Google");
 user_pref("browser.search.suggest.enabled", false);
 
 // Accepted languages
-user_pref("intl.accept_languages", "en-ca,en-gb,en,sv,es,fr");
+user_pref("intl.accept_languages", "en-ca,en-gb,en,en-us,sv,es,fr");
 
 // Reset print-to-file filename to sensible default
 user_pref("print.print_to_filename", "~/mozilla.pdf");
