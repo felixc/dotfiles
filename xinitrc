@@ -20,7 +20,7 @@ xsetroot -cursor_name left_ptr &
 [ -f $HOME/.Xresources ] && xrdb -merge $HOME/.Xresources &
 if existsp feh && [ -d $HOME/img/wallpaper ]; then
   (while true; do
-     feh --no-fehbg --bg-scale $(find -L $HOME/img/wallpaper -type f | shuf -n1);
+     feh --no-fehbg --bg-fill $(find -L $HOME/img/wallpaper -type f | shuf -n1);
      sleep $(( 10 * 60 ));
    done) &
 fi
