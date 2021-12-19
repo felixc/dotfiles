@@ -7,6 +7,7 @@ existsp() {
 }
 
 existsp x-terminal-emulator ||
+  { existsp urxvtc && alias x-terminal-emulator=urxvtc; } ||
   { existsp urxvt && alias x-terminal-emulator=urxvt; } ||
   { existsp gnome-terminal && alias x-terminal-emulator=gnome-terminal; } ||
   { alias x-terminal-emulator=xterm; }
@@ -28,6 +29,7 @@ fi
 existsp keychain && keychain --quiet && . $HOME/.keychain/*-sh*
 existsp xbindkeys && xbindkeys &
 existsp xscreensaver && xscreensaver -nosplash &
+existsp urxvtd && urxvtd --quiet --opendisplay --fork
 existsp anacron && anacron -t $HOME/.anacrontab -S $HOME/.anacronspool &
 existsp supervise && existsp offlineimap && supervise $HOME/msg/.offlineimap &
 existsp git-annex && ( sleep 90 && git-annex assistant --autostart ) &
