@@ -1,0 +1,10 @@
+#!/bin/sh
+
+urxvtc "$@"
+if [ $? -eq 2 ]; then
+  urxvtd --quiet --opendisplay --fork
+  urxvtc "$@"
+  if [ $? -eq 2 ]; then
+    urxvt "$@"
+  fi
+fi

@@ -1,5 +1,14 @@
-"x-terminal-emulator"
+"t"
 Mod4 + Return
+
+"e"
+Mod4 + backslash
+
+"gnome-screenshot"
+Mod2 + Mod4 + Print
+
+"gnome-screenshot --interactive"
+Shift + Mod2 + Mod4 + Print
 
 "xscreensaver-command -lock"
 Mod4 + s
