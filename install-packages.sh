@@ -42,10 +42,21 @@ EOF
 
 # The home server needs to install some tools from non-standard sources.
 if [ "$hostname" = "molniya" ]; then
-  apt install curl gnupg
+  if { \
+       [ ! -f /usr/share/keyrings/tarsnap-archive.gpg ] || \
+       [ ! -f /usr/share/keyrings/tailscale-archive.gpg ]; \
+     } && { \
+       ( ! command -v curl > /dev/null ) || \
+       ( ! command -v gpg > /dev/null ) \
+     }
+  then
+    apt install curl gnupg
+  fi
 
-  curl -fsSL https://pkg.tarsnap.com/tarsnap-deb-packaging-key.asc \
-    | gpg --dearmor > /usr/share/keyrings/tarsnap-archive.gpg
+  if [ ! -f /usr/share/keyrings/tarsnap-archive.gpg ]; then
+    curl -fsSL https://pkg.tarsnap.com/tarsnap-deb-packaging-key.asc \
+      | gpg --dearmor > /usr/share/keyrings/tarsnap-archive.gpg
+  fi
   tee /etc/apt/preferences.d/limit-tarsnap-repo > /dev/null <<-EOF
 	Package: *
 	Pin: origin pkg.tarsnap.com
@@ -55,8 +66,10 @@ if [ "$hostname" = "molniya" ]; then
 	deb [signed-by=/usr/share/keyrings/tarsnap-archive.gpg] http://pkg.tarsnap.com/deb/bullseye ./
 	EOF
 
-  curl -fsSL https://pkgs.tailscale.com/stable/debian/bullseye.gpg \
-    | gpg --dearmor > /usr/share/keyrings/tailscale-archive.gpg
+  if [ ! -f /usr/share/keyrings/tailscale-archive.gpg ]; then
+    curl -fsSL https://pkgs.tailscale.com/stable/debian/bullseye.gpg \
+      | gpg --dearmor > /usr/share/keyrings/tailscale-archive.gpg
+  fi
   tee /etc/apt/preferences.d/limit-tailscale-repo > /dev/null <<-EOF
 	Package: *
 	Pin: origin pkgs.tailscale.com
