@@ -81,16 +81,7 @@ if [ "$hostname" = "molniya" ]; then
 fi
 
 
-# Main desktop needs some things from non-standard sources.
-if [ "$hostname" = "mir" ]; then
-  tee /etc/apt/sources.list.d/deb-multimedia.list > /dev/null <<- EOF
-	deb http://www.deb-multimedia.org  bullseye            main contrib non-free
-	deb http://www.deb-multimedia.org  bullseye-backports  main contrib non-free
-	EOF
-fi
-
-
-# Machines for everyday personal use need to support i386 as well.
+# Machines for everyday personal use need to support i386 as well (for games).
 if \
   [ "$hostname" = "mir" ] || \
   [ "$hostname" = "zond" ]
@@ -196,10 +187,10 @@ if [ "$hostname" = "mir" ]; then
     fonts-ebgaramond fonts-ebgaramond-extra fonts-lato fonts-linuxlibertine \
     fonts-ocr-a fonts-opensymbol fonts-sil-charis fonts-sil-gentium \
     fonts-vollkorn fonts-yanone-kaffeesatz geeqie gnome-font-viewer ledger \
-    libdvdcss2 neomutt notmuch notmuch-mutt offlineimap python-keyring \
-    python-ledger signing-party texlive texlive-bibtex-extra \
-    texlive-font-utils texlive-fonts-extra texlive-fonts-recommended \
-    texlive-pictures texlive-pstricks texlive-xetex xsane
+    libdvd-pkg neomutt notmuch notmuch-mutt offlineimap3 python3-keyring \
+    signing-party texlive texlive-bibtex-extra texlive-font-utils \
+    texlive-fonts-extra texlive-fonts-recommended texlive-pictures \
+    texlive-pstricks texlive-xetex xsane
 
   tee /etc/apt/preferences.d/backports-nvidia-driver > /dev/null <<- EOF
 	Package: linux-headers-amd64 nvidia-driver nvidia-driver-libs
