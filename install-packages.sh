@@ -92,7 +92,7 @@ fi
 
 # To start, get into a clean and ready state.
 apt update
-apt upgrade
+apt --yes upgrade
 
 
 # Base packages used on all systems.
