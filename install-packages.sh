@@ -217,9 +217,9 @@ fi
 # Home server packages.
 if [ "$hostname" = "molniya" ]; then
   apt install \
-    apcupsd borgbackup certbot cups docker.io mdadm minidlna netdata \
+    apcupsd borgbackup certbot docker.io lm-sensors mdadm minidlna netdata \
     nfs-common nfs-kernel-server nginx-light python3-certbot-dns-cloudflare \
-    samba sane-utils sensors-detect tailscale tarsnap xserver-xorg-video-amdgpu
+    tailscale tarsnap xserver-xorg-video-amdgpu
 
   tee /etc/apt/preferences.d/youtube-dl > /dev/null <<- EOF
 	Package: youtube-dl
