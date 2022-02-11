@@ -5,7 +5,7 @@ set -eux
 
 # We'll use this to specialize our installation.
 hostname=$(hostname --short)
-
+architecture=$(dpkg --print-architecture)
 
 # First we have to set up our installation sources.
 tee /etc/apt/sources.list > /dev/null << EOF
@@ -114,7 +114,7 @@ elif lscpu | grep -q "AuthenticAMD"; then
       amd64-microcode
 fi
 
-if [ "$(dpkg --print-architecture)" = "amd64" ]; then
+if [ "$architecture" = "amd64" ]; then
   if \
     [ "$hostname" = "vostok" ] || \
     [ "$hostname" = "voskhod" ]
