@@ -11,6 +11,10 @@
 ; Search for files in a custom load-path
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
 
+; Keep customizations in a separate file
+(setq custom-file (concat user-emacs-directory "custom.el"))
+(load custom-file t)
+
 ; Manage packages
 (require 'my-package-management)
 
