@@ -70,12 +70,6 @@ if command -v xmonad > /dev/null; then
   xmonad --recompile
 fi
 
-# Get cert for keyserver
-if [ ! -f "$HOME/.gnupg/sks-keyservers.netCA.pem" ]; then
-  wget --quiet https://sks-keyservers.net/sks-keyservers.netCA.pem \
-    -O "$HOME/.gnupg/sks-keyservers.netCA.pem"
-fi
-
 # Let's get some icons for use in our dzen display
 if [ ! -d "$pwd/dzen/icons" ]; then;
   wget --quiet https://bitbucket.org/jerronymous/dotfiles/raw/d8b5855a5ec6f44a4e5ac9c5d6e94ea98246b7cc/.xmonad/dzen/icon-packs/xbm8x8-0.1.tar.gz
