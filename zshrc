@@ -51,6 +51,9 @@ KEYBOARD_HACK=\'
 # Allows the use of # comments in interactive shells
 setopt interactive_comments
 
+# Look up commands in subdirs under $PATH; allows for commands with slashes
+setopt PATH_DIRS
+
 # Filename generation pattern options
 setopt extended_glob nomatch
 
