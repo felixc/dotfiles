@@ -13,7 +13,7 @@ dest_path="/depot/mir"
 
 /usr/bin/nice --adjustment 15 /usr/bin/ionice --class 2 --classdata 5 \
   /usr/bin/rsync \
-    --archive --acls --xattrs --copy-unsafe-links \
+    --archive --acls --xattrs --copy-unsafe-links --hard-links \
     --fuzzy --link-dest="../daily-1" \
     --delete-delay --ignore-errors \
     --exclude-from="$HOME/cfg/backup-exclude" \
