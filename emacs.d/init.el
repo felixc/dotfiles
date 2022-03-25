@@ -62,6 +62,9 @@
 ; Do not make backups
 (setq make-backup-files nil)
 
+; Do not make lockfiles
+(setq create-lockfiles nil)
+
 ; Temporary auto-save files go in the temp directory
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
