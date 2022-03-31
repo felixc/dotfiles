@@ -40,6 +40,9 @@ set sidebar_width="28"
 set wait_key="no"
 set wrap="125"
 
+set ts_enabled="yes"
+set ts_status_format="mutt%?n? (%n)?"
+
 set charset="utf-8"
 set send_charset="utf-8"
 
