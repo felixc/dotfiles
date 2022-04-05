@@ -132,8 +132,7 @@ fi
 if \
   [ "$hostname" = "vostok" ] || \
   [ "$hostname" = "voskhod" ] || \
-  [ "$hostname" = "molniya" ] || \
-  [ "$hostname" = "salyut" ]
+  [ "$hostname" = "molniya" ]
 then
   apt install openssh-server
 
@@ -233,16 +232,6 @@ if [ "$hostname" = "molniya" ]; then
 
   apt autoremove --purge \
     bluetooth dhcpcd5 wpasupplicant yelp
-fi
-
-
-# Media centre packages.
-if [ "$hostname" = "salyut" ]; then
-  apt install \
-    fbi kodi kodi-visualization-shadertoy nfs-common
-
-  apt autoremove --purge \
-    avahi-daemon bluetooth dhcpcd5 pi-bluetooth wpasupplicant
 fi
 
 
