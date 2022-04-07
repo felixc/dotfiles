@@ -100,11 +100,15 @@ apt install \
   bc curl daemontools debian-keyring dnsutils firmware-linux git make \
   moreutils ripgrep rsync sudo tmux ufw unzip util-linux vim-nox zsh
 
-tee /etc/apt/preferences.d/backports-core-packages > /dev/null << EOF
-Package: amd64-microcode intel-microcode linux-image-amd64 linux-image-cloud-amd64
-Pin: release a=bullseye-backports
-Pin-Priority: 500
-EOF
+if [ "$hostname" != "mir" ] || \
+   apt-cache showpkg nvidia-graphics-drivers | grep -q '~bpo.*backports'
+then
+  tee /etc/apt/preferences.d/backports-core-packages > /dev/null <<- EOF
+	Package: amd64-microcode intel-microcode linux-image-amd64 linux-image-cloud-amd64
+	Pin: release a=bullseye-backports
+	Pin-Priority: 500
+	EOF
+fi
 
 if lscpu | grep -q "GenuineIntel"; then
   apt install \
@@ -191,11 +195,13 @@ if [ "$hostname" = "mir" ]; then
     texlive-fonts-extra texlive-fonts-recommended texlive-pictures \
     texlive-pstricks texlive-xetex xsane
 
-  tee /etc/apt/preferences.d/backports-nvidia-driver > /dev/null <<- EOF
-	Package: linux-headers-amd64 nvidia-driver nvidia-driver-libs
+  if apt-cache showpkg nvidia-graphics-drivers | grep -q '~bpo.*backports'; then
+    tee /etc/apt/preferences.d/backports-nvidia-driver > /dev/null <<- EOF
+	Package: linux-headers-amd64 src:nvidia-graphics-drivers
 	Pin: release a=bullseye-backports
 	Pin-Priority: 500
 	EOF
+  fi
 
   apt install \
       linux-headers-amd64 nvidia-driver nvidia-driver-libs nvidia-driver-libs:i386
