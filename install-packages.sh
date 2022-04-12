@@ -263,5 +263,5 @@ sed -Ei \
 
 # Finally, clean up after ourselves.
 apt autoremove --purge
-apt purge $(dpkg -l | awk '/^rc/ { print $2 }')
+apt purge $(dpkg -l | awk -v ORS=" " '/^rc/ { print $2 } END { printf("\n"); }')
 apt clean
