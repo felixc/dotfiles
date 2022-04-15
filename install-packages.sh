@@ -166,12 +166,12 @@ then
     gnome-screenshot gnupg-agent gnupg2 gparted gron gvfs-backends imagemagick \
     inkscape ipython3 irssi irssi-scripts keychain lbdb \
     libghc-xmonad-contrib-dev libghc-xmonad-dev libsecret-tools libssl-dev \
-    lightdm net-tools msmtp nfs-common numlockx pass pavucontrol pulseaudio \
-    pylint3 python2 python3 python3-flake8 python3-venv rxvt-unicode scdaemon \
-    shellcheck steam strace ttf-bitstream-vera ttf-mscorefonts-installer \
-    ttf-xfree86-nonfree unicode-screensaver unifont virtualenv vlc w3m wmctrl \
-    xbindkeys xsel xinit xlsx2csv xmonad xorg xscreensaver \
-    xscreensaver-data-extra xscreensaver-gl xscreensaver-gl-extra \
+    lightdm net-tools msmtp ncal nfs-common numlockx pass pavucontrol \
+    pulseaudio pylint3 python3 python3-flake8 python3-venv rxvt-unicode \
+    scdaemon shellcheck steam strace ttf-bitstream-vera \
+    ttf-mscorefonts-installer ttf-xfree86-nonfree unicode-screensaver unifont \
+    virtualenv vlc w3m wmctrl xbindkeys xsel xinit xlsx2csv xmonad xorg \
+    xscreensaver xscreensaver-data-extra xscreensaver-gl xscreensaver-gl-extra \
     xscreensaver-screensaver-bsod xserver-xorg-input-all
 
   apt install \
@@ -186,14 +186,13 @@ fi
 # Desktop packages.
 if [ "$hostname" = "mir" ]; then
   apt install \
-    cups darktable fonts-cantarell fonts-dejavu fonts-dejavu-extra \
-    fonts-ebgaramond fonts-ebgaramond-extra fonts-lato fonts-linuxlibertine \
-    fonts-ocr-a fonts-opensymbol fonts-sil-charis fonts-sil-gentium \
-    fonts-vollkorn fonts-yanone-kaffeesatz geeqie gnome-font-viewer ledger \
-    libdvd-pkg neomutt notmuch notmuch-mutt offlineimap3 python3-keyring \
-    signing-party texlive texlive-bibtex-extra texlive-font-utils \
-    texlive-fonts-extra texlive-fonts-recommended texlive-pictures \
-    texlive-pstricks texlive-xetex xsane
+    darktable fonts-cantarell fonts-dejavu fonts-dejavu-extra fonts-ebgaramond \
+    fonts-ebgaramond-extra fonts-lato fonts-linuxlibertine fonts-ocr-a \
+    fonts-opensymbol fonts-sil-charis fonts-sil-gentium fonts-vollkorn \
+    fonts-yanone-kaffeesatz geeqie gnome-font-viewer ledger libdvd-pkg neomutt \
+    notmuch notmuch-mutt offlineimap3 python3-keyring signing-party texlive \
+    texlive-bibtex-extra texlive-font-utils texlive-fonts-extra \
+    texlive-fonts-recommended texlive-pictures texlive-pstricks texlive-xetex
 
   if apt-cache showpkg nvidia-graphics-drivers | grep -q '~bpo.*backports'; then
     tee /etc/apt/preferences.d/backports-nvidia-driver > /dev/null <<- EOF
@@ -222,9 +221,10 @@ fi
 # Home server packages.
 if [ "$hostname" = "molniya" ]; then
   apt install \
-    apcupsd borgbackup certbot docker.io lm-sensors mdadm minidlna netdata \
-    nfs-common nfs-kernel-server nginx-light python3-certbot-dns-cloudflare \
-    tailscale tarsnap xserver-xorg-video-amdgpu
+    apcupsd borgbackup certbot docker.io kodi kodi-vfs-libarchive libcec6 \
+    lm-sensors mdadm minidlna netdata nfs-common nfs-kernel-server nginx-light \
+    python3-certbot-dns-cloudflare rtorrent tailscale tarsnap \
+    xserver-xorg-video-amdgpu
 
   tee /etc/apt/preferences.d/youtube-dl > /dev/null <<- EOF
 	Package: youtube-dl
