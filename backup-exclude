@@ -21,6 +21,7 @@ img/tags/
 .keychain/
 .lbdb/
 .lesshst
+.local/share/containers/
 .local/share/feral-interactive/
 .local/tmp/
 .mbwarband/
@@ -49,6 +50,7 @@ target/
 .thumbnails/
 trash/
 .venv/
+.wine/
 wrk/felixcrux.com/files/doc/
 wrk/felixcrux.com/out/
 wrk/nginx/letsencrypt/
