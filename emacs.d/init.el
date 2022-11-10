@@ -13,7 +13,8 @@
 
 ; Keep customizations in a separate file
 (setq custom-file (concat user-emacs-directory "custom.el"))
-(load custom-file t)
+(when (file-exists-p custom-file)
+  (load custom-file))
 
 ; Manage packages
 (require 'my-package-management)
