@@ -31,6 +31,7 @@ existsp xbindkeys && xbindkeys &
 existsp xscreensaver && xscreensaver -nosplash &
 existsp urxvtd && urxvtd --quiet --opendisplay --fork
 existsp anacron && anacron -t $HOME/.anacrontab -S $HOME/.anacronspool &
+existsp supervise && existsp offlineimap && supervise $HOME/msg/.offlineimap &
 existsp emacs && emacs --daemon &
 
 # Foreground apps
