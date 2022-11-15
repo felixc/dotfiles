@@ -56,3 +56,5 @@
   amend-date-now = !GIT_COMMITTER_DATE=\"$(date)\" git commit --amend --no-edit --date=\"$(date)\"
   unstage = reset HEAD --
   it = !git init && git commit --allow-empty --message='Initial commit'
+  up-pr = "!uppr() { if [ $(git symbolic-ref --short HEAD) = 'main' ]; then; echo 'Not allowed on main branch!'; return; else; git push --force --no-verify; fi; }; uppr"
+  merge-pr = !"mergepr() { git checkout main && git pull && git checkout $1 && git rebase main && git checkout main && git merge $1 && git push --no-verify && git branch --delete $1 && git push --no-verify --delete origin $1; git fetch; }; mergepr"
