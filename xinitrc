@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PATH=$PATH:/sbin/:/usr/sbin/:$HOME/bin/
+PATH=$PATH:/sbin:/usr/sbin:$HOME/bin
 
 existsp() {
   command -v $1 > /dev/null;
