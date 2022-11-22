@@ -166,7 +166,7 @@ then
     gnome-screenshot gnupg-agent gnupg2 gparted gron gvfs-backends imagemagick \
     inkscape ipython3 irssi irssi-scripts keychain lbdb \
     libghc-xmonad-contrib-dev libghc-xmonad-dev libsecret-tools libssl-dev \
-    lightdm net-tools msmtp ncal nfs-common numlockx pass pavucontrol \
+    lightdm net-tools msmtp ncal nemo nfs-common numlockx pass pavucontrol \
     pulseaudio pylint3 python3 python3-flake8 python3-venv rxvt-unicode \
     scdaemon shellcheck steam strace ttf-bitstream-vera \
     ttf-mscorefonts-installer ttf-xfree86-nonfree unicode-screensaver unifont \
@@ -174,12 +174,8 @@ then
     xscreensaver xscreensaver-data-extra xscreensaver-gl xscreensaver-gl-extra \
     xscreensaver-screensaver-bsod xserver-xorg-input-all
 
-  apt install \
-    --no-install-recommends \
-      nautilus
-
   apt autoremove --purge \
-    yelp
+    yelp avahi-daemon xdg-desktop-portal gnome-online-accounts
 fi
 
 
@@ -206,7 +202,7 @@ if [ "$hostname" = "mir" ]; then
       linux-headers-amd64 nvidia-driver nvidia-driver-libs nvidia-driver-libs:i386
 
   apt autoremove --purge \
-    wpasupplicant
+    wpasupplicant modemmanager
 fi
 
 
