@@ -217,8 +217,8 @@ fi
 # Home server packages.
 if [ "$hostname" = "molniya" ]; then
   apt install \
-    apcupsd borgbackup certbot docker.io kodi kodi-vfs-libarchive libcec6 \
-    lm-sensors mdadm minidlna netdata nfs-common nfs-kernel-server nginx-light \
+    apcupsd borgbackup certbot kodi kodi-vfs-libarchive libcec6 lm-sensors \
+    mdadm minidlna netdata nfs-common nfs-kernel-server nginx-light podman \
     python3-certbot-dns-cloudflare rtorrent tailscale tarsnap \
     xserver-xorg-video-amdgpu
 
