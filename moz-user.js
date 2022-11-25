@@ -19,6 +19,9 @@ user_pref("browser.sessionstore.restore_on_demand", true);
 // Don't switch to new tabs upon opening them
 user_pref("browser.tabs.loadInBackground", true);
 
+// Don't accidentally quit the whole browser when hitting Ctrl-Q
+user_pref("browser.quitShortcut.disabled", true);
+
 // Don't show suggested sites in the New Tab page
 user_pref("browser.newtabpage.enhanced", false);
 
