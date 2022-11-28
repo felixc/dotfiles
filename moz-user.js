@@ -76,5 +76,8 @@ user_pref("general.warnOnAboutConfig", false);
 // Make scrollbars wider than the default
 user_pref("widget.non-native-theme.scrollbar.size.override", 28);
 
+// Don't allow sites to make scrollbars narrow
+user_pref("layout.css.scrollbar-width-thin.disabled", true);
+
 // Load userChrome.css at startup
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
