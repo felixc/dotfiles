@@ -66,6 +66,11 @@ setopt print_exit_value
 # Emacs-style shortcuts
 bindkey -e
 
+# Allow editing the command line in $EDITOR with Ctrl-X-E
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
+
 # When jumping/deleting words, treat punctuation as word boundaries
 WORDCHARS=""
 
