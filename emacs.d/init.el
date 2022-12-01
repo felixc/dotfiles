@@ -95,6 +95,10 @@
 
 (global-set-key (kbd "C-a") 'move-to-start-of-line)
 
+; Select entire words, sentences, paragraphs... (tokens, expressions...)  at a time
+(use-package expand-region
+  :bind ("C-=" . er/expand-region))
+
 ; Better buffer management
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
