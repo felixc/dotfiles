@@ -17,9 +17,6 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 
-# Immediately append to the history file, rather than overwriting at exit
-setopt inc_append_history
-
 # Do not save duplicate history entries, even if they are not consecutive
 setopt hist_ignore_all_dups
 
