@@ -227,10 +227,7 @@
 (delete-selection-mode t)
 
 ; Line numbering
-(use-package linum
-  :config
-  (global-linum-mode t)
-  (setq column-number-mode t))
+(global-display-line-numbers-mode)
 
 ; Scroll only one line at a time
 (setq scroll-step 1)
