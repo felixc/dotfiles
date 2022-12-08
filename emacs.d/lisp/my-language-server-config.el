@@ -8,7 +8,6 @@
             ([tab] . company-indent-or-complete-common)
             ("C-?" . lsp-ui-doc-glance)
             ("M-." . lsp-ui-peek-find-definitions)
-            ("M-?" . lsp-ui-peek-find-references)))
-  (use-package company-lsp))
+            ("M-?" . lsp-ui-peek-find-references))))
 
 (provide 'my-language-server-config)
