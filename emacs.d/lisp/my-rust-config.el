@@ -5,6 +5,7 @@
   :config
     (add-to-list 'exec-path "~/.cargo/bin")
     (setq rust-format-on-save t)
+    (setq rust-rustfmt-bin "cargo +nightly rustfmt")
     (add-hook 'rust-mode-hook '(lambda ()
       (setq fill-column 100)))
     (use-package flycheck-rust
