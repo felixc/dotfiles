@@ -306,8 +306,8 @@
 (global-set-key (kbd "M-i") 'imenu)
 
 ; Quickly jump around to arbitrary points
-(use-package ace-jump-mode
-  :bind ("C-l" . ace-jump-mode))
+(use-package avy
+  :bind ("C-l" . avy-goto-char))
 
 ; Refactor by editing multiple regions simultaneously
 (use-package iedit
