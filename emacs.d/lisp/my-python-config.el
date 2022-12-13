@@ -5,9 +5,8 @@
   :interpreter ("python3" . python-mode)
   :config
   (use-package elpy
-    :init
-    (elpy-enable)
     :config
+    (elpy-enable)
     (setq elpy-rpc-python-command "python3")
     (setq elpy-formatter "black")
     (add-hook 'elpy-mode-hook (lambda ()
