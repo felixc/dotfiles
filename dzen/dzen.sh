@@ -214,7 +214,7 @@ while true; do
 
       if (( $NET_IS_WIFI )); then
         NET_ESSID=$(/sbin/iw dev $NET_INTERFACE link | sed -ne "s/.*SSID: \(.*\)/\1/p")
-        NET_LINK_QUALITY=$(/sbin/iw dev wlan0 link | sed -n 's/.*signal: -\(.*\) .*/\1/p')
+        NET_LINK_QUALITY=$(/sbin/iw dev $NET_INTERFACE link | sed -n 's/.*signal: -\(.*\) .*/\1/p')
         NET_BIT_RATE=$(/sbin/iw dev $NET_INTERFACE link | sed -ne "s/.*bitrate: \([0-9.]*\) MBit.*/\1/p")" Mb/s"
 
         # Converting dB log scale from 84 to 63 (minus sign dropped) into a linear 0–5 one:
