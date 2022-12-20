@@ -173,14 +173,8 @@
 ; Syntax highlighting
 (global-font-lock-mode t)
 
-; Show trailing whitespace and tabs
-(setq whitespace-style '(face tabs trailing))
-(global-whitespace-mode t)
-(diminish 'global-whitespace-mode)
-
-; Delete trailing whitespace in *new* files, but don't mess with existing ones
-(require 'my-cond-whitespace-del)
-(add-hook 'write-file-hooks 'maybe-delete-trailing-whitespace)
+; Highlight and delete unwanted whitespace
+(require 'my-whitespace-cleanup)
 
 ; Interactive-do mode
 (use-package ido
