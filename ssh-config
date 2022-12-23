@@ -4,7 +4,7 @@ Host github.com gitlab.com
   User git
 
 Host *.rsync.net
-  User 57323
+  User de2397
 
 Host mir molniya proton salyut almaz voskhod vostok zond
   HostName %h.felixcrux.com
