@@ -182,13 +182,14 @@ fi
 # Desktop packages.
 if [ "$hostname" = "mir" ]; then
   apt install \
-    darktable fonts-cantarell fonts-dejavu fonts-dejavu-extra fonts-ebgaramond \
-    fonts-ebgaramond-extra fonts-lato fonts-linuxlibertine fonts-ocr-a \
-    fonts-opensymbol fonts-sil-charis fonts-sil-gentium fonts-vollkorn \
-    fonts-yanone-kaffeesatz geeqie gnome-font-viewer ledger libdvd-pkg neomutt \
-    notmuch notmuch-mutt offlineimap3 python3-keyring signing-party texlive \
-    texlive-bibtex-extra texlive-font-utils texlive-fonts-extra \
-    texlive-fonts-recommended texlive-pictures texlive-pstricks texlive-xetex
+    brotli darktable fonts-cantarell fonts-dejavu fonts-dejavu-extra \
+    fonts-ebgaramond fonts-ebgaramond-extra fonts-lato fonts-linuxlibertine \
+    fonts-ocr-a fonts-opensymbol fonts-sil-charis fonts-sil-gentium \
+    fonts-vollkorn fonts-yanone-kaffeesatz geeqie gnome-font-viewer goaccess \
+    ledger libdvd-pkg neomutt notmuch notmuch-mutt offlineimap3 \
+    par2 python3-keyring signing-party texlive texlive-bibtex-extra \
+    texlive-font-utils texlive-fonts-extra texlive-fonts-recommended \
+    texlive-pictures texlive-pstricks texlive-xetex
 
   if apt-cache showpkg nvidia-graphics-drivers | grep -q '~bpo.*backports'; then
     tee /etc/apt/preferences.d/backports-nvidia-driver > /dev/null <<- EOF
