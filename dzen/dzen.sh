@@ -219,7 +219,7 @@ while true; do
 
         # Converting dB log scale from 84 to 63 (minus sign dropped) into a linear 0–5 one:
         # 5 * (1 - (ln(x) - ln(63))/(ln(84) - ln(63))) = 77.0089 - ln(x)/0.0575
-        NET_GRAPH=$(echo "77.0089 - l($NET_LINK_QUALITY)/0.0575" | bc -l | dzen2-gdbar -max 5 -min 0 -h 20 -ss 1 -w 33 -sw 5 -s o -nonl -bg $COL_GRAPH_BORDER -fg $COL_HIGHLIGHT)
+        NET_GRAPH=$(echo "77.0089 - l($NET_LINK_QUALITY)/0.0575" | bc -l | dzen2-gdbar -max 5 -min 0 -h $GRAPH_HEIGHT -ss 1 -w 33 -sw 5 -s o -nonl -bg $COL_GRAPH_BORDER -fg $COL_HIGHLIGHT)
 
         echo "^tw()$SEPARATOR $NET_ICON $NET_GRAPH $NET_RX_RATE $NET_RX_ICON  $NET_TX_RATE $NET_TX_ICON " > $NET_PIPE
         echo "  ESSID: $NET_ESSID\n  IP: $NET_IP\n  Bit Rate: $NET_BIT_RATE" > $NET_PIPE
@@ -263,7 +263,7 @@ while true; do
       BAT_ICON=$BAT_ICON_CHARGING
     fi
 
-    BAT_GRAPH=$(echo $(( $BAT_PCT_REMAINING + 1 )) | dzen2-gdbar -h 20 -ss 1 -sw 4 -w 48 -s o -nonl -bg $COL_GRAPH_BORDER -fg $BAT_GRAPH_COL)
+    BAT_GRAPH=$(echo $(( $BAT_PCT_REMAINING + 1 )) | dzen2-gdbar -h $GRAPH_HEIGHT -ss 1 -sw 4 -w 48 -s o -nonl -bg $COL_GRAPH_BORDER -fg $BAT_GRAPH_COL)
     echo "$SEPARATOR $BAT_ICON $BAT_TIME_REMAINING ($BAT_PCT_REMAINING%) $BAT_GRAPH " > $BAT_PIPE
 
     BAT_COUNTER=0
