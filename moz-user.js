@@ -71,7 +71,7 @@ user_pref("browser.fixup.alternate.enabled", false);
 user_pref("security.dialog_enable_delay", 0);
 
 // Don't warn about making changes in about:config
-user_pref("general.warnOnAboutConfig", false);
+user_pref("browser.aboutConfig.showWarning", false);
 
 // Make scrollbars wider than the default
 user_pref("widget.non-native-theme.scrollbar.size.override", 28);
