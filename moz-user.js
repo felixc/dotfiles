@@ -74,7 +74,8 @@ user_pref("security.dialog_enable_delay", 0);
 user_pref("browser.aboutConfig.showWarning", false);
 
 // Make scrollbars wider than the default
-user_pref("widget.non-native-theme.scrollbar.size.override", 28);
+user_pref("widget.gtk.overlay-scrollbars.enabled", false);
+user_pref("widget.non-native-theme.scrollbar.size.override", 30);
 
 // Don't allow sites to make scrollbars narrow
 user_pref("layout.css.scrollbar-width-thin.disabled", true);
