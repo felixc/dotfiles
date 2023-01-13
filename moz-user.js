@@ -86,3 +86,6 @@ user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 // Re-enable deprecated "compact mode" UI option
 user_pref("browser.compactmode.show", true);
 user_pref("browser.uidensity", 1);
+
+// Never show bookmarks toolbar
+user_pref("browser.toolbars.bookmarks.visibility", "never");
