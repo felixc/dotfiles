@@ -1,0 +1,9 @@
+[global]
+origin = top-center
+transparency = 20
+idle_threshold = 10m
+font = Inconsolata 12
+icon_path = /usr/share/icons/gnome/16x16/
+enable_recursive_icon_lookup = true
+corner_radius = 1
+padding = 4

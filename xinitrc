@@ -29,6 +29,7 @@ fi
 existsp keychain && keychain --quiet && . $HOME/.keychain/*-sh*
 existsp xbindkeys && xbindkeys &
 existsp xscreensaver && xscreensaver -nosplash &
+existsp dunst && dunst &
 existsp urxvtd && urxvtd --quiet --opendisplay --fork
 existsp anacron && anacron -t $HOME/.anacrontab -S $HOME/.anacronspool &
 existsp supervise && existsp offlineimap && supervise $HOME/msg/.offlineimap &

@@ -24,6 +24,9 @@ ln -srf "$pwd/gtk.css" "$HOME/.config/gtk-3.0/gtk.css"
 mkdir -p "$HOME/.config/fontconfig"
 ln -srf "$pwd/fonts.conf" "$HOME/.config/fontconfig/fonts.conf"
 
+mkdir -p "$HOME/.config/dunst"
+ln -srf "$pwd/dunstrc" "$HOME/.config/dunst/dunstrc"
+
 mkdir -p "$HOME/.gnupg"
 ln -srf "$pwd/gpg.conf" "$HOME/.gnupg/gpg.conf"
 ln -srf "$pwd/scdaemon.conf" "$HOME/.gnupg/scdaemon.conf"

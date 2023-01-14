@@ -160,8 +160,8 @@ if \
   [ "$hostname" = "zond" ]
 then
   apt install \
-    alsa-utils anacron borgbackup build-essential chromium dzen2 emacs entr \
-    eog evince feh ffmpeg fonts-dejavu fonts-inconsolata fonts-liberation \
+    alsa-utils anacron borgbackup build-essential chromium dunst dzen2 emacs \
+    entr eog evince feh ffmpeg fonts-dejavu fonts-inconsolata fonts-liberation \
     fonts-symbola gdb gimp git-email git-extras gnome-disk-utility \
     gnome-screenshot gnupg-agent gnupg2 gparted gron gvfs-backends imagemagick \
     inkscape ipython3 irssi irssi-scripts keychain lbdb \
