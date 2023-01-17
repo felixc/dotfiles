@@ -167,7 +167,7 @@ then
     inkscape ipython3 irssi irssi-scripts keychain lbdb \
     libghc-xmonad-contrib-dev libghc-xmonad-dev libsecret-tools libssl-dev \
     lightdm net-tools msmtp ncal nemo nfs-common numlockx pass pavucontrol \
-    pulseaudio pylint3 python3 python3-flake8 python3-venv rxvt-unicode \
+    picom pulseaudio pylint3 python3 python3-flake8 python3-venv rxvt-unicode \
     scdaemon shellcheck steam strace ttf-bitstream-vera \
     ttf-mscorefonts-installer ttf-xfree86-nonfree unicode-screensaver unifont \
     virtualenv vlc w3m wmctrl xbindkeys xsel xinit xlsx2csv xmonad xorg \

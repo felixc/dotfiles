@@ -26,6 +26,7 @@ if existsp feh && [ -d $HOME/img/wallpaper ]; then
 fi
 
 # Helper daemons
+existsp picom && picom -f -I 0.2 -O 0.2 -D 2 --inactive-dim 0.05 -b &
 existsp keychain && keychain --quiet && . $HOME/.keychain/*-sh*
 existsp xbindkeys && xbindkeys &
 existsp xscreensaver && xscreensaver -nosplash &
