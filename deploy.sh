@@ -70,12 +70,3 @@ ln -srf "$pwd/xmonad.hs" "$HOME/.xmonad/xmonad.hs"
 if command -v xmonad > /dev/null; then
   xmonad --recompile
 fi
-
-# Let's get some icons for use in our dzen display
-if [ ! -d "$pwd/dzen/icons" ]; then;
-  wget --quiet https://bitbucket.org/jerronymous/dotfiles/raw/d8b5855a5ec6f44a4e5ac9c5d6e94ea98246b7cc/.xmonad/dzen/icon-packs/xbm8x8-0.1.tar.gz
-  tar -xf xbm8x8-0.1.tar.gz
-  mkdir -p dzen/icons
-  mv xbm8x8/* dzen/icons
-  rm -rf xbm8x8*
-fi
