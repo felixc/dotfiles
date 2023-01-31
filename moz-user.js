@@ -89,3 +89,6 @@ user_pref("browser.uidensity", 1);
 
 // Never show bookmarks toolbar
 user_pref("browser.toolbars.bookmarks.visibility", "never");
+
+// Hide PDF.js sidebar by default
+user_pref("pdfjs.sidebarViewOnLoad", 0);
