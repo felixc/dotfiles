@@ -76,6 +76,7 @@ alias df="df --human-readable --exclude-type tmpfs --exclude-type=devtmpfs"
 alias grep="grep --extended-regexp"
 alias ls="ls --literal --human-readable --hide '__pycache__' --hide 'target'"
 alias rg="rg --smart-case --search-zip"
+alias diff="diff --unified"
 
 # Enable colours for commands if possible
 if existsp dircolors; then
