@@ -11,3 +11,6 @@ Host mir molniya proton salyut almaz voskhod vostok zond
 
 Host *.felixcrux.com
   Port 722
+
+Host !*.felixcrux.com
+  SetEnv TERM=xterm-256color

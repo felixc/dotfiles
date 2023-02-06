@@ -27,6 +27,9 @@ ln -srf "$pwd/fonts.conf" "$HOME/.config/fontconfig/fonts.conf"
 mkdir -p "$HOME/.config/dunst"
 ln -srf "$pwd/dunstrc" "$HOME/.config/dunst/dunstrc"
 
+mkdir -p "$HOME/.config/kitty"
+ln -srf "$pwd/kitty.conf" "$HOME/.config/kitty/kitty.conf"
+
 mkdir -p "$HOME/.gnupg"
 ln -srf "$pwd/gpg.conf" "$HOME/.gnupg/gpg.conf"
 ln -srf "$pwd/scdaemon.conf" "$HOME/.gnupg/scdaemon.conf"
