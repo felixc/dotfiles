@@ -4,6 +4,9 @@ Mod4 + Return
 "e"
 Mod4 + backslash
 
+"nemo"
+Mod4 + f
+
 "gnome-screenshot"
 Mod2 + Mod4 + Print
 
