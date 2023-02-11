@@ -7,29 +7,6 @@ dzen2.foreground: grey80
 dzen2.background: #2c2c32
 
 
-!! URxvt
-URxvt.depth: 32
-URxvt.blurRadius: 5
-URxvt.fadeColor: #0a0a0a
-URxvt.fading: 20
-URxvt.background: [95]#080808
-URxvt.urgentOnBell: true
-URxvt.scrollBar: false
-URxvt.scrollTtyOutput: false
-URxvt.scrollWithBuffer: true
-URxvt.scrollTtyKeypress: true
-URxvt.internalBorder: 8
-URxvt.font: xft:Inconsolata:size=12,xft:Dejavu Sans Mono:pixelsize=24,xft:Symbola,xft:Unifont
-URxvt.perl-ext-common: default,matcher
-URxvt.url-launcher: firefox
-URxvt.matcher.button: 1
-URxvt.termName: xterm-256color
-URxvt.inheritPixmap: true
-URxvt.transparent: true
-URxvt.shading: 10
-URxvt.saveLines: 4096
-
-
 !! Emacs
 Emacs.font: Inconsolata-13
 
