@@ -26,7 +26,7 @@ may be buffer-local, to allow unclean whitespace on a per-file basis.")
   "Does the buffer already contain trailing whitespace?"
   (save-excursion
     (progn (goto-char (point-min))
-           (re-search-forward " +$" nil t))))
+           (re-search-forward "[ \t]+$" nil t))))
 
 (defun buffer-has-tabs-p ()
   "Does the buffer already contain tabs?"
