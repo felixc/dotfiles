@@ -1,9 +1,16 @@
 [global]
 origin = top-center
-transparency = 20
+transparency = 10
 idle_threshold = 10m
 font = Inconsolata 12
 icon_path = /usr/share/icons/gnome/16x16/
 enable_recursive_icon_lookup = true
 corner_radius = 1
 padding = 4
+gap_size = 4
+width = (250, 500)
+offset = 0x28
+alignment = center
+
+[urgency_normal]
+  frame_color = "#1B3C67"
