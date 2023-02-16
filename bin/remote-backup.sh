@@ -7,11 +7,11 @@ set -eux
 period="${1:-daily}"
 case "$period" in
     "daily" )
-        backups_to_keep=7 ;;
+        backups_to_keep=14 ;;
     "weekly" )
-        backups_to_keep=4 ;;
-    "monthly" )
         backups_to_keep=12 ;;
+    "monthly" )
+        backups_to_keep=24 ;;
     * )
         print "Unrecognized backup time period." 1>&2
         exit 1 ;;
