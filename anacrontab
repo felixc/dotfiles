@@ -1,11 +1,13 @@
 SHELL=/bin/sh
 PATH=/home/felix/bin/:/home/felix/.cargo/bin:/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin
 
+1          7  borg-backup            log-cron 'borg-backup.sh'
+
 1         10  remote-backup-daily    log-cron 'remote-backup.sh daily'
 7         15  remote-backup-weekly   log-cron 'remote-backup.sh weekly'
 @monthly  20  remote-backup-monthly  log-cron 'remote-backup.sh monthly'
 
+7         17  back-up-music-weekly   log-cron 'music-backup.sh'
+
 @monthly  30  upgrade-rust           log-cron 'rustup update'
 @monthly  45  upgrade-rust-tools     log-cron "cargo install $(cargo install --list | awk '/    / {all=all$0} END {print all}')"
-
-1          7  borg-backup            log-cron 'borg-backup.sh'
