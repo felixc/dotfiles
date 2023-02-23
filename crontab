@@ -1,4 +1,2 @@
-RANDOM_DELAY=5
-
 @reboot /usr/sbin/anacron -s -S $HOME/.anacronspool -t $HOME/.anacrontab
 @hourly /usr/sbin/anacron -s -S $HOME/.anacronspool -t $HOME/.anacrontab
