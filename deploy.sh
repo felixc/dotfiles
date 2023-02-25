@@ -3,10 +3,10 @@
 set -e
 
 pwd=$(pwd)
-files=(anacrontab aspell.en.pws caffrc emacs.d gitattributes gitconfig \
-       gitignore gtkrc-2.0 ledgerrc mutt nethackrc notmuch-config \
-       offlineimaprc psqlrc signature quiltrc tmux.conf vimrc xbindkeysrc \
-       XCompose xinitrc Xresources xscreensaver zshenv zshrc)
+files=(aspell.en.pws caffrc emacs.d gitattributes gitconfig gitignore \
+       gtkrc-2.0 ledgerrc mutt nethackrc notmuch-config offlineimaprc \
+       psqlrc signature quiltrc tmux.conf vimrc xbindkeysrc XCompose \
+       xinitrc Xresources xscreensaver zshenv zshrc)
 
 for file in $files; do;
   ln -srfT "$pwd/$file" "$HOME/.$file"
@@ -50,7 +50,7 @@ ln -srf "$pwd/ipython_config.py" "$HOME/.ipython/profile_default/ipython_config.
 mkdir -p "$HOME/.ssh"
 ln -srf "$pwd/ssh-config" "$HOME/.ssh/config"
 
-mkdir -p "$HOME/.anacronspool"
+mkdir -p "$HOME/.local/state/anacronspool"
 
 moz_profile_dir=$(find "$HOME/.mozilla/firefox" -name "*.default-beta" -type d 2> /dev/null || echo "")
 if [ -n "$moz_profile_dir" ]; then
