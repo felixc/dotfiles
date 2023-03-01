@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PATH=$PATH:/sbin:/usr/sbin:$HOME/bin
+. /home/felix/.zshenv
 
 existsp() {
   command -v $1 > /dev/null;
