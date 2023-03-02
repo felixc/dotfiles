@@ -37,7 +37,6 @@ existsp emacs && emacs --daemon &
 existsp ssh-add && x-terminal-emulator -e zsh -c ssh-add &
 existsp mutt && x-terminal-emulator -e zsh -c mutt &
 existsp steam && GDK_SCALE=2 steam &
-existsp discord && discord &
 existsp firefox && firefox &
 
 # Windowing environment
