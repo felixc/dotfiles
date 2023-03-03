@@ -26,10 +26,12 @@ fi
 
 # Helper daemons
 existsp picom && picom -f -I 0.2 -O 0.2 -D 2 --inactive-dim 0.05 -b &
-existsp keychain && keychain --quiet && . $HOME/.keychain/*-sh*
-existsp xbindkeys && xbindkeys &
 existsp xscreensaver && xscreensaver -nosplash &
 existsp dunst && dunst &
+
+# Auto-start tools and utilities
+existsp keychain && keychain --quiet && . $HOME/.keychain/*-sh*
+existsp xbindkeys && xbindkeys &
 existsp supervise && existsp offlineimap && supervise $HOME/msg/.offlineimap &
 existsp emacs && emacs --daemon &
 
