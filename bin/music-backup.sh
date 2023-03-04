@@ -15,11 +15,7 @@ rm -rf "$dest_path"/in-progress
     --delete-delay --ignore-errors \
     molniya.felixcrux.com:/depot/music-collection/ "$dest_path"/in-progress
 
-
-set -ux
-
 backups_to_keep=12
-
 /bin/mv -f "$dest_path"/weekly-12 "$dest_path"/obsolete
 offset=1
 while [ $offset -lt $backups_to_keep ]; do
