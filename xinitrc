@@ -24,8 +24,15 @@ if existsp feh && [ -d $HOME/img/wallpaper ]; then
    done) &
 fi
 
-# Helper daemons
-existsp picom && picom -f -I 0.2 -O 0.2 -D 2 --inactive-dim 0.05 -b &
+# Desktop environment
+existsp picom && picom \
+  --experimental-backends --backend glx \
+  --blur-method dual_kawase --blur-strength 3 --blur-background-exclude '!class_g = "kitty"' \
+  --shadow --shadow-exclude 'window_type *= "menu" || window_type = "dock" || window_type = "tooltip" || window_type = "utility"' \
+  --corner-radius 8 --rounded-corners-exclude 'window_type *= "dock"' \
+  --fading --fade-in-step 0.10 --fade-out-step 0.10 \
+  --inactive-dim 0.05 \
+  --daemon &
 existsp xscreensaver && xscreensaver -nosplash &
 existsp dunst && dunst &
 
