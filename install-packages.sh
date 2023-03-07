@@ -44,7 +44,8 @@ EOF
 if [ "$hostname" = "molniya" ]; then
   if { \
        [ ! -f /usr/share/keyrings/tarsnap-archive.gpg ] || \
-       [ ! -f /usr/share/keyrings/tailscale-archive.gpg ]; \
+       [ ! -f /usr/share/keyrings/tailscale-archive.gpg ] || \
+       [ ! -f /usr/share/keyrings/google-archive.gpg ];
      } && { \
        ( ! command -v curl > /dev/null ) || \
        ( ! command -v gpg > /dev/null ) \
@@ -77,6 +78,19 @@ if [ "$hostname" = "molniya" ]; then
 	EOF
   tee /etc/apt/sources.list.d/tailscale.list > /dev/nul <<- EOF
 	deb [signed-by=/usr/share/keyrings/tailscale-archive.gpg] https://pkgs.tailscale.com/stable/debian bullseye main
+	EOF
+
+  if [ ! -f /usr/share/keyrings/google-archive.gpg ]; then
+    curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg \
+      | gpg --dearmor > /usr/share/keyrings/google-archive.gpg
+  fi
+  tee /etc/apt/preferences.d/limit-google-repo > /dev/null <<-EOF
+	Package: *
+	Pin: origin packages.cloud.google.com
+	Pin-Priority: 100
+	EOF
+  tee /etc/apt/sources.list.d/google.list > /dev/nul <<- EOF
+	deb [signed-by=/usr/share/keyrings/google-archive.gpg] https://packages.cloud.google.com/apt coral-edgetpu-stable main
 	EOF
 fi
 
