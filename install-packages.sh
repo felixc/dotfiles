@@ -51,7 +51,7 @@ if [ "$hostname" = "molniya" ]; then
        ( ! command -v gpg > /dev/null ) \
      }
   then
-    apt install curl gnupg
+    apt install --yes curl gnupg
   fi
 
   if [ ! -f /usr/share/keyrings/tarsnap-archive.gpg ]; then
@@ -110,7 +110,7 @@ apt --yes upgrade
 
 
 # Base packages used on all systems.
-apt install \
+apt install --yes \
   bc curl daemontools debian-keyring dnsutils firmware-linux git make \
   moreutils ripgrep rsync sudo tmux ufw unzip util-linux vim-nox zsh
 
@@ -125,11 +125,9 @@ then
 fi
 
 if lscpu | grep -q "GenuineIntel"; then
-  apt install \
-      intel-microcode
+  apt install --yes intel-microcode
 elif lscpu | grep -q "AuthenticAMD"; then
-  apt install \
-      amd64-microcode
+  apt install --yes amd64-microcode
 fi
 
 if [ "$architecture" = "amd64" ]; then
@@ -137,11 +135,9 @@ if [ "$architecture" = "amd64" ]; then
     [ "$hostname" = "vostok" ] || \
     [ "$hostname" = "voskhod" ]
   then
-    apt install \
-      linux-image-cloud-amd64
+    apt install --yes linux-image-cloud-amd64
   else
-    apt install \
-      linux-image-amd64
+    apt install --yes linux-image-amd64
   fi
 fi
 
@@ -152,11 +148,7 @@ if \
   [ "$hostname" = "voskhod" ] || \
   [ "$hostname" = "molniya" ]
 then
-  apt install openssh-server
-
-  apt install \
-    --no-install-recommends \
-      emacs-nox
+  apt install --yes emacs-nox openssh-server
 fi
 
 # Packages for systems where I want to keep track of HDD state.
@@ -164,16 +156,15 @@ if \
   [ "$hostname" = "molniya" ] || \
   [ "$hostname" = "mir" ]
 then
-  apt install exim4 smartmontools
+  apt install --yes smartmontools
 fi
-
 
 # Packages for non-server machines.
 if \
   [ "$hostname" = "mir" ] || \
   [ "$hostname" = "zond" ]
 then
-  apt install \
+  apt install --yes \
     alsa-utils anacron borgbackup build-essential chromium dunst dzen2 emacs \
     entr eog evince feh ffmpeg fonts-dejavu fonts-inconsolata fonts-liberation \
     fonts-symbola gdb gimp git-email git-extras gnome-disk-utility \
@@ -195,7 +186,7 @@ fi
 
 # Desktop packages.
 if [ "$hostname" = "mir" ]; then
-  apt install \
+  apt install --yes \
     brotli darktable fonts-cantarell fonts-dejavu fonts-dejavu-extra \
     fonts-ebgaramond fonts-ebgaramond-extra fonts-lato fonts-linuxlibertine \
     fonts-ocr-a fonts-opensymbol fonts-sil-charis fonts-sil-gentium \
@@ -213,7 +204,7 @@ if [ "$hostname" = "mir" ]; then
 	EOF
   fi
 
-  apt install \
+  apt install --yes \
       linux-headers-amd64 nvidia-driver nvidia-driver-libs nvidia-driver-libs:i386
 
   apt autoremove --purge \
@@ -223,7 +214,7 @@ fi
 
 # Laptop packages.
 if [ "$hostname" = "zond" ]; then
-  apt install \
+  apt install --yes \
     acpi firmware-iwlwifi firmware-realtek laptop-mode-tools xbacklight \
     xserver-xorg-input-synaptics xserver-xorg-video-intel
 fi
@@ -231,7 +222,7 @@ fi
 
 # Home server packages.
 if [ "$hostname" = "molniya" ]; then
-  apt install \
+  apt install --yes \
     apcupsd borgbackup certbot kodi kodi-vfs-libarchive libcec6 lm-sensors \
     mdadm minidlna netdata nfs-common nfs-kernel-server nginx-light podman \
     python3-certbot-dns-cloudflare rtorrent tailscale tarsnap \
@@ -257,7 +248,7 @@ if \
   [ "$hostname" = "vostok" ] || \
   [ "$hostname" = "voskhod" ]
 then
-  apt install \
+  apt install --yes \
     certbot nginx-extras python3-certbot-dns-cloudflare
 
   apt autoremove --purge \
@@ -266,7 +257,7 @@ fi
 
 
 # Configure unattended upgrades
-apt install unattended-upgrades
+apt install --yes unattended-upgrades
 sed -Ei \
   's|//      "o=Debian Backports,a=\$\{distro_codename\}-backports,l=Debian Backports";|        "o=Debian Backports,a=${distro_codename}-backports,l=Debian Backports";|' \
   /etc/apt/apt.conf.d/50unattended-upgrades
