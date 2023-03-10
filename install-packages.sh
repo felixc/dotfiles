@@ -114,15 +114,11 @@ apt install --yes \
   bc curl daemontools debian-keyring dnsutils firmware-linux git make \
   moreutils ripgrep rsync sudo tmux ufw unzip util-linux vim-nox zsh
 
-if [ "$hostname" != "mir" ] || \
-   apt-cache showpkg nvidia-graphics-drivers | grep -q '~bpo.*backports'
-then
-  tee /etc/apt/preferences.d/backports-core-packages > /dev/null <<- EOF
+tee /etc/apt/preferences.d/backports-core-packages > /dev/null <<- EOF
 	Package: amd64-microcode intel-microcode linux-image-amd64 linux-image-cloud-amd64
 	Pin: release a=bullseye-backports
 	Pin-Priority: 500
 	EOF
-fi
 
 if lscpu | grep -q "GenuineIntel"; then
   apt install --yes intel-microcode
@@ -196,16 +192,10 @@ if [ "$hostname" = "mir" ]; then
     texlive-font-utils texlive-fonts-extra texlive-fonts-recommended \
     texlive-pictures texlive-pstricks texlive-xetex
 
-  if apt-cache showpkg nvidia-graphics-drivers | grep -q '~bpo.*backports'; then
-    tee /etc/apt/preferences.d/backports-nvidia-driver > /dev/null <<- EOF
-	Package: linux-headers-amd64 src:nvidia-graphics-drivers
-	Pin: release a=bullseye-backports
-	Pin-Priority: 500
-	EOF
-  fi
-
   apt install --yes \
-      linux-headers-amd64 nvidia-driver nvidia-driver-libs nvidia-driver-libs:i386
+    firmware-amd-graphics libgl1-mesa-dri libgl1-mesa-dri:i386 libglx-mesa0 \
+    libglx-mesa0:i386 mesa-vulkan-drivers mesa-vulkan-drivers:i386 \
+    mesa-va-drivers mesa-vdpau-drivers xserver-xorg-video-amdgpu
 
   apt autoremove --purge \
     wpasupplicant modemmanager
