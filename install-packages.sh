@@ -256,6 +256,15 @@ then
 fi
 
 
+# Media player
+if [ "$hostname" = "almaz" ]; then
+  apt install --yes mopidy
+
+  apt autoremove --purge \
+    avahi-daemon bluetooth dhcpcd5 ifupdown wpasupplicant yelp
+fi
+
+
 # Configure unattended upgrades
 apt install --yes unattended-upgrades
 sed -Ei \
