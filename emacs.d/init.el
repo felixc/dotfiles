@@ -8,6 +8,10 @@
 
 (disable-gc)
 
+; Don't attempt to resize Emacs on startup to fit default contents. It is
+; futile because the tiling window manager controls that anyway.
+(setq frame-inhibit-implied-resize t)
+
 ; Search for files in a custom load-path
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
 
