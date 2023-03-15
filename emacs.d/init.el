@@ -90,6 +90,9 @@
 ; Show matching parens
 (show-paren-mode t)
 
+; Remove the newline as well when killing a line
+(setq kill-whole-line t)
+
 ; Cycle between moving to the start the line and the first non-whitespace char
 (defun move-to-start-of-line ()
   (interactive)
