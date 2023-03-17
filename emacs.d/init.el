@@ -170,6 +170,11 @@
   :config
   (editorconfig-mode 1))
 
+; Keep track of previous positions when moving around and easily jump back.
+(use-package backward-forward
+  :config
+  (backward-forward-mode t))
+
 ; UTF-8 Unicode
 (prefer-coding-system        'utf-8)
 (set-default-coding-systems  'utf-8)
