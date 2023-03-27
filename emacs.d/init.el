@@ -71,7 +71,6 @@
 (setq create-lockfiles nil)
 
 ; Temporary auto-save files go in the temp directory
-(setq backup-directory-alist `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
 ; Use the X clipboard as well for copy/paste
