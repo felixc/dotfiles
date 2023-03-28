@@ -194,6 +194,10 @@
   (setq ido-enable-flex-matching t)
   (setq ido-everywhere t))
 
+; In completion minibuffers, let spaces be spaces and not completion commands.
+(define-key minibuffer-local-completion-map " "
+    (lambda () (interactive) (insert " ")))
+
 ; Incremental mini-buffer completion preview
 (icomplete-mode t)
 
