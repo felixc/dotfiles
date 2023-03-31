@@ -198,6 +198,10 @@
 (define-key minibuffer-local-completion-map " "
     (lambda () (interactive) (insert " ")))
 
+; Match completion candidates flexibly in any order.
+(use-package orderless
+  :custom (completion-styles '(basic emacs22 partial-completion orderless)))
+
 ; Incremental mini-buffer completion preview
 (icomplete-mode t)
 
