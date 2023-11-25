@@ -111,8 +111,9 @@ apt --yes upgrade
 
 # Base packages used on all systems.
 apt install --yes \
-  bc curl daemontools debian-keyring dnsutils firmware-linux git make \
-  moreutils ripgrep rsync sudo tmux ufw unzip util-linux vim-nox zsh
+  bc curl daemontools debconf-utils debian-archive-keyring dnsutils exim4 \
+  fwupdate git kitty-terminfo make moreutils ripgrep rsync sudo tmux ufw \
+  unzip util-linux zsh
 
 tee /etc/apt/preferences.d/backports-core-packages > /dev/null <<- EOF
 	Package: amd64-microcode intel-microcode linux-image-amd64 linux-image-cloud-amd64
@@ -161,36 +162,41 @@ if \
   [ "$hostname" = "zond" ]
 then
   apt install --yes \
-    alsa-utils anacron borgbackup build-essential chromium dunst dzen2 emacs \
-    entr eog evince feh ffmpeg fonts-dejavu fonts-inconsolata fonts-liberation \
+    anacron borgbackup build-essential chromium dunst dzen2 emacs entr eog \
+    evince feh ffmpeg fonts-dejavu fonts-inconsolata fonts-liberation \
     fonts-symbola gdb gimp git-email git-extras gnome-disk-utility \
-    gnome-screenshot gnupg-agent gnupg2 gparted gron gvfs-backends imagemagick \
-    inkscape ipython3 irssi irssi-scripts keychain lbdb \
-    libghc-xmonad-contrib-dev libghc-xmonad-dev libsecret-tools libssl-dev \
-    lightdm net-tools msmtp ncal nemo nfs-common numlockx pass pavucontrol \
-    picom pulseaudio pylint3 python3 python3-flake8 python3-venv rxvt-unicode \
-    scdaemon shellcheck steam strace ttf-bitstream-vera \
-    ttf-mscorefonts-installer ttf-xfree86-nonfree unicode-screensaver unifont \
-    virtualenv vlc w3m wmctrl xbindkeys xsel xinit xlsx2csv xmonad xorg \
-    xscreensaver xscreensaver-data-extra xscreensaver-gl xscreensaver-gl-extra \
+    gnome-screenshot gnupg-agent gnupg2 gparted gron gvfs-backends \
+    imagemagick inkscape ipython3 irssi irssi-scripts keychain kitty lbdb \
+    libdbus-glib-1-2 libghc-xmonad-contrib-dev libghc-xmonad-dev \
+    libsecret-tools libssl-dev lightdm net-tools mupen64plus-qt ncal nemo \
+    nfs-common numlockx pass pamixer pavucontrol picom pinentry-curses \
+    pipewire pipewire-audio pipewire-pulse libspa-0.2-bluetooth \
+    pulseaudio-utils python3 python3-venv scdaemon shellcheck steam strace \
+    ttf-bitstream-vera ttf-mscorefonts-installer ttf-xfree86-nonfree \
+    unicode-screensaver unifont wireplumber virtualenv vlc w3m wmctrl \
+    xbindkeys xsel xinit xlsx2csv xmonad xorg xscreensaver \
+    xscreensaver-data-extra xscreensaver-gl xscreensaver-gl-extra \
     xscreensaver-screensaver-bsod xserver-xorg-input-all
 
   apt autoremove --purge \
-    yelp avahi-daemon xdg-desktop-portal gnome-online-accounts
+    avahi-daemon gnome-online-accounts ifupdown xdg-desktop-portal yelp
 fi
 
 
 # Desktop packages.
 if [ "$hostname" = "mir" ]; then
   apt install --yes \
-    brotli darktable fonts-cantarell fonts-dejavu fonts-dejavu-extra \
-    fonts-ebgaramond fonts-ebgaramond-extra fonts-lato fonts-linuxlibertine \
-    fonts-ocr-a fonts-opensymbol fonts-sil-charis fonts-sil-gentium \
-    fonts-vollkorn fonts-yanone-kaffeesatz geeqie gnome-font-viewer goaccess \
-    ledger libdvd-pkg neomutt notmuch notmuch-mutt offlineimap3 \
-    par2 python3-keyring signing-party texlive texlive-bibtex-extra \
-    texlive-font-utils texlive-fonts-extra texlive-fonts-recommended \
-    texlive-pictures texlive-pstricks texlive-xetex
+    asunder brotli darktable easyeffects fonts-cantarell fonts-dejavu \
+    fonts-dejavu-extra fonts-ebgaramond fonts-ebgaramond-extra fonts-lato \
+    fonts-linuxlibertine fonts-ocr-a fonts-opensymbol fonts-sil-charis \
+    fonts-sil-gentium fonts-vollkorn fonts-yanone-kaffeesatz geeqie \
+    gnome-font-viewer goaccess handbrake kid3-qt ledger libdvd-pkg lvm2 \
+    neomutt notmuch notmuch-mutt opus-tools offlineimap3 par2 \
+    prometheus-node-exporter python3-keyring signing-party systemd-resolved \
+    texlive texlive-bibtex-extra texlive-font-utils texlive-fonts-extra \
+    texlive-fonts-recommended texlive-pictures texlive-pstricks texlive-xetex
+
+  sudo dpkg-reconfigure --frontend noninteractive libdvd-pkg
 
   apt install --yes \
     firmware-amd-graphics libgl1-mesa-dri libgl1-mesa-dri:i386 libglx-mesa0 \
@@ -213,8 +219,9 @@ fi
 # Home server packages.
 if [ "$hostname" = "molniya" ]; then
   apt install --yes \
-    apcupsd borgbackup certbot kodi kodi-vfs-libarchive libcec6 lm-sensors \
-    mdadm minidlna netdata nfs-common nfs-kernel-server nginx-light podman \
+    apcupsd borgbackup certbot gasket-dkms kodi kodi-vfs-libarchive libcec6 \
+    libedgetpu1-std lm-sensors mdadm minidlna mosquitto netdata nfs-common \
+    nfs-kernel-server nginx-light prometheus prometheus-alertmanager podman \
     python3-certbot-dns-cloudflare rtorrent tailscale tarsnap \
     xserver-xorg-video-amdgpu
 
@@ -229,7 +236,7 @@ if [ "$hostname" = "molniya" ]; then
       youtube-dl
 
   apt autoremove --purge \
-    bluetooth dhcpcd5 wpasupplicant yelp
+    avahi-daemon bluetooth dhcpcd5 ifupdown wpasupplicant yelp
 fi
 
 
@@ -239,7 +246,9 @@ if \
   [ "$hostname" = "voskhod" ]
 then
   apt install --yes \
-    certbot nginx-extras python3-certbot-dns-cloudflare
+    certbot fail2ban nginx-light libnginx-mod-http-brotli-static \
+    libnginx-mod-http-headers-more-filter prometheus-node-exporter \
+    python3-certbot-dns-cloudflare
 
   apt autoremove --purge \
     awscli 'google-*' 'python*-boto*'
