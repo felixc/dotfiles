@@ -3,10 +3,10 @@
 set -e
 
 pwd=$(pwd)
-files=(aspell.en.pws caffrc emacs.d gitattributes gitconfig gitignore \
-       gtkrc-2.0 ledgerrc mutt nethackrc notmuch-config offlineimaprc \
-       psqlrc signature quiltrc tmux.conf vimrc xbindkeysrc XCompose \
-       xinitrc Xresources xscreensaver zshenv zshrc)
+files=(aspell.en.pws caffrc emacs.d gitattributes gitconfig gitignore ledgerrc \
+       mutt nethackrc notmuch-config offlineimaprc psqlrc signature quiltrc \
+       tmux.conf vimrc xbindkeysrc XCompose xinitrc Xresources xscreensaver \
+       zshenv zshrc)
 
 for file in $files; do;
   ln -srfT "$pwd/$file" "$HOME/.$file"
@@ -23,9 +23,6 @@ ln -srf "$pwd/gtk.css" "$HOME/.config/gtk-3.0/gtk.css"
 
 mkdir -p "$HOME/.config/fontconfig"
 ln -srf "$pwd/fonts.conf" "$HOME/.config/fontconfig/fonts.conf"
-
-mkdir -p "$HOME/.config/dunst"
-ln -srf "$pwd/dunstrc" "$HOME/.config/dunst/dunstrc"
 
 mkdir -p "$HOME/.config/kitty"
 ln -srf "$pwd/kitty.conf" "$HOME/.config/kitty/kitty.conf"
