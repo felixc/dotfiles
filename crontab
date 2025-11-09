@@ -1,2 +1,0 @@
-@reboot /usr/sbin/anacron -s -S $HOME/.local/state/anacronspool -t $HOME/cfg/anacrontab
-@hourly /usr/sbin/anacron -s -S $HOME/.local/state/anacronspool -t $HOME/cfg/anacrontab

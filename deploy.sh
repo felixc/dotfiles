@@ -50,8 +50,6 @@ ln -srf "$pwd/ipython_config.py" "$HOME/.ipython/profile_default/ipython_config.
 mkdir -p "$HOME/.ssh"
 ln -srf "$pwd/ssh-config" "$HOME/.ssh/config"
 
-mkdir -p "$HOME/.local/state/anacronspool"
-
 moz_profile_dir=$(find "$HOME/.mozilla/firefox" -name "*.default-beta" -type d 2> /dev/null || echo "")
 if [ -n "$moz_profile_dir" ]; then
     mkdir -p "$moz_profile_dir/chrome"
@@ -65,8 +63,6 @@ ln -srfT "$pwd/bin" "$HOME/bin"
 mkdir -p "$HOME/msg/.offlineimap"
 echo '#!/bin/sh\nofflineimap -u Quiet' >! "$HOME/msg/.offlineimap/run"
 chmod +x "$HOME/msg/.offlineimap/run"
-
-crontab "$pwd/crontab"
 
 mkdir -p "$HOME/.xmonad"
 ln -srf "$pwd/xmonad.hs" "$HOME/.xmonad/xmonad.hs"
