@@ -3,25 +3,42 @@
   email = "felixc@felixcrux.com"
 
 [core]
-  excludesfile = ~/.gitignore
   attributesfile = ~/.gitattributes
+  excludesfile = ~/.gitignore
   quotePath = false
 
 [color]
   ui = auto
 
-[init]
-  defaultBranch = main
-
 [diff]
-  colorMoved = dimmed_zebra
+  algorithm = histogram
+  colorMoved = dimmed-zebra
   indentHeuristic = on
+  mnemonicPrefix = true
+  renames = true
 
 [help]
   autocorrect = 1
 
+[init]
+  defaultBranch = main
+
+[interactive]
+  singleKey = true
+
+[merge]
+  conflictstyle = zdiff3
+
+[pack]
+  usePathWalk = true
+
+[tag]
+  sort = version:refname
+
 [fetch]
+  all = true
   prune = true
+  pruneTags = true
 
 [pull]
   rebase = true
@@ -33,15 +50,13 @@
 [transfer]
   fsckObjects = true
 
-[merge]
-  conflictstyle = diff3
-
 [rebase]
-  autosquash = true
+  autoSquash = true
   updateRefs = true
 
 [rerere]
   enabled = true
+  autoupdate = true
 
 [alias]
   co = checkout
@@ -57,5 +72,5 @@
   amend-date-now = !GIT_COMMITTER_DATE=\"$(date)\" git commit --amend --no-edit --date=\"$(date)\"
   unstage = reset HEAD --
   it = !git init && git commit --allow-empty --message='Initial commit'
-  up-pr = "!uppr() { if [ $(git symbolic-ref --short HEAD) = 'main' ]; then echo 'Not allowed on main branch!'; return; else git push --force-with-lease --no-verify; fi; }; uppr"
+  up-pr = "!uppr() { if [ $(git symbolic-ref --short HEAD) = 'main' ]; then echo 'Not allowed on main branch!'; return; else git push --force-with-lease --force-if-includes --no-verify; fi; }; uppr"
   merge-pr = !"mergepr() { git checkout main && git pull && git checkout $1 && git rebase main && git checkout main && git merge $1 && git push --no-verify && git branch --delete $1 && git push --no-verify --delete origin $1; git fetch; }; mergepr"
