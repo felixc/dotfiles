@@ -1,11 +1,12 @@
 ; Better JS and CSS editing in HTML documents
 (use-package multi-web-mode
+  :custom
+    (mweb-default-major-mode 'html-mode)
+    (mweb-tags '((js-mode "<script[^>]*>" "</script>")
+                 (css-mode "<style[^>]*>" "</style>")))
+    (mweb-filename-extensions '("html"))
   :config
-  (setq mweb-default-major-mode 'html-mode)
-  (setq mweb-tags '((js-mode "<script[^>]*>" "</script>")
-                    (css-mode "<style[^>]*>" "</style>")))
-  (setq mweb-filename-extensions '("html"))
-  (multi-web-global-mode t))
+    (multi-web-global-mode t))
 
 ; Show colours as represented by strings
 (add-hook 'css-mode-hook (lambda ()
@@ -15,10 +16,10 @@
 
 (use-package rjsx-mode
   :mode "\\.js\\'"
-  :config
-  (add-hook 'js2-mode-hook (lambda ()
-    (setq fill-column 100)
-    (setq js-indent-level 2)))
-  (add-hook 'js2-mode-hook 'prettier-js-mode))
+  :hook
+    (js2-mode . (lambda ()
+      (setq fill-column 100)
+      (setq js-indent-level 2)))
+    (js2-mode . prettier-js-mode))
 
 (provide 'my-webdev-config)

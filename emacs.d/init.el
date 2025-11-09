@@ -8,17 +8,16 @@
 
 (disable-gc)
 
+; Override the auto-discovered init file location to try to get packages
+; to put their junk in the cache dir instead of ~/.emacs.d
+(setq user-emacs-directory "~/.cache/emacs/")
+
 ; Don't attempt to resize Emacs on startup to fit default contents. It is
 ; futile because the tiling window manager controls that anyway.
 (setq frame-inhibit-implied-resize t)
 
 ; Search for files in a custom load-path
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
-
-; Keep customizations in a separate file
-(setq custom-file (concat user-emacs-directory "custom.el"))
-(when (file-exists-p custom-file)
-  (load custom-file))
 
 ; Manage packages
 (require 'my-package-management)
@@ -34,6 +33,13 @@
 
 ; Indent code in this file with two spaces
 (setq lisp-indent-offset 2)
+
+; Identify and adapt to the pre-existing indentation style of the file.
+(use-package dtrt-indent
+  :defer nil
+  :diminish dtrt-indent-mode
+  :config
+  (dtrt-indent-global-mode))
 
 ; Auto-break lines in text mode only
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
@@ -61,6 +67,9 @@
 ; Hide the right hand side fringe
 (fringe-mode '(nil . 0))
 
+(setq window-resize-pixelwise t)
+(setq frame-resize-pixelwise t)
+
 ; Change yes/no questions to y/n
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -69,9 +78,6 @@
 
 ; Do not make lockfiles
 (setq create-lockfiles nil)
-
-; Temporary auto-save files go in the temp directory
-(setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
 ; Use the X clipboard as well for copy/paste
 (setq select-enable-clipboard t)
@@ -110,24 +116,23 @@
 
 ; We usually want to kill the current buffer.
 (global-set-key (kbd "C-x k") 'kill-current-buffer)
-(global-set-key (kbd "C-x K") 'ido-kill-buffer)
+(global-set-key (kbd "C-x K") 'kill-buffer)
 
 ; Nicer mode line
 (use-package powerline
+  :defer nil
+  :custom
+  ;; (setq powerline-height 20)
+  ;; (setq powerline-text-scale-factor 0.98)
+  (powerline-display-buffer-size nil)
+  (powerline-utf-8-separator-left 9625)
+  (powerline-utf-8-separator-right 9631)
+  (powerline-default-separator 'wave)
   :config
-  (setq powerline-height 20)
-  (setq powerline-text-scale-factor 0.98)
-  (setq powerline-display-buffer-size nil)
-  (setq powerline-utf-8-separator-left 9625)
-  (setq powerline-utf-8-separator-right 9631)
-  (setq powerline-default-separator 'wave)
   (powerline-default-theme))
 
-; Better buffer naming for duplicates
-(use-package uniquify
-  :ensure nil
-  :config
-  (setq uniquify-buffer-name-style 'forward))
+; Better buffer naming when opening multiple files with the same name
+(setq uniquify-buffer-name-style 'forward)
 
 ; Move between windows easily
 (windmove-default-keybindings)
@@ -143,14 +148,14 @@
 (setq vc-handled-backends nil)
 
 ; Help with writing Git commit messages
-(use-package git-commit
-  :config
-  (add-hook 'git-commit-setup-hook (lambda ()
-    (setq fill-column 76))))
+;; (use-package git-commit
+;;   :config
+;;   (add-hook 'git-commit-setup-hook (lambda ()
+;;     (setq fill-column 76))))
 
 ; Save minibuffer history
 (use-package savehist
-  :config
+  :custom
   (savehist-mode t))
 
 ; Don't bother prompting to end processes when exiting
@@ -159,20 +164,22 @@
 
 ; Better undo
 (use-package undo-tree
+  :defer nil
   :diminish undo-tree-mode
+  :custom
+  (undo-tree-history-directory-alist '(("." . "~/.cache/emacs/transient/undo")))
+  ; or alternatively:  (setq undo-tree-auto-save-history nil)
   :config
   (global-undo-tree-mode))
 
 ; Automatically use local coding styles defined in .editorconfig files
 (use-package editorconfig
   :diminish editorconfig-mode
-  :config
-  (editorconfig-mode 1))
+  :custom (editorconfig-mode 1))
 
 ; Keep track of previous positions when moving around and easily jump back.
 (use-package backward-forward
-  :config
-  (backward-forward-mode t))
+  :custom (backward-forward-mode t))
 
 ; UTF-8 Unicode
 (prefer-coding-system        'utf-8)
@@ -187,13 +194,6 @@
 ; Highlight and delete unwanted whitespace
 (require 'my-whitespace-cleanup)
 
-; Interactive-do mode
-(use-package ido
-  :config
-  (ido-mode 'both)
-  (setq ido-enable-flex-matching t)
-  (setq ido-everywhere t))
-
 ; In completion minibuffers, let spaces be spaces and not completion commands.
 (define-key minibuffer-local-completion-map " "
     (lambda () (interactive) (insert " ")))
@@ -202,8 +202,19 @@
 (use-package orderless
   :custom (completion-styles '(basic emacs22 partial-completion orderless)))
 
+; Add info to minibuffer completions
+(use-package marginalia
+  :defer 1
+  :config
+  (marginalia-mode))
+
 ; Incremental mini-buffer completion preview
-(icomplete-mode t)
+;; (fido-mode t)
+;; (icomplete-mode t)
+(fido-vertical-mode t)
+
+; Cycle through all possible completions when hitting tab.
+(setq completion-cycle-threshold t)
 
 ; Better control over quitting emacs/emacsclient.
 (global-unset-key (kbd "C-x C-c"))
@@ -239,8 +250,9 @@
 
 ; Appearance
 (use-package zenburn-theme
-  :init
-  (setq zenburn-override-colors-alist
+  :defer nil
+  :custom
+  (zenburn-override-colors-alist
     '(("zenburn-bg-2"  . "#000000")
       ("zenburn-bg-1"  . "#101010")
       ("zenburn-bg-05" . "#282828")
@@ -260,7 +272,11 @@
 (defun configure-new-frame-appearance (frame)
   (with-selected-frame frame
     (when (display-graphic-p frame)
-      (set-frame-font "Inconsolata 13"))))
+      (cond
+        ((find-font (font-spec :name "Inconsolata"))
+          (set-frame-font "Inconsolata 13" nil t))
+        ((find-font (font-spec :name "Monaco"))
+          (set-frame-font "Monaco 12" nil t))))))
 
 ; Run for already-existing frames, and run when a new frame is created
 (mapc 'configure-new-frame-appearance (frame-list))
@@ -268,35 +284,36 @@
 
 ; Yasnippet everywhere
 (use-package yasnippet-snippets
-  :defer 2)
+  :defer 1)
 (use-package yasnippet
   :diminish yas-minor-mode
-  :defer 2
-  :config (yas-global-mode t))
+  :defer 1
+  :custom (yas-global-mode t))
 
 ; Use Flycheck everywhere
 (use-package flycheck
+  :defer 1
   :diminish flycheck-mode
   :config (global-flycheck-mode))
 
 ; Spelling correction, including for comments in programming modes
 (use-package flyspell
+  :defer 1
   :diminish flyspell-mode
   :diminish flyspell-prog-mode
-  :config
-  (add-hook 'text-mode-hook 'flyspell-mode)
-  (add-hook 'prog-mode-hook (lambda ()
+  :hook
+  (text-mode . flyspell-mode)
+  (prog-mode . (lambda ()
     (flyspell-mode -1)
     (flyspell-prog-mode)))
-  (define-key flyspell-mode-map (kbd "C-;") nil))
+  :bind (:map flyspell-mode-map ("C-;" . nil)))
 
 ; Better typography in certain modes (curly quotes, dashes, etc)
 (use-package typo
   :diminish typo-mode
-  :config
-  (add-hook 'git-commit-mode 'typo-mode)
-  (add-hook 'markdown-mode-hook 'typo-mode)
-  (typo-global-mode))
+  :hook
+  (git-commit . typo-mode)
+  (markdown-mode . typo-mode))
 
 ;; Working with Markdown
 (use-package markdown-mode
@@ -329,12 +346,13 @@
 ; Company for completions in various programming languages
 (use-package company
   :diminish company-mode
+  :custom
+  (company-tooltip-align-annotations t)
   :config
   (use-package company-quickhelp
-    :config
-    (add-hook 'company-mode-hook 'company-quickhelp-mode))
+    :hook
+    (company-mode . company-quickhelp-mode))
   (define-key company-active-map [tab] 'company-complete-common-or-cycle)
-  (setq company-tooltip-align-annotations t)
   (defun toggle-fci-around-company (command)
     (when (string= "show" command)
       (turn-off-fci-mode))
@@ -342,33 +360,17 @@
       (turn-on-fci-mode)))
   (advice-add 'company-call-frontends :before #'toggle-fci-around-company))
 
-; Language-specific configuration
-(require 'my-language-server-config)
-(require 'my-python-config)
-(require 'my-webdev-config)
-(require 'my-go-config)
-(require 'my-rust-config)
-(require 'my-typescript-config)
-
 ; Email-writing configuration
 (require 'my-mail-config)
-
-; Jump back to changes
-(use-package goto-chg
-  :config
-  (defun go-to-last-change-and-describe ()
-    (interactive)
-    (setq current-prefix-arg '(0))
-    (call-interactively 'goto-last-change))
-  :bind ("C-M-/" . go-to-last-change-and-describe))
 
 ; Column limit
 (setq-default fill-column 80)
 
 ; Draw a bar at the fill-column
 (use-package fill-column-indicator
+  :hook
+  (after-change-major-mode . fci-mode)
   :config
-  (add-hook 'after-change-major-mode-hook 'fci-mode)
   (advice-add 'turn-off-fci-mode :after
     (lambda () (setq fci-mode-toggle nil)))
   ; Toggle the mode as the window resizes around where the line is visible

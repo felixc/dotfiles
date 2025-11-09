@@ -1,7 +1,7 @@
 (use-package go-mode
   :mode "\\.go\\'"
-  :config
-  (add-hook 'go-mode-hook (lambda ()
+  :hook
+  (go-mode . (lambda ()
     (setq tab-width 2)
     (toggle-show-tabs-show-ws)     ; Toggled twice to work around a bug either
     (toggle-show-tabs-show-ws))))  ; in the function or in my brain.
