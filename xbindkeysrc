@@ -16,13 +16,13 @@ Shift + Mod2 + Mod4 + Print
 "xscreensaver-command -lock"
 Mod4 + s
 
-"volDown.sh"
+"~/bin/dock-helpers/volume.sh down"
 XF86AudioLowerVolume
 
-"volUp.sh"
+"~/bin/dock-helpers/volume.sh up"
 XF86AudioRaiseVolume
 
-"toggleMute.sh"
+"~/bin/dock-helpers/volume.sh mute"
 XF86AudioMute
 
 "xbacklight -inc 3"
@@ -30,3 +30,6 @@ XF86MonBrightnessUp
 
 "xbacklight -dec 3"
 XF86MonBrightnessDown
+
+"xeyes"
+XF86Launch5

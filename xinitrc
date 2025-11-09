@@ -33,6 +33,8 @@ existsp picom && picom \
   --fading --fade-in-step 0.10 --fade-out-step 0.10 \
   --inactive-dim 0.05 \
   --daemon &
+$HOME/bin/dock-helpers/startup.sh &
+$HOME/wrk/eww/target/release/eww open main-monitor-top-bar &
 existsp xscreensaver && xscreensaver -nosplash &
 existsp dunst && dunst &
 
