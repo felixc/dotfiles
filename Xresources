@@ -1,12 +1,6 @@
 Xft.dpi: 170
 
 
-!! Dzen
-dzen2.font: -*-Inconsolata-*-*-*-*-26-*-*-*-*-*-*-*
-dzen2.foreground: grey80
-dzen2.background: #2c2c32
-
-
 !! Emacs
 Emacs.font: Inconsolata-13
 

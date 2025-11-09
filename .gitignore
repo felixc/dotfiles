@@ -1,4 +1,3 @@
-dzen/icons/
 emacs.d/*
 !emacs.d/lisp/
 *.elc

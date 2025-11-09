@@ -48,6 +48,5 @@ existsp mutt && x-terminal-emulator -e zsh -c mutt &
 existsp steam && GDK_SCALE=2 steam &
 existsp firefox && firefox &
 
-# Windowing environment
-[ -x $HOME/cfg/dzen/dzen.sh ] && $HOME/cfg/dzen/dzen.sh &
+# Window manager
 existsp xmonad && exec xmonad || exec x-terminal-emulator
