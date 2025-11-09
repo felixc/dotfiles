@@ -1,0 +1,77 @@
+R /home/felix/
+
++ /home/felix/cfg/emacs.d/init.el
++ /home/felix/cfg/emacs.d/lisp/*
+- /home/felix/cfg/emacs.d
+
++ /home/felix/msg/archive/*
+- /home/felix/msg
+
++ /home/felix/.gnupg/*.asc
+- /home/felix/.gnupg
+
++ /home/felix/**/*[Ss]ave*/**/*
++ /home/felix/**/*[Ss]ave*
++ /home/felix/**/*.[Ss]av
+
+! /home/felix/.adobe
+! /home/felix/.android
+! /home/felix/.audacity-data
+! /home/felix/auto-save-list
+! /home/felix/.cache
+! /home/felix/.cargo
+! /home/felix/cfg/bin/ff
+! /home/felix/.config
+! /home/felix/.cpan
+! /home/felix/.dbus
+! /home/felix/.dvdcss
+! /home/felix/.fonts
+! /home/felix/FiraxisLive/
+! /home/felix/img/tags
+! /home/felix/img/wallpaper
+! /home/felix/.histfile
+! /home/felix/.java
+! /home/felix/.keychain
+! /home/felix/.lbdb
+! /home/felix/.lesshst
+! /home/felix/.local/
+! /home/felix/.mbwarband
+! /home/felix/.minecraft
+! /home/felix/.mozilla
+! /home/felix/.nv
+! /home/felix/.openshot_qt
+! /home/felix/.paradox*
+! /home/felix/.pki
+! /home/felix/.psense
+! /home/felix/.pulse*
+! /home/felix/.pylint.d
+! /home/felix/.python-environments
+! /home/felix/.python_history
+! /home/felix/.rustup
+! /home/felix/.running_with_rifles
+! /home/felix/.sane
+! /home/felix/.steam
+! /home/felix/.steampath
+! /home/felix/.steampid
+! /home/felix/.thumbnails
+! /home/felix/.venv
+! /home/felix/.w3m
+! /home/felix/.wget*
+! /home/felix/.wine
+! /home/felix/wrk/felixcrux.com/files/doc
+! /home/felix/wrk/nginx/letsencrypt
+! /home/felix/wrk/**/out
+! /home/felix/.Xauthority
+! /home/felix/.xmonad
+! /home/felix/.xsession-errors*
+! /home/felix/.zcompdump
+! /home/felix/.zoom
+
+! **/.git
+! **/.mypy_cache
+! **/.pytest_cache
+! **/__pycache__
+! **/target
+
+! /home/felix/box
+! /home/felix/snd
