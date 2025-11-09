@@ -33,19 +33,15 @@ existsp picom && picom \
   --inactive-dim 0.05 \
   --corner-radius 8 --rounded-corners-exclude 'window_type *= "dock"' \
   --daemon &
-$HOME/bin/dock-helpers/startup.sh &
-$HOME/wrk/eww/target/release/eww open main-monitor-top-bar &
 existsp xscreensaver && xscreensaver -nosplash &
-existsp dunst && dunst &
 
 # Auto-start tools and utilities
-existsp keychain && keychain --quiet && . $HOME/.keychain/*-sh*
+existsp keychain && keychain --quiet --systemd && . $HOME/.keychain/*-sh*
 existsp xbindkeys && xbindkeys &
 existsp supervise && existsp offlineimap && supervise $HOME/msg/.offlineimap &
 existsp emacs && emacs --daemon &
 
 # Foreground apps
-existsp ssh-add && x-terminal-emulator -e zsh -c ssh-add &
 existsp mutt && x-terminal-emulator -e zsh -c mutt &
 existsp firefox && firefox &
 
