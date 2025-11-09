@@ -1,16 +1,32 @@
 [global]
-origin = top-center
-transparency = 10
+follow = mouse
+
 idle_threshold = 10m
-font = Inconsolata 12
-icon_path = /usr/share/icons/gnome/16x16/
+
+icon_path = /usr/share/icons/
 enable_recursive_icon_lookup = true
-corner_radius = 1
-padding = 4
-gap_size = 4
-width = (250, 500)
+
+origin = top-center
 offset = 0x28
 alignment = center
+width = (250, 500)
+padding = 12
+horizontal_padding = 12
+gap_size = 8
+corner_radius = 3
+
+font = Inconsolata 12
+format = "<b>%s</b>\n\n%b"
+foreground = "#DCDCCC"
+
+[urgency_low]
+  background = "#3F3F3F"
+  frame_color = "#4F4F4F"
 
 [urgency_normal]
-  frame_color = "#1B3C67"
+  background = "#485F4F"
+  frame_color = "#3F4F3F"
+
+[urgency_critical]
+  background = "#5C3333"
+  frame_color = "#7C4343"
