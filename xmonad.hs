@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wno-deprecations #-}
+
 import System.Exit
 
 import XMonad
@@ -75,14 +77,15 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask, button3), (\w -> focus w >> mouseResizeWindow w))
     ]
 
-myLayout = smartSpacing 4 (ResizableTall 1 (3/100) (1/2) []) ||| smartSpacing 4 (Mirror (ResizableTall 1 (3/100) (1/2) [])) ||| simpleTabbed
+myLayout = smartSpacing 4 (ResizableTall 1 (3/100) (3/5) []) ||| smartSpacing 4 (Mirror (ResizableTall 1 (3/100) (1/2) [])) ||| simpleTabbed
 
 myManageHook = composeAll
-    [ className =? "Firefox"       --> doShift "2"
-    , className =? "fontforge"     --> doFloat
-    , className =? "Steam"         --> doShift "9"
-    , resource =? "desktop_window" --> doIgnore
-    , isFullscreen                 --> doFullFloat
+    [ className =? "firefox-beta"   --> doShift "2"
+    , className =? "discord"        --> doShift "1"
+    , className =? "steam"          --> doShift "9"
+    , className =? "fontforge"      --> doFloat
+    , appName   =? "desktop_window" --> doIgnore
+    , isFullscreen                  --> doFullFloat
     ]
 
 myLauncherConfig = def
@@ -100,6 +103,6 @@ main = do
     keys               = myKeys,
     mouseBindings      = myMouseBindings,
     layoutHook         = avoidStruts $ myLayout,
-    logHook            = dynamicLogWithPP myDzenPP { ppOutput = hPutStrLn h },
+    handleEventHook    = handleEventHook def <+> fullscreenEventHook,
     manageHook         = myManageHook
   }
