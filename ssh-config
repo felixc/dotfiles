@@ -6,7 +6,7 @@ Host github.com gitlab.com
 Host *.rsync.net
   User de2397
 
-Host mir molniya proton salyut almaz voskhod vostok zond
+Host mir molniya proton salyut almaz voskhod zond
   HostName %h.felixcrux.com
 
 Host *.felixcrux.com
