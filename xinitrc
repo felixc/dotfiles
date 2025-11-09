@@ -26,12 +26,12 @@ fi
 
 # Desktop environment
 existsp picom && picom \
-  --experimental-backends --backend glx \
-  --blur-method dual_kawase --blur-strength 3 --blur-background-exclude '!class_g = "kitty"' \
-  --shadow --shadow-exclude 'window_type *= "menu" || window_type = "dock" || window_type = "tooltip" || window_type = "utility"' \
-  --corner-radius 8 --rounded-corners-exclude 'window_type *= "dock"' \
+  --backend glx \
+  --blur-method dual_kawase --blur-strength 3 --blur-background-exclude '!class_g = "kitty" && !name *= "main-monitor-top-bar"' \
+  --shadow --shadow-exclude 'window_type *= "menu" || window_type = "dock" || window_type = "tooltip" || window_type = "utility" || fullscreen' \
   --fading --fade-in-step 0.10 --fade-out-step 0.10 \
   --inactive-dim 0.05 \
+  --corner-radius 8 --rounded-corners-exclude 'window_type *= "dock"' \
   --daemon &
 $HOME/bin/dock-helpers/startup.sh &
 $HOME/wrk/eww/target/release/eww open main-monitor-top-bar &
@@ -47,7 +47,6 @@ existsp emacs && emacs --daemon &
 # Foreground apps
 existsp ssh-add && x-terminal-emulator -e zsh -c ssh-add &
 existsp mutt && x-terminal-emulator -e zsh -c mutt &
-existsp steam && GDK_SCALE=2 steam &
 existsp firefox && firefox &
 
 # Window manager
