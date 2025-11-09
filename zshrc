@@ -10,12 +10,15 @@ autoload -U add-zsh-hook
 
 # Tab completion
 autoload -Uz compinit
-compinit
+compinit -d ~/.cache/zshcompdump
 
 # History file parameters
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+HISTFILE=~/.cache/zshhistfile
+HISTSIZE=100000
+SAVEHIST=100000
+
+# Save history entries immediately, instead of on exit
+setopt inc_append_history
 
 # Do not save duplicate history entries, even if they are not consecutive
 setopt hist_ignore_all_dups
@@ -30,6 +33,7 @@ setopt share_history
 DIRSTACKSIZE=5
 setopt auto_pushd
 setopt pushd_silent
+setopt pushd_ignore_dups
 alias dh="dirs -v"
 
 # Just specifying a directory name implies we want to switch to it
@@ -72,7 +76,7 @@ bindkey "^X^E" edit-command-line
 WORDCHARS=""
 
 # Sane defaults for various commands
-alias df="df --human-readable --exclude-type tmpfs --exclude-type=devtmpfs"
+alias df="df --human-readable --exclude-type tmpfs --exclude-type devtmpfs --exclude-type overlay"
 alias grep="grep --extended-regexp"
 alias ls="ls --literal --human-readable --hide '__pycache__' --hide 'target'"
 alias rg="rg --smart-case --search-zip"
@@ -109,7 +113,7 @@ add-zsh-hook precmd vcs_info
 hostcols=(
     yellow
     cyan
-    green
+    10
     blue
 )
 hosthash=0
@@ -119,9 +123,9 @@ end
 hosthash=$(( $hosthash % $#hostcols + 1))
 hostcolour=$hostcols[$hosthash]
 
-P_USER="%(!~%F{red}~%F{green})%B%n%b%f"
+P_USER="%(!~%F{red}~%F{10})%B%n%b%f"
 P_HOST="%F{$hostcolour}%B%m%b%f"
-P_PWD="%F{blue}%B%4(~.…/.)%3~%b%f"
+P_PWD="%F{12}%B%4(~.…/.)%3~%b%f"
 PROMPT='$P_USER%F{green}@%f$P_HOST:$P_PWD${vcs_info_msg_0_} %F{green}$%f '
 RPROMPT="%F{red}%T%f"
 
