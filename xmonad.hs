@@ -85,17 +85,6 @@ myManageHook = composeAll
     , isFullscreen                 --> doFullFloat
     ]
 
-myDzenPP = defaultPP
-  { ppCurrent = wrap "^fg(#aecf96)[^fg(white)" "^fg(#aecf96)]^fg()" . pad
-  , ppHidden = pad
-  , ppVisible = pad
-  , ppUrgent = wrap "^fg(#ff0000)<" ">^fg()"
-  , ppSep = " ^r(4x4) "
-  , ppWsSep = " "
-  , ppTitle = wrap "^fg(#aecf96)[^fg(white)" "^fg(#aecf96)]^fg()" . pad
-  , ppLayout = (\x -> "")
-  }
-
 myLauncherConfig = def
   { font = "xft:Inconsolata:size=12"
   , height = 38
@@ -103,8 +92,7 @@ myLauncherConfig = def
 
 main = do
   replace
-  h <- spawnPipe "processWindowTitle.sh | dzen2 -dock -h 32 -ta l -p -e 'onstart=lower'"
-  xmonad $ docks $ withUrgencyHook NoUrgencyHook $ ewmh defaultConfig {
+  xmonad $ docks $ withUrgencyHook NoUrgencyHook $ ewmh def {
     focusFollowsMouse  = True,
     borderWidth        = 0,
     modMask            = myModMask,
