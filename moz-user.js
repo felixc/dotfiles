@@ -45,11 +45,17 @@ user_pref("print.print_footerleft", "");
 user_pref("print.print_footercenter", "");
 user_pref("print.print_footerright", "");
 
-// Send Do Not Track header
-user_pref("privacy.donottrackheader.enabled", true);
+// Do not allow "ad measurement"
+user_pref("dom.private-attribution.submission.enabled", false);
+
+// Send "Global Privacy Control" header (i.e. "do not share my personal info")
+user_pref("privacy.globalprivacycontrol.enabled", true);
 
 // Use Tracking Protection mode everywhere, not just in Private Browsing
 user_pref("privacy.trackingprotection.enabled", true);
+
+// Enable opening tabs in specific containers
+// user_pref("privacy.userContext.newTabContainerOnLeftClick.enabled", true);
 
 // Don't send telemetry or health reports
 user_pref("datareporting.healthreport.uploadEnabled", false);
@@ -57,9 +63,6 @@ user_pref("datareporting.policy.dataSubmissionEnabled", false);
 
 // Don't allow use of the Beacon APIs
 user_pref("beacon.enabled", false);
-
-// Accept cookies, but third-party ones only from sites we've visited
-user_pref("network.cookie.cookieBehavior", 3);
 
 // Don't remember form history
 user_pref("browser.formfill.enable", false);
@@ -75,7 +78,7 @@ user_pref("browser.aboutConfig.showWarning", false);
 
 // Make scrollbars wider than the default
 user_pref("widget.gtk.overlay-scrollbars.enabled", false);
-user_pref("widget.non-native-theme.scrollbar.size.override", 30);
+user_pref("widget.non-native-theme.scrollbar.size.override", 20);
 
 // Don't allow sites to make scrollbars narrow
 user_pref("layout.css.scrollbar-width-thin.disabled", true);
