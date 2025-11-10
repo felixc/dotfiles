@@ -3,19 +3,21 @@
 set -e
 
 pwd=$(pwd)
-files=(aspell.en.pws caffrc emacs.d gitattributes gitconfig gitignore ledgerrc \
-       mutt nethackrc notmuch-config offlineimaprc psqlrc signature quiltrc \
-       tmux.conf vimrc xbindkeysrc XCompose xinitrc Xresources xscreensaver \
-       zshenv zshrc)
+files=(aspell.en.pws caffrc emacs.d ledgerrc nethackrc offlineimaprc psqlrc \
+       signature quiltrc vimrc xbindkeysrc XCompose xinitrc Xresources \
+       xscreensaver zshenv zshrc)
 
 for file in $files; do;
   ln -srfT "$pwd/$file" "$HOME/.$file"
 done
 
-ln -srf "$HOME/.xinitrc" "$HOME/.xsessionrc"
-
 mkdir -p "$HOME/.config"
 ln -srf "$pwd/user-dirs.dirs" "$HOME/.config/user-dirs.dirs"
+
+mkdir -p "$HOME/.config/git"
+ln -srf "$pwd/gitattributes" "$HOME/.config/git/attributes"
+ln -srf "$pwd/gitconfig" "$HOME/.config/git/config"
+ln -srf "$pwd/gitignore" "$HOME/.config/git/ignore"
 
 mkdir -p "$HOME/.config/gtk-3.0"
 ln -srf "$pwd/settings.ini" "$HOME/.config/gtk-3.0/settings.ini"
@@ -27,15 +29,23 @@ ln -srf "$pwd/fonts.conf" "$HOME/.config/fontconfig/fonts.conf"
 mkdir -p "$HOME/.config/kitty"
 ln -srf "$pwd/kitty.conf" "$HOME/.config/kitty/kitty.conf"
 
+ln -srf "$pwd/mutt" "$HOME/.config/mutt"
+
+mkdir -p "$HOME/.config/notmuch/default"
+ln -srf "$pwd/notmuch" "$HOME/.config/notmuch/default/config"
+
+mkdir -p "$HOME/.config/tmux"
+ln -srf "$pwd/tmux.conf" "$HOME/.config/tmux/tmux.conf"
+
+mkdir -p "$HOME/.caff/gnupghome"
+ln -srf "$pwd/gpg.conf" "$HOME/.caff/gnupghome/gpg.conf"
+
 mkdir -p "$HOME/.gnupg"
 ln -srf "$pwd/gpg.conf" "$HOME/.gnupg/gpg.conf"
 ln -srf "$pwd/scdaemon.conf" "$HOME/.gnupg/scdaemon.conf"
 ln -srf "$pwd/gpg-agent.conf" "$HOME/.gnupg/gpg-agent.conf"
 find "$HOME/.gnupg/" -type f -exec chmod 600 '{}' \;
 find "$HOME/.gnupg/" -type d -exec chmod 700 '{}' \;
-
-mkdir -p "$HOME/.caff/gnupghome"
-ln -srf "$pwd/gpg.conf" "$HOME/.caff/gnupghome/gpg.conf"
 
 mkdir -p "$HOME/.lbdb"
 ln -srf "$pwd/lbdbrc" "$HOME/.lbdb/lbdbrc"
@@ -46,6 +56,8 @@ ln -srf "$pwd/ipython_config.py" "$HOME/.ipython/profile_default/ipython_config.
 
 mkdir -p "$HOME/.ssh"
 ln -srf "$pwd/ssh-config" "$HOME/.ssh/config"
+
+ln -srf "$HOME/.xinitrc" "$HOME/.xsessionrc"
 
 moz_profile_dir=$(find "$HOME/.mozilla/firefox" -name "*.default-beta" -type d 2> /dev/null || echo "")
 if [ -n "$moz_profile_dir" ]; then

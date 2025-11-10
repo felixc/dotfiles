@@ -3,8 +3,6 @@
   email = "felixc@felixcrux.com"
 
 [core]
-  attributesfile = ~/.gitattributes
-  excludesfile = ~/.gitignore
   quotePath = false
 
 [color]
