@@ -1,3 +1,0 @@
-#!/bin/sh
-
-exec tail --pid=$1 -f /dev/null
