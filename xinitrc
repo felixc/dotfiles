@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. /home/felix/.zshenv
+. $HOME/.zshenv
 
 existsp() {
   command -v $1 > /dev/null;
