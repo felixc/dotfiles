@@ -36,7 +36,6 @@ existsp picom && picom \
 existsp xscreensaver && xscreensaver -nosplash &
 
 # Auto-start tools and utilities
-existsp keychain && keychain --quiet --systemd && . $HOME/.keychain/*-sh*
 existsp xbindkeys && xbindkeys &
 existsp supervise && existsp offlineimap && supervise $HOME/msg/.offlineimap &
 existsp emacs && emacs --daemon &
